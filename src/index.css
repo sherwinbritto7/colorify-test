@@ -1,0 +1,249 @@
+@import url("https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;600;800&family=Plus+Jakarta+Sans:wght@300;400;600;800&display=swap");
+
+html {
+  scroll-behavior: smooth;
+}
+
+:root {
+  --bg-color: #050505;
+  --text-color: #ffffff;
+  --text-secondary: #a1a1aa;
+
+  /* Exact Brand Colors from COLORIFY Logo */
+  --brand-yellow: #c5d429; /* C - yellow-green */
+  --brand-lime: #8cc63f; /* O - lime green */
+  --brand-green: #39b54a; /* L - green */
+  --brand-emerald: #00a651; /* O - emerald */
+  --brand-teal: #00a99d; /* R - teal */
+  --brand-sky: #29abe2; /* I - sky blue */
+  --brand-blue: #3b6bb5; /* F - royal blue */
+  --brand-purple: #7b3f9e; /* Y - purple */
+
+  /* Logo Gradient (left to right) */
+  --logo-gradient: linear-gradient(
+    90deg,
+    #c5d429,
+    #8cc63f,
+    #39b54a,
+    #00a651,
+    #00a99d,
+    #29abe2,
+    #3b6bb5,
+    #7b3f9e
+  );
+
+  --accent-primary: #39b54a;
+  --accent-secondary: #c5d429;
+
+  --glass-bg: rgba(255, 255, 255, 0.03);
+  --glass-border: rgba(255, 255, 255, 0.08);
+  --font-main: "Plus Jakarta Sans", sans-serif;
+  --font-display: "Outfit", sans-serif;
+}
+
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+  cursor: none !important;
+}
+
+body {
+  background-color: var(--bg-color);
+  background-image:
+    radial-gradient(
+      circle at 0% 0%,
+      rgba(197, 212, 41, 0.06) 0%,
+      transparent 50%
+    ),
+    radial-gradient(
+      circle at 100% 0%,
+      rgba(57, 181, 74, 0.06) 0%,
+      transparent 50%
+    ),
+    radial-gradient(
+      circle at 100% 100%,
+      rgba(59, 107, 181, 0.06) 0%,
+      transparent 50%
+    ),
+    radial-gradient(
+      circle at 0% 100%,
+      rgba(123, 63, 158, 0.06) 0%,
+      transparent 50%
+    );
+  color: var(--text-color);
+  font-family: var(--font-main);
+  overflow-x: hidden;
+  -webkit-font-smoothing: antialiased;
+  cursor: none;
+}
+
+@keyframes bgMove {
+  0% {
+    background-position: 0% 0%;
+  }
+  50% {
+    background-position: 100% 100%;
+  }
+  100% {
+    background-position: 0% 0%;
+  }
+}
+
+body::before {
+  content: "";
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  opacity: 0.05;
+  z-index: 9999;
+  pointer-events: none;
+  background-image: url("https://grainy-gradients.vercel.app/noise.svg");
+}
+
+h1,
+h2,
+h3,
+h4 {
+  font-family: var(--font-display);
+  font-weight: 800;
+}
+
+a {
+  text-decoration: none;
+  color: inherit;
+}
+
+button {
+  cursor: pointer;
+  border: none;
+  background: none;
+  font-family: inherit;
+}
+
+.glass-effect {
+  background: var(--glass-bg);
+  backdrop-filter: blur(12px);
+  -webkit-backdrop-filter: blur(12px);
+  border: 1px solid var(--glass-border);
+}
+
+.container {
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 0 2rem;
+}
+
+@media (max-width: 768px) {
+  .container {
+    padding: 0 1.5rem;
+  }
+}
+
+/* Custom Scrollbar */
+::-webkit-scrollbar {
+  width: 8px;
+}
+
+::-webkit-scrollbar-track {
+  background: var(--bg-color);
+}
+
+::-webkit-scrollbar-thumb {
+  background: #333;
+  border-radius: 10px;
+}
+
+::-webkit-scrollbar-thumb:hover {
+  background: var(--accent-primary);
+}
+
+section {
+  min-height: 100vh;
+  padding: 8rem 0;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+}
+
+@media (max-width: 1024px) {
+  section {
+    padding: 6rem 0;
+  }
+}
+
+@media (max-width: 768px) {
+  section {
+    padding: 4rem 0;
+    min-height: auto;
+  }
+}
+
+@keyframes gradientFlow {
+  from {
+    background-position: 0% 50%;
+  }
+  to {
+    background-position: 200% 50%;
+  }
+}
+
+.gradient-text {
+  display: inline-block;
+  background: linear-gradient(
+    90deg,
+    #c5d429,
+    #8cc63f,
+    #39b54a,
+    #00a651,
+    #00a99d,
+    #29abe2,
+    #3b6bb5,
+    #7b3f9e,
+    #c5d429,
+    #8cc63f,
+    #39b54a,
+    #00a651,
+    #00a99d,
+    #29abe2,
+    #3b6bb5,
+    #7b3f9e,
+    #c5d429
+  );
+  background-size: 200% auto;
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+  animation: gradientFlow 5s linear infinite;
+  will-change: background-position;
+  transform: translateZ(0);
+}
+
+/* Hide custom cursor when hovering over elements that block pointer events (like active iframes) */
+.app:has([data-cursor-hide]:hover) .cursor {
+  opacity: 0 !important;
+  visibility: hidden !important;
+}
+
+/* Global Responsive Utilities */
+@media (max-width: 768px) {
+  h1 { font-size: 2.5rem !important; }
+  h2 { font-size: 2rem !important; }
+  h3 { font-size: 1.5rem !important; }
+  
+  * {
+    cursor: auto !important; /* Disable custom cursor on mobile */
+  }
+  
+  .cursor {
+    display: none !important;
+  }
+}
+
+@media (max-width: 480px) {
+  .container {
+    padding: 0 1rem;
+  }
+}
