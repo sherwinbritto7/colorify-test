@@ -506,7 +506,7 @@ const WorksVideo = () => {
       <style>{`
         @media (max-width: 768px) {
           .works-bg-title {
-            font-size: clamp(3.5rem, 15vw, 10rem) !important;
+            font-size: clamp(5.5rem, 15vw, 10rem) !important;
           }
           .works-card {
             width: 92vw !important;
