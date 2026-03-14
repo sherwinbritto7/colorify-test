@@ -7,9 +7,13 @@ import {
   AnimatePresence,
 } from "framer-motion";
 import { Play, Pause, Volume2, VolumeX } from "lucide-react";
-import showreelVideo from "../assets/videos/showreel.mp4";
-import v2Video from "../assets/videos/v2.mp4";
-import v3Video from "../assets/videos/v3.mp4";
+// Cloudinary optimized video URLs
+const CLOUDINARY_BASE_URL =
+  "https://res.cloudinary.com/dvdrsgkpg/video/upload/f_auto,q_auto/v1773472221";
+
+const showreelVideo = `${CLOUDINARY_BASE_URL}/showreel_x10qxz.mp4`;
+const v2Video = `${CLOUDINARY_BASE_URL}/v2_o9ap9x.mp4`;
+const v3Video = `${CLOUDINARY_BASE_URL}/v3_jbmo60.mp4`;
 
 const works = [
   {
@@ -224,7 +228,8 @@ const PremiumVideoPlayer = ({ src, onClose, color }) => {
           position: "relative",
           borderRadius: "28px",
           padding: "4px", // Space for the gradient border
-          background: "linear-gradient(90deg, #c5d429, #00a99d, #3b6bb5, #7b3f9e, #c5d429)",
+          background:
+            "linear-gradient(90deg, #c5d429, #00a99d, #3b6bb5, #7b3f9e, #c5d429)",
           backgroundSize: "200% auto",
           animation: "gradientFlow 5s linear infinite",
           boxShadow: "0 50px 100px rgba(0,0,0,0.6)",
@@ -289,7 +294,11 @@ const PremiumVideoPlayer = ({ src, onClose, color }) => {
                   pointerEvents: "none", // Let clicks pass through to the video container
                 }}
               >
-                <Play size={40} fill="currentColor" style={{ marginLeft: "5px" }} />
+                <Play
+                  size={40}
+                  fill="currentColor"
+                  style={{ marginLeft: "5px" }}
+                />
               </motion.div>
             )}
           </AnimatePresence>
@@ -333,10 +342,24 @@ const PremiumVideoPlayer = ({ src, onClose, color }) => {
                 backgroundColor: "rgba(255, 255, 255, 0.1)",
                 transition: "background 0.2s",
               }}
-              onMouseEnter={(e) => (e.currentTarget.style.backgroundColor = "rgba(255, 255, 255, 0.2)")}
-              onMouseLeave={(e) => (e.currentTarget.style.backgroundColor = "rgba(255, 255, 255, 0.1)")}
+              onMouseEnter={(e) =>
+                (e.currentTarget.style.backgroundColor =
+                  "rgba(255, 255, 255, 0.2)")
+              }
+              onMouseLeave={(e) =>
+                (e.currentTarget.style.backgroundColor =
+                  "rgba(255, 255, 255, 0.1)")
+              }
             >
-              {isPlaying ? <Pause size={20} fill="currentColor" /> : <Play size={20} fill="currentColor" style={{ marginLeft: "2px" }} />}
+              {isPlaying ? (
+                <Pause size={20} fill="currentColor" />
+              ) : (
+                <Play
+                  size={20}
+                  fill="currentColor"
+                  style={{ marginLeft: "2px" }}
+                />
+              )}
             </button>
 
             {/* Scrubber/Progress Bar */}
@@ -560,17 +583,18 @@ const WorksVideo = () => {
         })}
       </div>
 
-      {typeof document !== "undefined" && createPortal(
-        <AnimatePresence>
-          {selectedVideo && (
-            <PremiumVideoPlayer 
-              src={selectedVideo} 
-              onClose={() => setSelectedVideo(null)} 
-            />
-          )}
-        </AnimatePresence>,
-        document.body
-      )}
+      {typeof document !== "undefined" &&
+        createPortal(
+          <AnimatePresence>
+            {selectedVideo && (
+              <PremiumVideoPlayer
+                src={selectedVideo}
+                onClose={() => setSelectedVideo(null)}
+              />
+            )}
+          </AnimatePresence>,
+          document.body,
+        )}
     </section>
   );
 };
