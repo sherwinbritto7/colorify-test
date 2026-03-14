@@ -2,6 +2,20 @@ import { useRef } from "react";
 import { motion, useAnimationFrame } from "framer-motion";
 import PageTransition from "../components/PageTransition";
 
+// Import Founder Photos
+import adityaPhoto from "../assets/photos/Aditya-Joshi.jpg";
+import akshayPhoto from "../assets/photos/akshay.jpg";
+
+// Import Mosaic Photos
+import about01 from "../assets/photos/about/about-01.webp";
+import about02 from "../assets/photos/about/about-02.webp";
+import about03 from "../assets/photos/about/about-03.webp";
+import about04 from "../assets/photos/about/about-04.webp";
+import about05 from "../assets/photos/about/about-05.webp";
+import about06 from "../assets/photos/about/about-06.webp";
+import about07 from "../assets/photos/about/about-07.webp";
+import about08 from "../assets/photos/about/about-08.webp";
+
 // ─── Data ────────────────────────────────────────────────────────────────────
 
 const founders = [
@@ -13,7 +27,7 @@ const founders = [
     color: "#7b3f9e",
     accentColor: "#29abe2",
     initials: "AJ",
-    photo: "/src/assets/photos/Aditya-Joshi.jpg",
+    photo: adityaPhoto,
     tag: "The Creative Force",
   },
   {
@@ -25,7 +39,7 @@ const founders = [
     accentColor: "#c5d429",
 
     initials: "AT",
-    photo: "/src/assets/photos/akshay.jpg",
+    photo: akshayPhoto,
     tag: "The Execution Engine",
   },
 ];
@@ -71,21 +85,21 @@ const team = [
 
 // Mosaic gallery items — mix of real photos and decorative graphic tiles
 const mosaicItems = [
-  { type: "photo", src: "/src/assets/photos/about/about-01.webp", label: "Behind the Lens",  offsetY: "0px",    width: "220px", height: "300px" },
+  { type: "photo", src: about01, label: "Behind the Lens",  offsetY: "0px",    width: "220px", height: "300px" },
   { type: "graphic", variant: "stripes", color: "#c5d429",  offsetY: "60px",   width: "160px", height: "160px" },
-  { type: "photo", src: "/src/assets/photos/about/about-02.webp",       label: "On Set",           offsetY: "20px",   width: "260px", height: "200px" },
+  { type: "photo", src: about02,       label: "On Set",           offsetY: "20px",   width: "260px", height: "200px" },
   { type: "graphic", variant: "arc",     color: "#c5d429",  offsetY: "140px",  width: "160px", height: "160px" },
-  { type: "photo", src: "/src/assets/photos/about/about-03.webp", label: "The Vision",       offsetY: "0px",    width: "230px", height: "270px" },
-  { type: "photo", src: "/src/assets/photos/about/about-04.webp",       label: "Creative",         offsetY: "110px",  width: "200px", height: "180px" },
+  { type: "photo", src: about03, label: "The Vision",       offsetY: "0px",    width: "230px", height: "270px" },
+  { type: "photo", src: about04,       label: "Creative",         offsetY: "110px",  width: "200px", height: "180px" },
 ];
 
 const mosaicRow2 = [
-  { type: "photo", src: "/src/assets/photos/about/about-05.webp",       label: "Storytelling",     offsetY: "40px",   width: "220px", height: "280px" },
-  { type: "photo", src: "/src/assets/photos/about/about-06.webp", label: "Candid",           offsetY: "0px",    width: "250px", height: "200px" },
+  { type: "photo", src: about05,       label: "Storytelling",     offsetY: "40px",   width: "220px", height: "280px" },
+  { type: "photo", src: about06, label: "Candid",           offsetY: "0px",    width: "250px", height: "200px" },
   { type: "graphic", variant: "arc",     color: "#00a99d",  offsetY: "120px",  width: "150px", height: "150px" },
-  { type: "photo", src: "/src/assets/photos/about/about-07.webp",       label: "Direction",        offsetY: "60px",   width: "240px", height: "260px" },
+  { type: "photo", src: about07,       label: "Direction",        offsetY: "60px",   width: "240px", height: "260px" },
   { type: "graphic", variant: "stripes", color: "#7b3f9e",  offsetY: "20px",   width: "130px", height: "130px" },
-  { type: "photo", src: "/src/assets/photos/about/about-08.webp", label: "Focus",            offsetY: "10px",   width: "210px", height: "290px" },
+  { type: "photo", src: about08, label: "Focus",            offsetY: "10px",   width: "210px", height: "290px" },
 ];
 
 // ─── Mosaic Gallery ───────────────────────────────────────────────────────────
