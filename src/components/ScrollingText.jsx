@@ -24,15 +24,8 @@ const MarqueeRow = ({ direction = "left", text, color }) => {
         {[...Array(8)].map((_, i) => (
           <h2
             key={i}
+            className="marquee-text"
             style={{
-              fontSize: "clamp(4rem, 10vw, 8rem)",
-              fontWeight: 900,
-              margin: 0,
-              display: "flex",
-              gap: "2rem",
-              alignItems: "center",
-              lineHeight: 1,
-              letterSpacing: "-0.02em",
               // Alternate solid and outline
               color: i % 2 === 0 ? color : "transparent",
               WebkitTextStroke: i % 2 === 0 ? "none" : `1px ${color}`,
@@ -81,6 +74,29 @@ const ScrollingText = () => {
         pointerEvents: "none",
         zIndex: 0
       }} />
+
+      <style>{`
+        .marquee-text {
+          font-size: 8rem;
+          font-weight: 900;
+          margin: 0;
+          display: flex;
+          gap: 2rem;
+          align-items: center;
+          line-height: 1;
+          letter-spacing: -0.02em;
+        }
+        @media (max-width: 768px) {
+          .marquee-text {
+            font-size: 6rem !important;
+          }
+        }
+        @media (max-width: 480px) {
+          .marquee-text {
+            font-size: 5rem !important;
+          }
+        }
+      `}</style>
 
       <motion.div style={{ position: "relative", zIndex: 1, skewX: skew, scale }}>
         <MarqueeRow 
