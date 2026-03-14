@@ -548,7 +548,10 @@ const WorksVideo = () => {
           overflow: "hidden",
         }}
       >
-        <h2
+        <motion.h2
+          initial={{ opacity: 0, scale: 0.95 }}
+          whileInView={{ opacity: 1, scale: 1 }}
+          transition={{ duration: 1, ease: "easeOut" }}
           className="works-bg-title"
           style={{
             fontSize: "clamp(4rem, 20vw, 20rem)",
@@ -563,7 +566,7 @@ const WorksVideo = () => {
           }}
         >
           WORKS
-        </h2>
+        </motion.h2>
       </div>
 
       <div style={{ position: "relative" }}>
