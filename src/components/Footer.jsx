@@ -26,7 +26,18 @@ const Footer = () => {
           }
           .brand-col p {
             max-width: 100% !important;
-            margin: 0 auto !important;
+            margin: 0 auto 2rem !important;
+          }
+          .brand-col .hq-block {
+            align-items: center !important;
+            text-align: center !important;
+            margin-top: 1rem !important;
+            gap: 0.25rem !important;
+          }
+          .brand-col .hq-block p {
+            margin-left: auto !important;
+            margin-right: auto !important;
+            margin-bottom: 0 !important;
           }
           .footer-nav-col {
             text-align: center !important;
@@ -80,11 +91,45 @@ const Footer = () => {
                 fontSize: "1.1rem",
                 lineHeight: 1.6,
                 maxWidth: "350px",
+                marginBottom: "2rem",
               }}
             >
               We don't just plan events - we architect atmosphere. Explore our
               latest flagship productions and color your world.
             </p>
+            <div
+              className="hq-block"
+              style={{
+                display: "flex",
+                flexDirection: "column",
+                gap: "0.5rem",
+              }}
+            >
+              <p
+                style={{
+                  fontSize: "0.8rem",
+                  fontWeight: 700,
+                  textTransform: "uppercase",
+                  letterSpacing: "2px",
+                  color: "var(--brand-yellow)",
+                  marginBottom: "0.5rem",
+                }}
+              >
+                Our HQ
+              </p>
+              <p
+                style={{
+                  color: "rgba(255,255,255,0.5)",
+                  fontSize: "0.95rem",
+                  lineHeight: 1.5,
+                  maxWidth: "300px",
+                }}
+              >
+                Crystal Palace, Malad West,
+                <br />
+                Mumbai - 400064
+              </p>
+            </div>
           </div>
 
           {/* Navigation Column */}
