@@ -1,58 +1,88 @@
-import { useState, useEffect } from 'react'
-import { BrowserRouter, Routes, Route, useLocation } from 'react-router-dom'
-import { motion, useScroll, useSpring, AnimatePresence } from 'framer-motion'
-import Navbar from './components/Navbar'
-import Home from './pages/Home'
-import PortfolioPage from './pages/PortfolioPage'
-import ServicesPage from './pages/ServicesPage'
-import ContactNowPage from './pages/ContactNowPage'
-import AboutPage from './pages/AboutPage'
-import ScrollToTop from './components/ScrollToTop'
+import { useState, useEffect } from "react";
+import { BrowserRouter, Routes, Route, useLocation } from "react-router-dom";
+import { motion, useScroll, useSpring, AnimatePresence } from "framer-motion";
+import Navbar from "./components/Navbar";
+import Home from "./pages/Home";
+import PortfolioPage from "./pages/PortfolioPage";
+import ServicesPage from "./pages/ServicesPage";
+import ContactNowPage from "./pages/ContactNowPage";
+import AboutPage from "./pages/AboutPage";
+import ScrollToTop from "./components/ScrollToTop";
 
-import Footer from './components/Footer'
-import Preloader from './components/Preloader'
-import CustomCursor from './components/CustomCursor'
-import BackToTop from './components/BackToTop'
+import Footer from "./components/Footer";
+import Preloader from "./components/Preloader";
+import CustomCursor from "./components/CustomCursor";
+import BackToTop from "./components/BackToTop";
 
 function AppContent() {
   const location = useLocation();
 
+  useEffect(() => {
+    const titles = {
+      "/": "Home | Colorify",
+      "/about": "About Us | Colorify",
+      "/portfolio": "Our Portfolio | Colorify",
+      "/services": "Our Services | Colorify",
+      "/contactnow": "Contact Us | Colorify",
+    };
+
+    document.title = titles[location.pathname] || "Colorify";
+  }, [location.pathname]);
+
   return (
     <div className="app">
       <ScrollToTop />
-      
+
       {/* Global Background Atmosphere Orbs */}
-      <div style={{ position: 'fixed', top: 0, left: 0, width: '100vw', height: '100vh', zIndex: -1, pointerEvents: 'none', overflow: 'hidden' }}>
-        <motion.div 
-          animate={{ 
-            x: location.pathname === '/' ? [0, 50, 0] : [50, -50, 50],
-            y: location.pathname === '/services' ? [0, 100, 0] : [0, 0, 0],
-            background: location.pathname === '/services' ? 'radial-gradient(circle, #00a99d22 0%, transparent 70%)' : 'radial-gradient(circle, #c5d42915 0%, transparent 70%)'
+      <div
+        style={{
+          position: "fixed",
+          top: 0,
+          left: 0,
+          width: "100vw",
+          height: "100vh",
+          zIndex: -1,
+          pointerEvents: "none",
+          overflow: "hidden",
+        }}
+      >
+        <motion.div
+          animate={{
+            x: location.pathname === "/" ? [0, 50, 0] : [50, -50, 50],
+            y: location.pathname === "/services" ? [0, 100, 0] : [0, 0, 0],
+            background:
+              location.pathname === "/services"
+                ? "radial-gradient(circle, #00a99d22 0%, transparent 70%)"
+                : "radial-gradient(circle, #c5d42915 0%, transparent 70%)",
           }}
           transition={{ duration: 15, repeat: Infinity, ease: "easeInOut" }}
           style={{
-            position: 'absolute',
-            top: '-10%',
-            right: '-10%',
-            width: '60vw',
-            height: '60vw',
-            filter: 'blur(100px)',
+            position: "absolute",
+            top: "-10%",
+            right: "-10%",
+            width: "60vw",
+            height: "60vw",
+            filter: "blur(100px)",
           }}
         />
-        <motion.div 
-          animate={{ 
-            x: location.pathname === '/portfolio' ? [0, -50, 0] : [-50, 50, -50],
-            y: location.pathname === '/contactnow' ? [0, -100, 0] : [0, 0, 0],
-            background: location.pathname === '/portfolio' ? 'radial-gradient(circle, #7b3f9e22 0%, transparent 70%)' : 'radial-gradient(circle, #39b54a15 0%, transparent 70%)'
+        <motion.div
+          animate={{
+            x:
+              location.pathname === "/portfolio" ? [0, -50, 0] : [-50, 50, -50],
+            y: location.pathname === "/contactnow" ? [0, -100, 0] : [0, 0, 0],
+            background:
+              location.pathname === "/portfolio"
+                ? "radial-gradient(circle, #7b3f9e22 0%, transparent 70%)"
+                : "radial-gradient(circle, #39b54a15 0%, transparent 70%)",
           }}
           transition={{ duration: 20, repeat: Infinity, ease: "easeInOut" }}
           style={{
-            position: 'absolute',
-            bottom: '-10%',
-            left: '-10%',
-            width: '50vw',
-            height: '50vw',
-            filter: 'blur(100px)',
+            position: "absolute",
+            bottom: "-10%",
+            left: "-10%",
+            width: "50vw",
+            height: "50vw",
+            filter: "blur(100px)",
           }}
         />
       </div>
@@ -71,7 +101,7 @@ function AppContent() {
 
       <Footer />
     </div>
-  )
+  );
 }
 
 function GlobalUI() {
@@ -79,25 +109,34 @@ function GlobalUI() {
   const scaleX = useSpring(scrollYProgress, {
     stiffness: 100,
     damping: 30,
-    restDelta: 0.001
+    restDelta: 0.001,
   });
 
   return (
     <>
-      <motion.div 
-        style={{ 
+      <motion.div
+        style={{
           scaleX,
-          position: 'fixed',
+          position: "fixed",
           top: 0,
           left: 0,
           right: 0,
-          height: '4px',
-          background: 'var(--brand-green)',
-          transformOrigin: '0%',
-          zIndex: 2000
-        }} 
+          height: "4px",
+          background: "var(--brand-green)",
+          transformOrigin: "0%",
+          zIndex: 2000,
+        }}
       />
+
       <Navbar />
+
+      <style>{`
+        @media (max-width: 1024px) {
+          .page-title-indicator {
+            display: none !important;
+          }
+        }
+      `}</style>
     </>
   );
 }
@@ -126,9 +165,9 @@ function App() {
               document.body.style.overflow = "auto";
               document.body.style.overflowX = "hidden";
             }}
-            transition={{ 
-              duration: 1, 
-              ease: [0.22, 1, 0.36, 1]
+            transition={{
+              duration: 1,
+              ease: [0.22, 1, 0.36, 1],
             }}
             style={{ willChange: "opacity, transform" }}
           >
@@ -137,7 +176,7 @@ function App() {
         )}
       </AnimatePresence>
     </BrowserRouter>
-  )
+  );
 }
 
-export default App
+export default App;
