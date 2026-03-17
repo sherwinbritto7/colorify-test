@@ -3,7 +3,7 @@ import { BrowserRouter, Routes, Route, useLocation } from 'react-router-dom'
 import { motion, useScroll, useSpring, AnimatePresence } from 'framer-motion'
 import Navbar from './components/Navbar'
 import Home from './pages/Home'
-import EventsPage from './pages/EventsPage'
+import PortfolioPage from './pages/PortfolioPage'
 import ServicesPage from './pages/ServicesPage'
 import ContactNowPage from './pages/ContactNowPage'
 import AboutPage from './pages/AboutPage'
@@ -40,9 +40,9 @@ function AppContent() {
         />
         <motion.div 
           animate={{ 
-            x: location.pathname === '/events' ? [0, -50, 0] : [-50, 50, -50],
+            x: location.pathname === '/portfolio' ? [0, -50, 0] : [-50, 50, -50],
             y: location.pathname === '/contactnow' ? [0, -100, 0] : [0, 0, 0],
-            background: location.pathname === '/events' ? 'radial-gradient(circle, #7b3f9e22 0%, transparent 70%)' : 'radial-gradient(circle, #39b54a15 0%, transparent 70%)'
+            background: location.pathname === '/portfolio' ? 'radial-gradient(circle, #7b3f9e22 0%, transparent 70%)' : 'radial-gradient(circle, #39b54a15 0%, transparent 70%)'
           }}
           transition={{ duration: 20, repeat: Infinity, ease: "easeInOut" }}
           style={{
@@ -61,7 +61,7 @@ function AppContent() {
           <Routes location={location} key={location.pathname}>
             <Route path="/" element={<Home />} />
             <Route path="/about" element={<AboutPage />} />
-            <Route path="/events" element={<EventsPage />} />
+            <Route path="/portfolio" element={<PortfolioPage />} />
             <Route path="/services" element={<ServicesPage />} />
             <Route path="/contactnow" element={<ContactNowPage />} />
           </Routes>

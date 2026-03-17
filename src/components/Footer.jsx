@@ -104,7 +104,7 @@ const Footer = () => {
             <div
               style={{ display: "flex", flexDirection: "column", gap: "1rem" }}
             >
-              {["Home", "Events", "Services", "About", "Contact Now"].map(
+              {["Home", "Portfolio", "Services", "About", "Contact Now"].map(
                 (item) => (
                   <Link
                     key={item}

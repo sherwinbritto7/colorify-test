@@ -3,22 +3,22 @@ import HorizontalProjects from "../components/HorizontalProjects";
 import Projects from "../components/Projects";
 import PageTransition from "../components/PageTransition";
 
-const EventsPage = () => {
+const PortfolioPage = () => {
   return (
     <PageTransition>
       <div style={{ minHeight: "100vh" }}>
         {/* Hero Section for Events */}
-        <section className="events-hero" style={{ paddingTop: "14rem", paddingBottom: "6rem", position: "relative" }}>
+        <section className="portfolio-hero" style={{ paddingTop: "14rem", paddingBottom: "6rem", position: "relative" }}>
           <style>{`
             @media (max-width: 768px) {
-              .events-hero {
+              .portfolio-hero {
                 padding-top: 10rem !important;
                 padding-bottom: 4rem !important;
               }
-              .events-title br {
+              .portfolio-title br {
                 display: none !important;
               }
-              .events-title {
+              .portfolio-title {
                 font-size: 3rem !important;
                 line-height: 1.1 !important;
               }
@@ -46,7 +46,7 @@ const EventsPage = () => {
               initial={{ opacity: 0, y: 40 }}
               animate={{ opacity: 1, y: 0 }}
               transition={{ duration: 0.8, ease: [0.16, 1, 0.3, 1] }}
-              className="events-title"
+              className="portfolio-title"
               style={{
                 fontSize: "clamp(3.5rem, 10vw, 8rem)",
                 lineHeight: 0.85,
@@ -87,4 +87,4 @@ const EventsPage = () => {
   );
 };
 
-export default EventsPage;
+export default PortfolioPage;
