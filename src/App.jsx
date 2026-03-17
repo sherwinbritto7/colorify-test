@@ -12,6 +12,7 @@ import ScrollToTop from './components/ScrollToTop'
 import Footer from './components/Footer'
 import Preloader from './components/Preloader'
 import CustomCursor from './components/CustomCursor'
+import BackToTop from './components/BackToTop'
 
 function AppContent() {
   const location = useLocation();
@@ -110,6 +111,7 @@ function App() {
         <>
           <CustomCursor />
           <GlobalUI />
+          <BackToTop />
         </>
       )}
       <AnimatePresence mode="wait">
