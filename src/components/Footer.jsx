@@ -104,28 +104,30 @@ const Footer = () => {
             <div
               style={{ display: "flex", flexDirection: "column", gap: "1rem" }}
             >
-              {["Home", "About", "Events", "Services", "Contact Now"].map((item) => (
-                <Link
-                  key={item}
-                  to={
-                    item === "Home"
-                      ? "/"
-                      : `/${item.toLowerCase().replace(" ", "")}`
-                  }
-                  style={{
-                    color: "rgba(255,255,255,0.6)",
-                    textDecoration: "none",
-                    fontSize: "1rem",
-                    transition: "color 0.3s ease",
-                  }}
-                  onMouseEnter={(e) => (e.target.style.color = "#fff")}
-                  onMouseLeave={(e) =>
-                    (e.target.style.color = "rgba(255,255,255,0.6)")
-                  }
-                >
-                  {item}
-                </Link>
-              ))}
+              {["Home", "Events", "Services", "About", "Contact Now"].map(
+                (item) => (
+                  <Link
+                    key={item}
+                    to={
+                      item === "Home"
+                        ? "/"
+                        : `/${item.toLowerCase().replace(" ", "")}`
+                    }
+                    style={{
+                      color: "rgba(255,255,255,0.6)",
+                      textDecoration: "none",
+                      fontSize: "1rem",
+                      transition: "color 0.3s ease",
+                    }}
+                    onMouseEnter={(e) => (e.target.style.color = "#fff")}
+                    onMouseLeave={(e) =>
+                      (e.target.style.color = "rgba(255,255,255,0.6)")
+                    }
+                  >
+                    {item}
+                  </Link>
+                ),
+              )}
             </div>
           </div>
 
@@ -191,7 +193,10 @@ const Footer = () => {
           >
             © 2024 COLORIFY AGENCY — ARCHITECTS OF ATMOSPHERE
           </div>
-          <div className="footer-links" style={{ display: "flex", gap: "3rem", fontSize: "0.85rem" }}>
+          <div
+            className="footer-links"
+            style={{ display: "flex", gap: "3rem", fontSize: "0.85rem" }}
+          >
             <Link
               to="/"
               style={{ color: "rgba(255,255,255,0.3)", textDecoration: "none" }}
