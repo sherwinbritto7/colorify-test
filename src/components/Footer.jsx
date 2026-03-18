@@ -236,7 +236,7 @@ const Footer = () => {
               letterSpacing: "1px",
             }}
           >
-            © 2024 COLORIFY AGENCY — ARCHITECTS OF ATMOSPHERE
+            © {new Date().getFullYear()} COLORIFY MEDIA
           </div>
           <div
             className="footer-links"
