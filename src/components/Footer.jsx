@@ -243,13 +243,13 @@ const Footer = () => {
             style={{ display: "flex", gap: "3rem", fontSize: "0.85rem" }}
           >
             <Link
-              to="/"
+              to="/legal-privacy"
               style={{ color: "rgba(255,255,255,0.3)", textDecoration: "none" }}
             >
               Privacy Policy
             </Link>
             <Link
-              to="/"
+              to="/legal-terms"
               style={{ color: "rgba(255,255,255,0.3)", textDecoration: "none" }}
             >
               Terms of Service

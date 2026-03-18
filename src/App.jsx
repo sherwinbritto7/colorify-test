@@ -7,6 +7,10 @@ import PortfolioPage from "./pages/PortfolioPage";
 import ServicesPage from "./pages/ServicesPage";
 import ContactNowPage from "./pages/ContactNowPage";
 import AboutPage from "./pages/AboutPage";
+import LegalPrivacy from "./pages/LegalPrivacy";
+import LegalTerms from "./pages/LegalTerms";
+
+
 import ScrollToTop from "./components/ScrollToTop";
 
 import Footer from "./components/Footer";
@@ -24,7 +28,11 @@ function AppContent() {
       "/portfolio": "Our Portfolio | Colorify",
       "/services": "Our Services | Colorify",
       "/contactnow": "Contact Us | Colorify",
+      "/legal-privacy": "Privacy Policy | Colorify",
+      "/legal-terms": "Terms of Service | Colorify",
     };
+
+
 
     document.title = titles[location.pathname] || "Colorify";
   }, [location.pathname]);
@@ -95,7 +103,11 @@ function AppContent() {
             <Route path="/portfolio" element={<PortfolioPage />} />
             <Route path="/services" element={<ServicesPage />} />
             <Route path="/contactnow" element={<ContactNowPage />} />
+            <Route path="/legal-privacy" element={<LegalPrivacy />} />
+            <Route path="/legal-terms" element={<LegalTerms />} />
           </Routes>
+
+
         </AnimatePresence>
       </main>
 
