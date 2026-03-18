@@ -74,14 +74,41 @@ const TermsOfService = () => {
           @media (max-width: 1024px) {
             .legal-grid {
               grid-template-columns: 1fr;
-              gap: 4rem;
-              padding-top: 10rem;
+              gap: 3rem;
+              padding-top: 6rem;
+              padding-bottom: 4rem;
             }
             .legal-sidebar {
               position: relative;
               top: 0;
             }
+            .legal-content-list {
+              gap: 2rem;
+            }
+            .legal-section {
+              padding: 1.5rem !important;
+              border-radius: 16px !important;
+            }
+            .legal-section h2 {
+              font-size: 1.2rem;
+            }
+            .legal-section p {
+              font-size: 0.9rem;
+            }
           }
+          @media (max-width: 768px) {
+            .legal-grid {
+              padding-top: 5rem;
+              gap: 2rem;
+            }
+            .legal-sidebar h1 {
+              font-size: 3rem !important;
+            }
+            .legal-sidebar p {
+              font-size: 1rem !important;
+            }
+          }
+
         `}</style>
 
         <section>
