@@ -85,11 +85,11 @@ const ProcessStep = ({ icon: Icon, title, desc, number, color }) => (
 
 const Process = () => {
   return (
-    <section className="process-section" style={{ padding: "12rem 0", position: "relative" }}>
+    <section className="process-section" style={{ padding: "0 0 12rem", position: "relative" }}>
       <style>{`
         @media (max-width: 768px) {
           .process-section {
-            padding: 6rem 0 !important;
+            padding: 0 0 6rem !important;
           }
           .process-container {
             flex-direction: column !important;

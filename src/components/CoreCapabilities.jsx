@@ -16,12 +16,12 @@ const CoreCapabilities = () => {
     <section 
       ref={capabilitiesRef}
       className="capabilities-section"
-      style={{ padding: "12rem 0", position: "relative", overflow: "hidden" }}
+      style={{ padding: "0 0 12rem", position: "relative", overflow: "hidden" }}
     >
       <style>{`
         @media (max-width: 768px) {
           .capabilities-section {
-            padding: 6rem 0 !important;
+            padding: 0 0 6rem !important;
           }
           .parallax-text {
             display: none !important;

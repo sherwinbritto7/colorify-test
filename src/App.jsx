@@ -9,6 +9,10 @@ import ContactNowPage from "./pages/ContactNowPage";
 import AboutPage from "./pages/AboutPage";
 import LegalPrivacy from "./pages/LegalPrivacy";
 import LegalTerms from "./pages/LegalTerms";
+import PrePostProduction from "./pages/services/PrePostProduction";
+import Editing from "./pages/services/Editing";
+import HybridAIFilmmaking from "./pages/services/HybridAIFilmmaking";
+import InstantContent from "./pages/services/InstantContent";
 
 
 import ScrollToTop from "./components/ScrollToTop";
@@ -30,6 +34,10 @@ function AppContent() {
       "/contactnow": "Contact Us | Colorify",
       "/legal-privacy": "Privacy Policy | Colorify",
       "/legal-terms": "Terms of Service | Colorify",
+      "/services/pre-post-production": "Pre to Post Production | Colorify",
+      "/services/editing": "Editing | Colorify",
+      "/services/hybrid-ai-filmmaking": "Hybrid AI Filmmaking | Colorify",
+      "/services/instant-content": "Instant Content | Colorify",
     };
 
 
@@ -102,6 +110,10 @@ function AppContent() {
             <Route path="/about" element={<AboutPage />} />
             <Route path="/portfolio" element={<PortfolioPage />} />
             <Route path="/services" element={<ServicesPage />} />
+            <Route path="/services/pre-post-production" element={<PrePostProduction />} />
+            <Route path="/services/editing" element={<Editing />} />
+            <Route path="/services/hybrid-ai-filmmaking" element={<HybridAIFilmmaking />} />
+            <Route path="/services/instant-content" element={<InstantContent />} />
             <Route path="/contactnow" element={<ContactNowPage />} />
             <Route path="/legal-privacy" element={<LegalPrivacy />} />
             <Route path="/legal-terms" element={<LegalTerms />} />

@@ -1,4 +1,5 @@
 import { motion } from "framer-motion";
+import { Link } from "react-router-dom";
 import {
   Sparkles,
   Music,
@@ -10,52 +11,40 @@ import {
 
 const services = [
   {
-    icon: Sparkles,
-    number: "01",
-    name: "Event Design",
-    desc: "Creative conceptualization and full-scale thematic design that transforms any venue into an unforgettable world.",
-    color: "#c5d429",
-    tags: ["Concept", "Décor", "Theme"],
-  },
-  {
-    icon: Music,
-    number: "02",
-    name: "Production",
-    desc: "High-end AV, lighting, and stage management services powered by cutting-edge equipment and expert crews.",
-    color: "#7b3f9e",
-    tags: ["AV", "Lighting", "Stage"],
-  },
-  {
-    icon: Users,
-    number: "03",
-    name: "Coordination",
-    desc: "Seamless logistics and guest management for any scale — from intimate gatherings to 10,000+ attendees.",
-    color: "#39b54a",
-    tags: ["Logistics", "Guests", "Timeline"],
-  },
-  {
     icon: Camera,
-    number: "04",
-    name: "Promotion",
-    desc: "Content creation and digital marketing strategies that capture the energy of your event and amplify your reach.",
-    color: "#29abe2",
-    tags: ["Social", "Content", "PR"],
-  },
-  {
-    icon: Lightbulb,
-    number: "05",
-    name: "Brand Strategy",
-    desc: "Aligning every touchpoint of your event with your core brand identity for maximum impact and recall.",
-    color: "#00a99d",
-    tags: ["Identity", "Positioning", "Impact"],
+    number: "01",
+    name: "Pre to Post Production",
+    desc: "From script writing and storyboarding to shooting and final delivery, we cover the entire filmmaking lifecycle.",
+    color: "#c5d429",
+    tags: ["Pre-Prod", "Shooting", "Post-Prod"],
+    path: "/services/pre-post-production",
   },
   {
     icon: Wrench,
-    number: "06",
-    name: "Tech Support",
-    desc: "On-site technical direction, live streaming solutions, and real-time troubleshooting for flawless execution.",
-    color: "#3b6bb5",
-    tags: ["Streaming", "On-site", "AV Tech"],
+    number: "02",
+    name: "Editing",
+    desc: "Expert post-production editing, color grading, visual effects, sound design, and pacing that brings your narrative to life.",
+    color: "#7b3f9e",
+    tags: ["VFX", "Grading", "Sound"],
+    path: "/services/editing",
+  },
+  {
+    icon: Sparkles,
+    number: "03",
+    name: "Hybrid AI Filmmaking",
+    desc: "Leveraging cutting-edge AI technologies blended with classical filmmaking to create hyper-realistic visuals and automate workflows.",
+    color: "#29abe2",
+    tags: ["AI Tech", "CGI", "Future"],
+    path: "/services/hybrid-ai-filmmaking",
+  },
+  {
+    icon: Lightbulb,
+    number: "04",
+    name: "Instant content",
+    desc: "Rapid turnaround content generation optimized for social media, live events, and instant audience engagement.",
+    color: "#39b54a",
+    tags: ["Fast", "Socials", "Live"],
+    path: "/services/instant-content",
   },
 ];
 
@@ -67,6 +56,13 @@ const Skills = () => {
       style={{ padding: "12rem 0", position: "relative" }}
     >
       <style>{`
+        .service-card .arrow-icon {
+          display: inline-block;
+          transition: transform 0.3s cubic-bezier(0.16, 1, 0.3, 1);
+        }
+        .service-card:hover .arrow-icon {
+          transform: translateX(6px);
+        }
         @media (max-width: 768px) {
           .skills-section {
             padding: 6rem 0 !important;
@@ -138,16 +134,20 @@ const Skills = () => {
           className="skills-grid"
           style={{
             display: "grid",
-            gridTemplateColumns: "repeat(auto-fit, minmax(320px, 1fr))",
+            gridTemplateColumns: "repeat(2, 1fr)",
             gap: "2.5rem",
           }}
         >
           {services.map((service, i) => {
             const Icon = service.icon;
             return (
-              <motion.div
+              <Link
+                to={service.path}
                 key={service.name}
-                initial={{ opacity: 0, y: 30 }}
+                style={{ textDecoration: "none", color: "inherit", display: "flex", width: "100%" }}
+              >
+                <motion.div
+                  initial={{ opacity: 0, y: 30 }}
                 whileInView={{ opacity: 1, y: 0 }}
                 viewport={{ once: true }}
                 whileHover={{ y: -15, scale: 1.02 }}
@@ -232,30 +232,31 @@ const Skills = () => {
                   }}
                 />
 
-                {/* Tags */}
+                {/* Redirection Button */}
                 <div
-                  style={{ display: "flex", gap: "0.5rem", flexWrap: "wrap", marginTop: "2rem" }}
+                  style={{
+                    display: "inline-flex",
+                    alignItems: "center",
+                    gap: "0.8rem",
+                    marginTop: "2rem",
+                    padding: "0.8rem 1.6rem",
+                    borderRadius: "100px",
+                    border: `1px solid ${service.color}30`,
+                    background: `${service.color}08`,
+                    fontSize: "0.85rem",
+                    fontWeight: 700,
+                    color: service.color,
+                    textTransform: "uppercase",
+                    letterSpacing: "1.5px",
+                    alignSelf: "flex-start",
+                    transition: "border-color 0.4s ease, background 0.4s ease",
+                  }}
                 >
-                  {service.tags.map((tag) => (
-                    <span
-                      key={tag}
-                      style={{
-                        padding: "0.3rem 0.8rem",
-                        borderRadius: "50px",
-                        fontSize: "0.75rem",
-                        fontWeight: 600,
-                        color: service.color,
-                        background: service.color + "12",
-                        border: `1px solid ${service.color}30`,
-                        letterSpacing: "0.5px",
-                        textTransform: "uppercase",
-                      }}
-                    >
-                      {tag}
-                    </span>
-                  ))}
+                  Explore Service
+                  <span className="arrow-icon">→</span>
                 </div>
-              </motion.div>
+                </motion.div>
+              </Link>
             );
           })}
         </div>
