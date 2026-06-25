@@ -50,36 +50,28 @@ const team = [
     role: "Head of AV Technology",
     color: "#c5d429",
     initials: "RV",
+    image: "https://images.unsplash.com/photo-1506794778202-cad84cf45f1d?auto=format&fit=crop&w=400&h=500&q=80",
   },
   {
     name: "Ananya Iyer",
     role: "Lead Stage Designer",
     color: "#29abe2",
     initials: "AI",
+    image: "https://images.unsplash.com/photo-1494790108377-be9c29b29330?auto=format&fit=crop&w=400&h=500&q=80",
   },
   {
     name: "Karan Malhotra",
     role: "Senior Lighting Engineer",
     color: "#39b54a",
     initials: "KM",
+    image: "https://images.unsplash.com/photo-1500648767791-00dcc994a43e?auto=format&fit=crop&w=400&h=500&q=80",
   },
   {
     name: "Sneha Joshi",
     role: "Brand Strategy Lead",
     color: "#3b6bb5",
     initials: "SJ",
-  },
-  {
-    name: "Vikram Nair",
-    role: "Live Streaming Director",
-    color: "#00a99d",
-    initials: "VN",
-  },
-  {
-    name: "Divya Reddy",
-    role: "Event Coordinator",
-    color: "#7b3f9e",
-    initials: "DR",
+    image: "https://images.unsplash.com/photo-1573496359142-b8d87734a5a2?auto=format&fit=crop&w=400&h=500&q=80",
   },
 ];
 
@@ -651,7 +643,7 @@ const AboutPage = () => {
         </section>
 
         {/* ── Team ──────────────────────────────────────────── */}
-        <section style={{ padding: "8rem 0" }}>
+        <section style={{ padding: "0 0 8rem" }}>
           <div className="container">
             <div style={{ marginBottom: "6rem" }}>
               <motion.span
@@ -684,90 +676,141 @@ const AboutPage = () => {
 
             <div
               style={{
-                display: "grid",
-                gridTemplateColumns: "repeat(auto-fit, minmax(260px, 1fr))",
-                gap: "2rem",
+                display: "flex",
+                flexDirection: "column",
+                width: "100%",
               }}
             >
-              {team.map((member, i) => (
-                <motion.div
-                  key={member.name}
-                  initial={{ opacity: 0, y: 30 }}
-                  whileInView={{ opacity: 1, y: 0 }}
-                  viewport={{ once: true }}
-                  transition={{
-                    delay: i * 0.08,
-                    duration: 0.7,
-                    ease: [0.16, 1, 0.3, 1],
-                  }}
-                  whileHover={{ y: -10, scale: 1.02 }}
-                  style={{
-                    padding: "2.5rem",
-                    borderRadius: "32px",
-                    background: "rgba(255,255,255,0.02)",
-                    border: "1px solid rgba(255,255,255,0.05)",
-                    backdropFilter: "blur(20px)",
-                    position: "relative",
-                    overflow: "hidden",
-                    transition: "border-color 0.4s ease, background 0.4s ease",
-                    display: "flex",
-                    alignItems: "center",
-                    gap: "1.5rem",
-                  }}
-                  onMouseEnter={(e) => {
-                    e.currentTarget.style.borderColor = member.color + "60";
-                    e.currentTarget.style.background = member.color + "08";
-                  }}
-                  onMouseLeave={(e) => {
-                    e.currentTarget.style.borderColor =
-                      "rgba(255,255,255,0.05)";
-                    e.currentTarget.style.background = "rgba(255,255,255,0.02)";
-                  }}
-                >
-                  <div
+              <style>{`
+                @media (max-width: 576px) {
+                  .team-row-item {
+                    flex-direction: column !important;
+                    align-items: flex-start !important;
+                    gap: 1.5rem !important;
+                  }
+                  .team-row-text {
+                    text-align: left !important;
+                  }
+                }
+              `}</style>
+              {team.map((member, i) => {
+                const isEven = i % 2 === 0;
+                return (
+                  <motion.div
+                    key={member.name}
+                    initial={{ opacity: 0, y: 40 }}
+                    whileInView={{ opacity: 1, y: 0 }}
+                    viewport={{ once: true, margin: "-100px" }}
+                    transition={{
+                      duration: 0.8,
+                      ease: [0.16, 1, 0.3, 1],
+                    }}
                     style={{
-                      width: "56px",
-                      height: "56px",
-                      borderRadius: "16px",
-                      background: `${member.color}20`,
-                      border: `1px solid ${member.color}40`,
                       display: "flex",
-                      alignItems: "center",
-                      justifyContent: "center",
-                      fontSize: "1rem",
-                      fontWeight: 900,
-                      color: member.color,
-                      flexShrink: 0,
+                      justifyContent: isEven ? "flex-end" : "flex-start",
+                      width: "100%",
+                      padding: "4rem 0",
+                      borderBottom: "1px solid rgba(255, 255, 255, 0.1)",
                     }}
                   >
-                    {member.initials}
-                  </div>
-                  <div>
-                    <p
+                    <div
+                      className="team-row-item"
                       style={{
-                        fontSize: "1.1rem",
-                        fontWeight: 700,
-                        color: "#fff",
-                        marginBottom: "0.3rem",
-                        letterSpacing: "-0.01em",
+                        display: "flex",
+                        flexDirection: isEven ? "row-reverse" : "row",
+                        alignItems: "center",
+                        gap: "2.5rem",
+                        width: "100%",
+                        maxWidth: "800px",
                       }}
                     >
-                      {member.name}
-                    </p>
-                    <p
-                      style={{
-                        fontSize: "0.8rem",
-                        fontWeight: 600,
-                        textTransform: "uppercase",
-                        letterSpacing: "1.5px",
-                        color: member.color,
-                      }}
-                    >
-                      {member.role}
-                    </p>
-                  </div>
-                </motion.div>
-              ))}
+                      {/* Image Block */}
+                      <div
+                        style={{
+                          width: "160px",
+                          height: "200px",
+                          borderRadius: "20px",
+                          overflow: "hidden",
+                          background: `linear-gradient(135deg, ${member.color}15, ${member.color}05)`,
+                          border: `1px solid ${member.color}30`,
+                          display: "flex",
+                          alignItems: "center",
+                          justifyContent: "center",
+                          flexShrink: 0,
+                          boxShadow: "0 10px 30px rgba(0, 0, 0, 0.3)",
+                        }}
+                      >
+                        {member.image ? (
+                          <img
+                            src={member.image}
+                            alt={member.name}
+                            style={{
+                              width: "100%",
+                              height: "100%",
+                              objectFit: "cover",
+                              display: "block",
+                            }}
+                          />
+                        ) : (
+                          <span
+                            style={{
+                              fontSize: "2.2rem",
+                              fontWeight: 900,
+                              color: member.color,
+                              textShadow: `0 0 20px ${member.color}50`,
+                            }}
+                          >
+                            {member.initials}
+                          </span>
+                        )}
+                      </div>
+
+                      {/* Text Block */}
+                      <div
+                        className="team-row-text"
+                        style={{
+                          textAlign: isEven ? "right" : "left",
+                          flexGrow: 1,
+                        }}
+                      >
+                        <h3
+                          style={{
+                            fontSize: "1.8rem",
+                            fontWeight: 800,
+                            color: "#fff",
+                            marginBottom: "0.4rem",
+                            textTransform: "uppercase",
+                            letterSpacing: "-0.01em",
+                          }}
+                        >
+                          {member.name}
+                        </h3>
+                        <p
+                          style={{
+                            fontSize: "0.95rem",
+                            fontWeight: 700,
+                            color: member.color,
+                            textTransform: "uppercase",
+                            letterSpacing: "2px",
+                            marginBottom: "0.4rem",
+                          }}
+                        >
+                          {member.role}
+                        </p>
+                        <p
+                          style={{
+                            fontSize: "0.85rem",
+                            color: "rgba(255, 255, 255, 0.45)",
+                            lineHeight: 1.6,
+                          }}
+                        >
+                          Creating outstanding brand solutions and maintaining the gold standard in production quality.
+                        </p>
+                      </div>
+                    </div>
+                  </motion.div>
+                );
+              })}
             </div>
           </div>
         </section>
