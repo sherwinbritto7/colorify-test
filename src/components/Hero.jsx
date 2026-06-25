@@ -113,7 +113,7 @@ const Hero = () => {
               className="hero-title"
               style={{
                 fontSize: "clamp(3.5rem, 10vw, 7.5rem)",
-                lineHeight: 0.82,
+                lineHeight: 0.9,
                 letterSpacing: "-0.05em",
                 fontWeight: 900,
                 margin: 0,
@@ -121,7 +121,13 @@ const Hero = () => {
                 zIndex: 2,
               }}
             >
-              <div style={{ overflow: "hidden", padding: "0.05em 0.1em", margin: "-0.05em -0.1em" }}>
+              <div
+                style={{
+                  overflow: "hidden",
+                  padding: "0.05em 0.1em",
+                  margin: "-0.05em -0.1em",
+                }}
+              >
                 <motion.span
                   initial={{ y: "100%" }}
                   animate={{ y: 0 }}
@@ -147,7 +153,7 @@ const Hero = () => {
                 style={{
                   display: "block",
                   filter: "drop-shadow(0 0 20px rgba(0, 169, 157, 0.1))",
-                  padding: "0.05em 0.1em",
+                  padding: "0.05em 0.1em 0.1em",
                 }}
               >
                 <span
@@ -158,7 +164,13 @@ const Hero = () => {
                 </span>
               </motion.div>
 
-              <div style={{ overflow: "hidden", padding: "0.05em 0.1em", margin: "-0.05em -0.1em" }}>
+              <div
+                style={{
+                  overflow: "hidden",
+                  padding: "0.05em 0.1em",
+                  margin: "-0.05em -0.1em",
+                }}
+              >
                 <motion.span
                   initial={{ y: "-100%" }}
                   animate={{ y: 0 }}

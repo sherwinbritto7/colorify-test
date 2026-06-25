@@ -418,7 +418,17 @@ const FounderRow = ({ founder, index }) => {
       </div>
 
       {/* ── Photo / Visual Side ── */}
-      <div className="founder-photo-container" style={{ direction: "ltr", position: "relative" }}>
+      <div
+        className="founder-photo-container"
+        style={{
+          direction: "ltr",
+          position: "relative",
+          maxWidth: "400px",
+          width: "100%",
+          marginLeft: isEven ? "auto" : "0",
+          marginRight: isEven ? "0" : "auto",
+        }}
+      >
         {/* Decorative colour block */}
         <motion.div
           animate={{ y: [0, -12, 0] }}
