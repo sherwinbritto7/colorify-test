@@ -3,14 +3,16 @@ import Vision from "../components/Vision";
 import ScrollingText from "../components/ScrollingText";
 import PageTransition from "../components/PageTransition";
 import WorksVideo from "../components/WorksVideo";
+import Testimonials from "../components/Testimonials";
 
 const Home = () => {
   return (
     <PageTransition>
       <Hero />
       <WorksVideo />
-      <ScrollingText />
       <Vision />
+      <ScrollingText />
+      <Testimonials />
     </PageTransition>
   );
 };

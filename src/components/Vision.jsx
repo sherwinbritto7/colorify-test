@@ -1,28 +1,31 @@
 import { motion } from "framer-motion";
 
 const ImpactStat = ({ value, label, color }) => (
-  <div style={{ marginBottom: "2rem" }}>
+  <div style={{ display: "flex", flexDirection: "column" }}>
     <motion.h4
-      initial={{ opacity: 0, y: 10 }}
+      initial={{ opacity: 0, y: 15 }}
       whileInView={{ opacity: 1, y: 0 }}
+      viewport={{ once: true }}
+      transition={{ duration: 0.6 }}
       style={{
-        fontSize: "2.5rem",
+        fontSize: "clamp(3rem, 5vw, 4.5rem)",
         fontWeight: 800,
         color: "#fff",
         margin: 0,
-        lineHeight: 1,
+        lineHeight: 1.1,
+        letterSpacing: "-0.03em",
       }}
     >
       {value}
     </motion.h4>
     <p
       style={{
-        color,
+        color: color || "var(--brand-yellow)",
         fontWeight: 700,
-        fontSize: "0.8rem",
+        fontSize: "0.85rem",
         textTransform: "uppercase",
         letterSpacing: "1px",
-        margin: "0.2rem 0 0 0",
+        margin: "0.5rem 0 0 0",
       }}
     >
       {label}
@@ -42,18 +45,21 @@ const Vision = () => {
       }}
     >
       <style>{`
-        @media (max-width: 768px) {
+        @media (max-width: 991px) {
           .vision-section {
             padding: 6rem 0 !important;
           }
-           .vision-grid {
+          .vision-grid {
             grid-template-columns: 1fr !important;
             gap: 4rem !important;
           }
-          .impact-stats-row {
-            flex-direction: column !important;
-            gap: 2rem !important;
-            margin-top: 3rem !important;
+          .stats-container {
+            order: 2 !important;
+            grid-template-columns: repeat(2, 1fr) !important;
+            gap: 3rem 1.5rem !important;
+          }
+          .content-container {
+            order: 1 !important;
           }
           .vision-title {
             font-size: 2.5rem !important;
@@ -78,14 +84,30 @@ const Vision = () => {
         className="container vision-grid"
         style={{
           display: "grid",
-          gridTemplateColumns: "1fr 1fr",
+          gridTemplateColumns: "1.1fr 1fr",
           gap: "6rem",
           alignItems: "center",
         }}
       >
-        {/* Left Side: Content */}
+        {/* Left Side: Stats (2x2 grid) */}
+        <div
+          className="stats-container"
+          style={{
+            display: "grid",
+            gridTemplateColumns: "repeat(2, 1fr)",
+            gap: "4rem 2.5rem",
+          }}
+        >
+          <ImpactStat value="500+" label="Events Delivered" color="var(--brand-yellow)" />
+          <ImpactStat value="2M+" label="Attendee Reach" color="var(--brand-yellow)" />
+          <ImpactStat value="24/7" label="Global Support" color="var(--brand-yellow)" />
+          <ImpactStat value="100%" label="Client Satisfaction" color="var(--brand-yellow)" />
+        </div>
+
+        {/* Right Side: Content */}
         <motion.div
-          initial={{ opacity: 0, x: -30 }}
+          className="content-container"
+          initial={{ opacity: 0, x: 30 }}
           whileInView={{ opacity: 1, x: 0 }}
           viewport={{ once: true }}
           transition={{ duration: 0.8 }}
@@ -122,7 +144,6 @@ const Vision = () => {
               marginTop: "2rem",
               color: "var(--text-secondary)",
               fontSize: "1.2rem",
-              maxWidth: "500px",
               lineHeight: 1.6,
             }}
           >
@@ -130,79 +151,6 @@ const Vision = () => {
             dismantling the ordinary. We treat every venue as a canvas where
             light, sound, and strategy collide to create core memories.
           </p>
-
-          <div 
-            className="impact-stats-row"
-            style={{ display: "flex", gap: "4rem", marginTop: "4rem" }}
-          >
-            <ImpactStat value="500+" label="Events Delivered" color="#39b54a" />
-            <ImpactStat value="2M+" label="Attendee Reach" color="#29abe2" />
-            <ImpactStat value="24/7" label="Global Support" color="#7b3f9e" />
-          </div>
-        </motion.div>
-
-        {/* Right Side: Image with Mask/Glow */}
-        <motion.div
-          initial={{ opacity: 0, scale: 0.9 }}
-          whileInView={{ opacity: 1, scale: 1 }}
-          viewport={{ once: true }}
-          transition={{ duration: 1, ease: [0.16, 1, 0.3, 1] }}
-          className="vision-image-container"
-          style={{ position: "relative" }}
-        >
-          <div
-            style={{
-              position: "absolute",
-              inset: "-20px",
-              background: "linear-gradient(135deg, #c5d42933, #7b3f9e33)",
-              filter: "blur(40px)",
-              borderRadius: "40px",
-              zIndex: 0,
-            }}
-          />
-          <div
-            style={{
-              position: "relative",
-              borderRadius: "40px",
-              overflow: "hidden",
-              border: "1px solid rgba(255,255,255,0.1)",
-              zIndex: 1,
-              aspectRatio: "4/5",
-            }}
-          >
-            <motion.img
-              src="/images/vision.png"
-              style={{ width: "100%", height: "100%", objectFit: "cover" }}
-              whileHover={{ scale: 1.05 }}
-              transition={{ duration: 1.5 }}
-            />
-            {/* Glass Overlay on image bottom */}
-            <div
-              style={{
-                position: "absolute",
-                bottom: "2rem",
-                left: "2rem",
-                right: "2rem",
-                padding: "1.5rem",
-                background: "rgba(255,255,255,0.05)",
-                backdropFilter: "blur(20px)",
-                border: "1px solid rgba(255,255,255,0.1)",
-                borderRadius: "20px",
-              }}
-            >
-              <p
-                style={{
-                  margin: 0,
-                  fontSize: "0.9rem",
-                  fontStyle: "italic",
-                  color: "rgba(255,255,255,0.8)",
-                }}
-              >
-                "The future of events lies in the intersection of digital
-                precision and human connection."
-              </p>
-            </div>
-          </div>
         </motion.div>
       </div>
     </section>
