@@ -1,8 +1,8 @@
 import { motion } from "framer-motion";
 import PageTransition from "../../components/PageTransition";
-import showreel from "../../assets/videos/showreel.mp4";
-import v2 from "../../assets/videos/v2.mp4";
-import v3 from "../../assets/videos/v3.mp4";
+import showreel from "../../assets/videos/work1.webm";
+import v2 from "../../assets/videos/work2.webm";
+import v3 from "../../assets/videos/work3.webm";
 import { Zap, Clock, Send, CheckCircle } from "lucide-react";
 
 const InstantContent = () => {

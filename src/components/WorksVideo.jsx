@@ -7,34 +7,32 @@ import {
   AnimatePresence,
 } from "framer-motion";
 import { Play, Pause, Volume2, VolumeX } from "lucide-react";
-// Cloudinary optimized video URLs
-const CLOUDINARY_BASE_URL =
-  "https://res.cloudinary.com/dvdrsgkpg/video/upload/f_auto,q_auto/v1773472221";
 
-const showreelVideo = `${CLOUDINARY_BASE_URL}/showreel_x10qxz.mp4`;
-const v2Video = `${CLOUDINARY_BASE_URL}/v2_o9ap9x.mp4`;
-const v3Video = `${CLOUDINARY_BASE_URL}/v3_jbmo60.mp4`;
+// Import local video assets
+import work1 from "../assets/videos/work1.webm";
+import work2 from "../assets/videos/work2.webm";
+import work3 from "../assets/videos/work3.webm";
 
 const works = [
   {
     id: 1,
     title: "VIRTUAL REALITY",
     subtitle: "Immersive Experiences",
-    video: showreelVideo,
+    video: work1,
     color: "var(--brand-teal)",
   },
   {
     id: 2,
     title: "DIGITAL MOTION",
     subtitle: "Fluid Dynamics",
-    video: v2Video,
+    video: work2,
     color: "var(--brand-yellow)",
   },
   {
     id: 3,
     title: "NEON DREAMS",
     subtitle: "Cyberpunk Aesthetics",
-    video: v3Video,
+    video: work3,
     color: "var(--brand-purple)",
   },
 ];
@@ -91,46 +89,6 @@ const WorkCard = ({ work, index, progress, range, targetScale, onClick }) => {
           }}
         />
 
-        {/* Overlay Info */}
-        <div
-          className="card-overlay"
-          style={{
-            position: "absolute",
-            bottom: "3rem",
-            left: "3rem",
-            zIndex: 3,
-            color: "white",
-          }}
-        >
-          <motion.p
-            initial={{ opacity: 0, x: -20 }}
-            whileInView={{ opacity: 1, x: 0 }}
-            transition={{ duration: 0.8, delay: 0.2 }}
-            style={{
-              fontSize: "0.9rem",
-              fontWeight: 700,
-              color: work.color,
-              letterSpacing: "4px",
-              textTransform: "uppercase",
-              marginBottom: "0.5rem",
-            }}
-          >
-            {work.subtitle}
-          </motion.p>
-          <motion.h3
-            initial={{ opacity: 0, x: -20 }}
-            whileInView={{ opacity: 1, x: 0 }}
-            transition={{ duration: 0.8, delay: 0.3 }}
-            style={{
-              fontSize: "clamp(2rem, 5vw, 4rem)",
-              margin: 0,
-              fontWeight: 900,
-              letterSpacing: "-0.02em",
-            }}
-          >
-            {work.title}
-          </motion.h3>
-        </div>
 
         {/* Decorative corner glow */}
         <div
