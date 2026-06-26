@@ -11,8 +11,18 @@ import {
 
 const services = [
   {
-    icon: Camera,
+    icon: Users,
     number: "01",
+    name: "IP Creation",
+    desc: "Conceptualizing, developing, and producing proprietary media assets, original IPs, web series, and branded properties that stand the test of time.",
+    color: "#f26522",
+    tags: ["Originals", "Co-Prod", "Ownership"],
+    path: "/services/ip-creation",
+    spanTwo: true,
+  },
+  {
+    icon: Camera,
+    number: "02",
     name: "Pre to Post Production",
     desc: "From script writing and storyboarding to shooting and final delivery, we cover the entire filmmaking lifecycle.",
     color: "#c5d429",
@@ -21,7 +31,7 @@ const services = [
   },
   {
     icon: Wrench,
-    number: "02",
+    number: "03",
     name: "Editing",
     desc: "Expert post-production editing, color grading, visual effects, sound design, and pacing that brings your narrative to life.",
     color: "#7b3f9e",
@@ -30,7 +40,7 @@ const services = [
   },
   {
     icon: Sparkles,
-    number: "03",
+    number: "04",
     name: "Hybrid AI Filmmaking",
     desc: "Leveraging cutting-edge AI technologies blended with classical filmmaking to create hyper-realistic visuals and automate workflows.",
     color: "#29abe2",
@@ -39,7 +49,7 @@ const services = [
   },
   {
     icon: Lightbulb,
-    number: "04",
+    number: "05",
     name: "Instant content",
     desc: "Rapid turnaround content generation optimized for social media, live events, and instant audience engagement.",
     color: "#39b54a",
@@ -73,6 +83,9 @@ const Skills = () => {
           }
           .service-card {
             padding: 2rem !important;
+          }
+          .service-link-card {
+            grid-column: span 1 !important;
           }
         }
       `}</style>
@@ -144,7 +157,14 @@ const Skills = () => {
               <Link
                 to={service.path}
                 key={service.name}
-                style={{ textDecoration: "none", color: "inherit", display: "flex", width: "100%" }}
+                className="service-link-card"
+                style={{
+                  textDecoration: "none",
+                  color: "inherit",
+                  display: "flex",
+                  width: "100%",
+                  gridColumn: service.spanTwo ? "span 2" : "auto"
+                }}
               >
                 <motion.div
                   initial={{ opacity: 0, y: 30 }}

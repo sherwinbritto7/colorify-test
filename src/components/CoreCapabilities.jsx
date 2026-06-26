@@ -19,6 +19,15 @@ const CoreCapabilities = () => {
       style={{ padding: "0 0 12rem", position: "relative", overflow: "hidden" }}
     >
       <style>{`
+        @media (max-width: 1024px) {
+          .capabilities-grid {
+            grid-template-columns: repeat(2, 1fr) !important;
+            gap: 2rem !important;
+          }
+          .capability-card-span-3 {
+            grid-column: span 2 !important;
+          }
+        }
         @media (max-width: 768px) {
           .capabilities-section {
             padding: 0 0 6rem !important;
@@ -32,6 +41,9 @@ const CoreCapabilities = () => {
           }
           .capability-card {
             padding: 2.5rem 1.5rem !important;
+          }
+          .capability-card-span-3 {
+            grid-column: span 1 !important;
           }
         }
       `}</style>
@@ -58,10 +70,10 @@ const CoreCapabilities = () => {
       </motion.div>
 
       <div className="container" style={{ position: "relative", zIndex: 1 }}>
-        <div style={{ marginBottom: "8rem", textAlign: "center" }}>
+        <div style={{ marginBottom: "8rem", position: "relative" }}>
           <motion.span
-            initial={{ opacity: 0, y: 10 }}
-            whileInView={{ opacity: 1, y: 0 }}
+            initial={{ opacity: 0, x: -20 }}
+            whileInView={{ opacity: 1, x: 0 }}
             style={{
               color: "var(--brand-purple)",
               fontWeight: 700,
@@ -74,7 +86,7 @@ const CoreCapabilities = () => {
           >
             Our Edge
           </motion.span>
-          <h2 style={{ fontSize: "clamp(3rem, 7vw, 5rem)", fontWeight: 900, lineHeight: 1, letterSpacing: "-0.03em" }}>
+          <h2 style={{ fontSize: "clamp(3rem, 7vw, 5rem)", fontWeight: 900, lineHeight: 1, letterSpacing: "-0.04em" }}>
             CORE <span className="gradient-text">CAPABILITIES</span>
           </h2>
         </div>
@@ -83,30 +95,34 @@ const CoreCapabilities = () => {
           className="capabilities-grid"
           style={{
             display: "grid",
-            gridTemplateColumns: "repeat(auto-fit, minmax(300px, 1fr))",
+            gridTemplateColumns: "repeat(3, 1fr)",
             gap: "2.5rem",
           }}
         >
           {[
             {
+              number: "01",
               title: "Neural AV Design",
               desc: "Sensory-mapped audio-visual environments that adapt in real-time to crowd kinetics and energy flow.",
               icon: Cpu,
               color: "#00a99d"
             },
             {
+              number: "02",
               title: "Kinetic Stagecraft",
               desc: "Moving architectural elements and robotic staging that physically redefine the space mid-performance.",
               icon: Layers,
               color: "#7b3f9e"
             },
             {
+              number: "03",
               title: "Strategic Lighting",
               desc: "Psychology-driven illumination systems designed to influence mood, focus, and crowd navigation.",
               icon: Zap,
               color: "#c5d429"
             },
             {
+              number: "04",
               title: "Digital Integration",
               desc: "Hybrid ecosystems that blend high-speed streaming with immersive physical presence seamlessly.",
               icon: Globe,
@@ -115,42 +131,58 @@ const CoreCapabilities = () => {
           ].map((cap, i) => (
             <motion.div
               key={i}
-              className="capability-card"
+              className={`capability-card ${i === 3 ? "capability-card-span-3" : ""}`}
               initial={{ opacity: 0, scale: 0.9, y: 30 }}
               whileInView={{ opacity: 1, scale: 1, y: 0 }}
               viewport={{ once: true, margin: "-100px" }}
               transition={{ delay: i * 0.1, duration: 0.8, ease: [0.16, 1, 0.3, 1] }}
               whileHover={{ y: -15, scale: 1.02 }}
               style={{
-                padding: "4rem 2.5rem",
+                padding: "3rem",
                 background: "rgba(255,255,255,0.02)",
                 backdropFilter: "blur(20px)",
-                borderRadius: "40px",
-                border: "1px solid rgba(255,255,255,0.06)",
+                borderRadius: "32px",
+                border: "1px solid rgba(255,255,255,0.05)",
                 position: "relative",
                 overflow: "hidden",
-                transition: "border-color 0.4s cubic-bezier(0.16, 1, 0.3, 1), background 0.4s ease"
+                transition: "border-color 0.4s cubic-bezier(0.16, 1, 0.3, 1), background 0.4s ease",
+                gridColumn: i === 3 ? "span 3" : "auto"
               }}
               onMouseEnter={(e) => {
                 e.currentTarget.style.borderColor = cap.color + "60";
                 e.currentTarget.style.background = cap.color + "08";
               }}
               onMouseLeave={(e) => {
-                e.currentTarget.style.borderColor = "rgba(255,255,255,0.06)";
+                e.currentTarget.style.borderColor = "rgba(255,255,255,0.05)";
                 e.currentTarget.style.background = "rgba(255,255,255,0.02)";
               }}
             >
               <div
                 style={{
-                  width: "64px",
-                  height: "64px",
-                  borderRadius: "20px",
+                  position: "absolute",
+                  top: "-2rem",
+                  right: "2rem",
+                  fontSize: "6rem",
+                  fontWeight: 900,
+                  color: cap.color,
+                  opacity: 0.1,
+                  lineHeight: 1,
+                  pointerEvents: "none",
+                }}
+              >
+                {cap.number}
+              </div>
+              <div
+                style={{
+                  width: "60px",
+                  height: "60px",
+                  borderRadius: "18px",
                   background: cap.color + "15",
                   display: "flex",
                   alignItems: "center",
                   justifyContent: "center",
                   color: cap.color,
-                  marginBottom: "2.5rem",
+                  marginBottom: "2rem",
                   boxShadow: `0 10px 30px ${cap.color}20`
                 }}
               >
@@ -159,15 +191,15 @@ const CoreCapabilities = () => {
               <h4
                 style={{
                   fontSize: "1.5rem",
-                  fontWeight: 800,
+                  fontWeight: 700,
                   color: "#fff",
-                  marginBottom: "1.2rem",
+                  marginBottom: "1rem",
                   letterSpacing: "-0.01em"
                 }}
               >
                 {cap.title}
               </h4>
-              <p style={{ color: "var(--text-secondary)", fontSize: "1rem", lineHeight: 1.7 }}>
+              <p style={{ color: "var(--text-secondary)", fontSize: "1rem", lineHeight: 1.6 }}>
                 {cap.desc}
               </p>
 

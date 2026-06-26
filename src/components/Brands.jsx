@@ -15,8 +15,22 @@ import yesbank from "../assets/photos/logos/yesbank.png";
 import dbs from "../assets/photos/logos/dbs.png";
 import tira from "../assets/photos/logos/tira.png";
 import ctrls from "../assets/photos/logos/ctrls.png";
-import futurense from "../assets/photos/logos/futurense.png";
 import waaree from "../assets/photos/logos/waaree.png";
+import brettlee from "../assets/photos/logos/brettlee.png";
+import chr from "../assets/photos/logos/chr.png";
+import ezee from "../assets/photos/logos/ezee.png";
+import integriti from "../assets/photos/logos/integriti.png";
+import kay from "../assets/photos/logos/kay.png";
+import laqshya from "../assets/photos/logos/laqshya.png";
+import lokmat from "../assets/photos/logos/lokmat.png";
+import miles from "../assets/photos/logos/miles.png";
+import mirae from "../assets/photos/logos/mirae.png";
+import mm from "../assets/photos/logos/mm.png";
+import origem from "../assets/photos/logos/origem.png";
+import pg from "../assets/photos/logos/p&g.png";
+import sheth from "../assets/photos/logos/sheth.png";
+import sportbet from "../assets/photos/logos/sportbet.png";
+import sun from "../assets/photos/logos/sun.png";
 
 const logosList = [
   adityabirla,
@@ -33,8 +47,22 @@ const logosList = [
   dbs,
   tira,
   ctrls,
-  futurense,
   waaree,
+  brettlee,
+  chr,
+  ezee,
+  integriti,
+  kay,
+  laqshya,
+  lokmat,
+  miles,
+  mirae,
+  mm,
+  origem,
+  pg,
+  sheth,
+  sportbet,
+  sun,
 ];
 
 const Brands = () => {

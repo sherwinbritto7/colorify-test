@@ -13,6 +13,7 @@ import PrePostProduction from "./pages/services/PrePostProduction";
 import Editing from "./pages/services/Editing";
 import HybridAIFilmmaking from "./pages/services/HybridAIFilmmaking";
 import InstantContent from "./pages/services/InstantContent";
+import IPCreation from "./pages/services/IPCreation";
 
 
 import ScrollToTop from "./components/ScrollToTop";
@@ -38,6 +39,7 @@ function AppContent() {
       "/services/editing": "Editing | Colorify",
       "/services/hybrid-ai-filmmaking": "Hybrid AI Filmmaking | Colorify",
       "/services/instant-content": "Instant Content | Colorify",
+      "/services/ip-creation": "IP Creation | Colorify",
     };
 
 
@@ -114,6 +116,7 @@ function AppContent() {
             <Route path="/services/editing" element={<Editing />} />
             <Route path="/services/hybrid-ai-filmmaking" element={<HybridAIFilmmaking />} />
             <Route path="/services/instant-content" element={<InstantContent />} />
+            <Route path="/services/ip-creation" element={<IPCreation />} />
             <Route path="/contactnow" element={<ContactNowPage />} />
             <Route path="/legal-privacy" element={<LegalPrivacy />} />
             <Route path="/legal-terms" element={<LegalTerms />} />
