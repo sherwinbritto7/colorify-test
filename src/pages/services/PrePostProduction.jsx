@@ -1,8 +1,5 @@
 import { motion } from "framer-motion";
 import PageTransition from "../../components/PageTransition";
-import showreel from "../../assets/videos/work1.webm";
-import v2 from "../../assets/videos/work2.webm";
-import v3 from "../../assets/videos/work3.webm";
 import { Camera, Film, Play, Award, CheckCircle } from "lucide-react";
 
 const PrePostProduction = () => {
@@ -13,9 +10,9 @@ const PrePostProduction = () => {
   ];
 
   const videos = [
-    { src: showreel, title: "Production Showreel", desc: "A montage of our finest cinematography and direction." },
-    { src: v2, title: "On-Set Live Capture", desc: "Behind the scenes and direct live-feed capture." },
-    { src: v3, title: "Commercial Highlight", desc: "Fast-paced corporate and brand event storytelling." }
+    { embedId: "j3zo90xCSzs", title: "Aldar", desc: "Cinematic showcase for Aldar." },
+    { embedId: "oUP5oCU918M", title: "Ranvijay", desc: "High-energy editorial and action capture." },
+    { embedId: "Wrc7r-KjL6o", title: "Rangreza", desc: "Stunning narrative and color grading display." }
   ];
 
   return (
@@ -85,18 +82,29 @@ const PrePostProduction = () => {
           {/* Work Videos */}
           <section style={{ minHeight: "auto", padding: "0 0 10rem 0" }}>
             <h2 style={{ fontSize: "2rem", fontWeight: 800, marginTop: "0", marginBottom: "1.5rem", textTransform: "uppercase" }}>Featured Works</h2>
-            <div style={{ display: "flex", flexDirection: "column", gap: "3rem", maxWidth: "1000px", margin: "0 auto" }}>
+            <div style={{ display: "flex", flexDirection: "column", gap: "3rem", width: "100%", maxWidth: "1200px", margin: "0 auto" }}>
               {videos.map((vid, idx) => (
-                <div key={idx} style={{ borderRadius: "24px", overflow: "hidden", background: "rgba(255,255,255,0.02)", border: "1px solid rgba(255,255,255,0.05)" }}>
+                <div key={idx} style={{ width: "100%", borderRadius: "24px", overflow: "hidden", background: "rgba(255,255,255,0.02)", border: "1px solid rgba(255,255,255,0.05)" }}>
                   <div style={{ position: "relative", width: "100%", aspectRatio: "16/9", overflow: "hidden" }}>
-                    <video
-                      src={vid.src}
-                      controls
-                      muted
-                      loop
-                      playsInline
-                      style={{ width: "100%", height: "100%", objectFit: "cover" }}
-                    />
+                    {vid.embedId ? (
+                      <iframe
+                        src={`https://www.youtube.com/embed/${vid.embedId}?autoplay=1&mute=1&loop=1&playlist=${vid.embedId}&controls=1&rel=0`}
+                        title={vid.title}
+                        frameBorder="0"
+                        allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
+                        allowFullScreen
+                        style={{ position: "absolute", top: 0, left: 0, width: "100%", height: "100%", border: "none" }}
+                      />
+                    ) : (
+                      <video
+                        src={vid.src}
+                        controls
+                        muted
+                        loop
+                        playsInline
+                        style={{ width: "100%", height: "100%", objectFit: "cover" }}
+                      />
+                    )}
                   </div>
                   <div style={{ padding: "1.8rem" }}>
                     <h3 style={{ fontSize: "1.2rem", fontWeight: 700, marginBottom: "0.5rem", color: "#fff" }}>{vid.title}</h3>

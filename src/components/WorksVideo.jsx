@@ -111,7 +111,7 @@ const WorkCard = ({ work, index, progress, range, targetScale, onClick }) => {
 const PremiumVideoPlayer = ({ src, onClose, color }) => {
   const videoRef = useRef(null);
   const [isPlaying, setIsPlaying] = useState(true);
-  const [isMuted, setIsMuted] = useState(false);
+  const [isMuted, setIsMuted] = useState(true);
   const [progress, setProgress] = useState(0);
 
   const togglePlay = (e) => {
@@ -216,6 +216,7 @@ const PremiumVideoPlayer = ({ src, onClose, color }) => {
             ref={videoRef}
             src={src}
             autoPlay
+            muted={isMuted}
             playsInline
             onTimeUpdate={handleTimeUpdate}
             onEnded={() => setIsPlaying(false)}
