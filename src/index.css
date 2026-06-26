@@ -218,6 +218,8 @@ section {
   animation: gradientFlow 5s linear infinite;
   will-change: background-position;
   transform: translateZ(0);
+  padding-right: 0.05em;
+  margin-right: -0.05em;
 }
 
 /* Hide custom cursor when hovering over elements that block pointer events (like active iframes) */

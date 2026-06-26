@@ -18,8 +18,7 @@ const ServicesPage = () => {
           style={{
             paddingTop: "16vh",
             paddingBottom: "8rem",
-            background:
-              "linear-gradient(to bottom, rgba(0,0,0,0.4), transparent)",
+            background: "var(--bg-color)",
           }}
         >
           <style>{`

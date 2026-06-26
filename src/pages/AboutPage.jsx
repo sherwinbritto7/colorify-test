@@ -718,7 +718,7 @@ const AboutPage = () => {
     <PageTransition>
       <div style={{ position: "relative" }}>
         {/* ── Hero ──────────────────────────────────────────── */}
-        <section className="about-hero" style={{ paddingTop: "16vh", paddingBottom: "8rem" }}>
+        <section className="about-hero" style={{ paddingTop: "16vh", paddingBottom: "8rem", background: "var(--bg-color)" }}>
           <style>{`
             @media (max-width: 768px) {
               .about-hero {
