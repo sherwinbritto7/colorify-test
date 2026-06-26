@@ -60,7 +60,7 @@ const PrePostProduction = () => {
               color: "var(--text-secondary)",
               maxWidth: "800px",
               lineHeight: 1.8,
-              marginBottom: "5rem"
+              marginBottom: "3rem"
             }}
           >
             We cover the entire filmmaking lifecycle, transforming raw ideas into cinematic masterpieces. 
@@ -69,8 +69,8 @@ const PrePostProduction = () => {
           </motion.p>
 
           {/* Features */}
-          <section style={{ marginBottom: "8rem" }}>
-            <h2 style={{ fontSize: "2rem", fontWeight: 800, marginBottom: "3rem", textTransform: "uppercase" }}>Core Features</h2>
+          <section style={{ marginBottom: "1rem" }}>
+            <h2 style={{ fontSize: "2rem", fontWeight: 800, marginBottom: "1.5rem", textTransform: "uppercase" }}>Core Features</h2>
             <div style={{ display: "grid", gridTemplateColumns: "repeat(auto-fit, minmax(280px, 1fr))", gap: "2rem" }}>
               {features.map((feat, idx) => (
                 <div key={idx} style={{ padding: "2.5rem", borderRadius: "24px", background: "rgba(255,255,255,0.02)", border: "1px solid rgba(255,255,255,0.05)" }}>
@@ -84,8 +84,8 @@ const PrePostProduction = () => {
 
           {/* Work Videos */}
           <section style={{ paddingBottom: "10rem" }}>
-            <h2 style={{ fontSize: "2rem", fontWeight: 800, marginBottom: "3rem", textTransform: "uppercase" }}>Featured Works</h2>
-            <div style={{ display: "flex", flexDirection: "column", gap: "3rem", maxWidth: "800px", margin: "0 auto" }}>
+            <h2 style={{ fontSize: "2rem", fontWeight: 800, marginTop: "0", marginBottom: "1.5rem", textTransform: "uppercase" }}>Featured Works</h2>
+            <div style={{ display: "flex", flexDirection: "column", gap: "3rem", maxWidth: "1000px", margin: "0 auto" }}>
               {videos.map((vid, idx) => (
                 <div key={idx} style={{ borderRadius: "24px", overflow: "hidden", background: "rgba(255,255,255,0.02)", border: "1px solid rgba(255,255,255,0.05)" }}>
                   <div style={{ position: "relative", width: "100%", aspectRatio: "16/9", overflow: "hidden" }}>
