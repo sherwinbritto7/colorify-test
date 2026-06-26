@@ -94,25 +94,9 @@ const Preloader = ({ setLoading }) => {
             alt="Colorify Logo" 
             style={{ 
               height: '60px', 
-              borderRadius: '12px',
-              border: '2px solid rgba(255,255,255,0.1)',
-              boxShadow: '0 20px 40px rgba(0,0,0,0.5)'
             }} 
           />
-          {/* Pulsing ring */}
-          <motion.div
-            animate={{ 
-              scale: [1, 1.5],
-              opacity: [0.5, 0]
-            }}
-            transition={{ duration: 2, repeat: Infinity, ease: 'easeOut' }}
-            style={{
-              position: 'absolute',
-              inset: -4,
-              border: '2px solid var(--brand-green)',
-              borderRadius: '14px'
-            }}
-          />
+
         </motion.div>
 
         <div style={{ width: '240px', textAlign: 'center' }}>
