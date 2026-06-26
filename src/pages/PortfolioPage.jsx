@@ -8,11 +8,11 @@ const PortfolioPage = () => {
     <PageTransition>
       <div style={{ minHeight: "100vh" }}>
         {/* Hero Section for Events */}
-        <section className="portfolio-hero" style={{ paddingTop: "14rem", paddingBottom: "6rem", position: "relative" }}>
+        <section className="portfolio-hero" style={{ paddingTop: "16vh", paddingBottom: "6rem", position: "relative" }}>
           <style>{`
             @media (max-width: 768px) {
               .portfolio-hero {
-                padding-top: 10rem !important;
+                padding-top: 22vh !important;
                 padding-bottom: 4rem !important;
               }
               .portfolio-title br {

@@ -38,9 +38,12 @@ const HorizontalProjects = () => {
     target: targetRef,
   });
 
-  // Calculate horizontal shift based on number of items
-  // Adjust X translation slightly on mobile to account for different widths
-  const x = useTransform(scrollYProgress, [0, 1], ["0%", "-82%"]);
+  // Calculate horizontal shift based on viewport width dynamically on scroll
+  const x = useTransform(scrollYProgress, (progress) => {
+    const isMobile = window.innerWidth <= 768;
+    const distance = isMobile ? -375 : -260;
+    return `${progress * distance}vw`;
+  });
 
   return (
     <section

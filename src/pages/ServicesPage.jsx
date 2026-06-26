@@ -14,13 +14,21 @@ const ServicesPage = () => {
 
         {/* Hero Header Section */}
         <section
+          className="services-hero"
           style={{
-            paddingTop: "14rem",
+            paddingTop: "16vh",
             paddingBottom: "8rem",
             background:
               "linear-gradient(to bottom, rgba(0,0,0,0.4), transparent)",
           }}
         >
+          <style>{`
+            @media (max-width: 768px) {
+              .services-hero {
+                padding-top: 22vh !important;
+              }
+            }
+          `}</style>
           <div className="container">
             <motion.span
               initial={{ opacity: 0, x: -20 }}

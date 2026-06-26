@@ -1,6 +1,7 @@
 import { useRef } from "react";
 import { motion, useAnimationFrame } from "framer-motion";
 import PageTransition from "../components/PageTransition";
+import { Pencil, Image, Camera, Laptop, Settings, Film, Award, Sparkles } from "lucide-react";
 
 // Import Founder Photos
 import adityaPhoto from "../assets/photos/Aditya-Joshi.jpg";
@@ -545,12 +546,186 @@ const FounderRow = ({ founder, index }) => {
 
 // ─── Page ─────────────────────────────────────────────────────────────────────
 
+// ─── Timeline Data & Components ───────────────────────────────────────────────
+
+const timelineData = [
+  {
+    year: "2015",
+    title: "Color wheel begins to spin",
+    color: "#c5d429",
+    position: "bottom",
+    icon: "Pencil",
+  },
+  {
+    year: "2019",
+    title: "More than 50 international awards for our film 'Alia'",
+    color: "#8cc63f",
+    position: "top",
+    icon: "Image",
+  },
+  {
+    year: "2020",
+    title: "Expanded to a mega studio",
+    color: "#39b54a",
+    position: "bottom",
+    icon: "Camera",
+  },
+  {
+    year: "2021",
+    title: "Empaneled to larger agencies",
+    color: "#00a99d",
+    position: "top",
+    icon: "Laptop",
+  },
+  {
+    year: "2022",
+    title: "More colors to unleash",
+    color: "#29abe2",
+    position: "bottom",
+    icon: "Settings",
+  },
+  {
+    year: "2024",
+    title: "Ventured into Virtual Production & AI Filmmaking",
+    color: "#3b6bb5",
+    position: "top",
+    icon: "Film",
+  },
+  {
+    year: "2025",
+    title: "Established presence in major Indian metros",
+    color: "#7b3f9e",
+    position: "bottom",
+    icon: "Sparkles",
+  },
+  {
+    year: "2026",
+    title: "Setting new benchmarks in immersive media",
+    color: "#8cc63f",
+    position: "top",
+    icon: "Award",
+  },
+];
+
+const TimelineNode = ({ node, index }) => {
+  const IconComponent = {
+    Pencil: Pencil,
+    Image: Image,
+    Camera: Camera,
+    Laptop: Laptop,
+    Settings: Settings,
+    Film: Film,
+    Award: Award,
+    Sparkles: Sparkles
+  }[node.icon];
+
+  const isUp = node.position === "top";
+
+  return (
+    <motion.div
+      initial={{ opacity: 0, y: isUp ? -30 : 30 }}
+      whileInView={{ opacity: 1, y: 0 }}
+      viewport={{ once: true, margin: "-40px" }}
+      transition={{ duration: 0.8, delay: index * 0.15, ease: [0.16, 1, 0.3, 1] }}
+      className="timeline-node-container"
+      style={{ position: "relative", height: "320px", flexShrink: 0 }}
+    >
+      <style>{`
+        .timeline-node-container {
+          width: 135px;
+        }
+        @media (max-width: 991px) {
+          .timeline-node-container {
+            width: 180px;
+          }
+        }
+      `}</style>
+      {/* Pin & Icon */}
+      <motion.div
+        whileHover={{ scale: 1.08 }}
+        transition={{ duration: 0.3 }}
+        style={{
+          position: "absolute",
+          left: "calc(50% - 30px)",
+          top: isUp ? "92px" : "130px", // Aligning the ring center to 160px middle (92+68 = 160; 130+30 = 160)
+          width: "60px",
+          height: "98px",
+          cursor: "pointer",
+        }}
+      >
+        <svg viewBox="0 0 80 130" width="60" height="98" style={{ color: node.color, display: "block" }}>
+          {isUp ? (
+            <>
+              <circle cx="40" cy="90" r="26" fill="rgba(255,255,255,0.02)" stroke="currentColor" strokeWidth="5" />
+              <path d="M 40 64 L 40 36" stroke="currentColor" strokeWidth="6" strokeLinecap="round" />
+              <circle cx="40" cy="30" r="8" fill="currentColor" />
+            </>
+          ) : (
+            <>
+              <circle cx="40" cy="40" r="26" fill="rgba(255,255,255,0.02)" stroke="currentColor" strokeWidth="5" />
+              <path d="M 40 66 L 40 94" stroke="currentColor" strokeWidth="6" strokeLinecap="round" />
+              <circle cx="40" cy="100" r="8" fill="currentColor" />
+            </>
+          )}
+        </svg>
+        
+        {/* Icon inside the ring */}
+        <div
+          style={{
+            position: "absolute",
+            left: "50%",
+            top: isUp ? "68px" : "30px", // Scaled top positions matching scaled SVG centers
+            transform: "translate(-50%, -50%)",
+            display: "flex",
+            alignItems: "center",
+            justifyContent: "center",
+            pointerEvents: "none",
+          }}
+        >
+          {IconComponent && <IconComponent size={16} style={{ color: node.color }} />}
+        </div>
+      </motion.div>
+
+      {/* Text Container */}
+      <div
+        style={{
+          position: "absolute",
+          left: "0",
+          right: "0",
+          textAlign: "center",
+          top: isUp ? "0px" : "235px",
+          height: "85px",
+          display: "flex",
+          flexDirection: "column",
+          justifyContent: isUp ? "flex-end" : "flex-start",
+          alignItems: "center",
+          padding: "0 5px",
+        }}
+      >
+        <div style={{ fontSize: "1.1rem", fontWeight: 800, color: "white", marginBottom: "0.2rem", fontFamily: "var(--font-display)" }}>
+          {node.year}
+        </div>
+        <div style={{ fontSize: "0.75rem", color: "var(--text-secondary)", lineHeight: 1.3, width: "100%" }}>
+          {node.title}
+        </div>
+      </div>
+    </motion.div>
+  );
+};
+
 const AboutPage = () => {
   return (
     <PageTransition>
       <div style={{ position: "relative" }}>
         {/* ── Hero ──────────────────────────────────────────── */}
-        <section style={{ paddingTop: "14rem", paddingBottom: "8rem" }}>
+        <section className="about-hero" style={{ paddingTop: "16vh", paddingBottom: "8rem" }}>
+          <style>{`
+            @media (max-width: 768px) {
+              .about-hero {
+                padding-top: 22vh !important;
+              }
+            }
+          `}</style>
           <div className="container">
             <motion.span
               initial={{ opacity: 0, x: -20 }}
@@ -603,8 +778,94 @@ const AboutPage = () => {
           </div>
         </section>
 
+        {/* ── Timeline Section ─────────────────────────── */}
+        <section style={{ padding: "4rem 0 0", position: "relative", overflow: "hidden" }}>
+          <div className="container" style={{ marginBottom: "2rem" }}>
+            <motion.span
+              initial={{ opacity: 0, x: -20 }}
+              whileInView={{ opacity: 1, x: 0 }}
+              viewport={{ once: true }}
+              style={{
+                color: "var(--brand-yellow)",
+                fontWeight: 700,
+                letterSpacing: "4px",
+                textTransform: "uppercase",
+                fontSize: "0.85rem",
+                display: "block",
+                marginBottom: "1.5rem",
+              }}
+            >
+              Our History
+            </motion.span>
+            <h2
+              style={{
+                fontSize: "clamp(3rem, 7vw, 5rem)",
+                fontWeight: 900,
+                lineHeight: 1,
+                letterSpacing: "-0.04em",
+              }}
+            >
+              THE <span className="gradient-text">COLORIFY</span> JOURNEY
+            </h2>
+          </div>
+
+          <div className="timeline-wrapper">
+            <style>{`
+              .timeline-wrapper {
+                width: 100%;
+                overflow-x: auto;
+                padding: 2rem 0;
+                scrollbar-width: none;
+                -ms-overflow-style: none;
+              }
+              .timeline-wrapper::-webkit-scrollbar {
+                display: none;
+              }
+              .timeline-track {
+                display: flex;
+                position: relative;
+                width: 100%;
+                justify-content: space-between;
+                padding: 0;
+                margin: 0 auto;
+                max-width: 1200px;
+              }
+              .timeline-line {
+                position: absolute;
+                top: 160px;
+                left: 2rem;
+                right: 2rem;
+                height: 2px;
+                border-top: 2px dotted rgba(255, 255, 255, 0.15);
+                z-index: 0;
+              }
+              @media (max-width: 991px) {
+                .timeline-wrapper {
+                  padding: 2rem 1.5rem;
+                }
+                .timeline-track {
+                  width: max-content !important;
+                  gap: 1.5rem;
+                  padding: 0 2rem;
+                }
+                .timeline-line {
+                  left: 4rem;
+                  right: 4rem;
+                }
+              }
+            `}</style>
+            <div className="timeline-track">
+              {/* Dotted Line */}
+              <div className="timeline-line" />
+              {timelineData.map((node, idx) => (
+                <TimelineNode key={node.year} node={node} index={idx} />
+              ))}
+            </div>
+          </div>
+        </section>
+
         {/* ── Founders (split layout) ───────────────────────── */}
-        <section style={{ padding: "8rem 0 0" }}>
+        <section style={{ padding: "3rem 0 0" }}>
           <div className="container">
             {/* Section label */}
             <div style={{ marginBottom: "8rem" }}>
