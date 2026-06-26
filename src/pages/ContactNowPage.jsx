@@ -16,6 +16,7 @@ const ContactNowPage = () => {
             padding: "10rem 0 4rem",
             position: "relative",
             overflow: "hidden",
+            background: "var(--bg-color)",
           }}
         >
           {/* Mega Background Orb */}

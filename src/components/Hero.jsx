@@ -27,6 +27,7 @@ const Hero = () => {
         flexDirection: "column",
         justifyContent: "center",
         minHeight: "100vh",
+        background: "var(--bg-color)",
       }}
     >
       <style>{`
