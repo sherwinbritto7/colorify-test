@@ -69,7 +69,7 @@ const PrePostProduction = () => {
           </motion.p>
 
           {/* Features */}
-          <section style={{ marginBottom: "1rem" }}>
+          <section style={{ minHeight: "auto", padding: "2rem 0", marginBottom: "1rem" }}>
             <h2 style={{ fontSize: "2rem", fontWeight: 800, marginBottom: "1.5rem", textTransform: "uppercase" }}>Core Features</h2>
             <div style={{ display: "grid", gridTemplateColumns: "repeat(auto-fit, minmax(280px, 1fr))", gap: "2rem" }}>
               {features.map((feat, idx) => (
@@ -83,7 +83,7 @@ const PrePostProduction = () => {
           </section>
 
           {/* Work Videos */}
-          <section style={{ paddingBottom: "10rem" }}>
+          <section style={{ minHeight: "auto", padding: "0 0 10rem 0" }}>
             <h2 style={{ fontSize: "2rem", fontWeight: 800, marginTop: "0", marginBottom: "1.5rem", textTransform: "uppercase" }}>Featured Works</h2>
             <div style={{ display: "flex", flexDirection: "column", gap: "3rem", maxWidth: "1000px", margin: "0 auto" }}>
               {videos.map((vid, idx) => (
