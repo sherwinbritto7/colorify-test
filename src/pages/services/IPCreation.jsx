@@ -1,8 +1,7 @@
 import { motion } from "framer-motion";
+import { Link } from "react-router-dom";
 import PageTransition from "../../components/PageTransition";
-import work1 from "../../assets/videos/work1.webm";
-import work2 from "../../assets/videos/work2.webm";
-import work3 from "../../assets/videos/work3.webm";
+
 import { Users, Shield, Layers, Award, CheckCircle } from "lucide-react";
 
 const IPCreation = () => {
@@ -13,9 +12,8 @@ const IPCreation = () => {
   ];
 
   const videos = [
-    { src: work2, title: "Original Series Pilot", desc: "High-concept pilot episode developed and colored for international distribution." },
-    { src: work1, title: "Branded Web Franchise", desc: "A recurring digital series created specifically to align with target sponsor demographics." },
-    { src: work3, title: "Feature Showcase", desc: "Cinematic trailer showcasing high-production-value properties and world-building." }
+    { embedId: "JwbK6MR9lhE", title: "Who Is The Boss", desc: "Original IP production showcasing bold storytelling and cinematic world-building." },
+    { embedId: "l8I7B139P48", title: "Classic Men", desc: "A proprietary branded series blending style, culture, and high-production value." }
   ];
 
   return (
@@ -28,9 +26,9 @@ const IPCreation = () => {
             animate={{ opacity: 1 }}
             style={{ marginBottom: "2rem" }}
           >
-            <a href="/services" style={{ color: "#f26522", textDecoration: "none", fontWeight: 700, fontSize: "0.9rem", letterSpacing: "1px", textTransform: "uppercase" }}>
+            <Link to="/services" style={{ color: "#f26522", textDecoration: "none", fontWeight: 700, fontSize: "0.9rem", letterSpacing: "1px", textTransform: "uppercase" }}>
               ← Back to Services
-            </a>
+            </Link>
           </motion.div>
 
           {/* Heading */}
@@ -47,7 +45,7 @@ const IPCreation = () => {
               textTransform: "uppercase"
             }}
           >
-            IP <span className="gradient-text" style={{ backgroundImage: "linear-gradient(90deg, #f26522, #c5d429)" }}>CREATION</span> & PROPRIETARY MEDIA
+            IP <span className="gradient-text">CREATION</span> & PROPRIETARY MEDIA
           </motion.h1>
 
           {/* Info */}
@@ -83,17 +81,17 @@ const IPCreation = () => {
           {/* Work Videos */}
           <section style={{ minHeight: "auto", padding: "0 0 10rem 0" }}>
             <h2 style={{ fontSize: "2rem", fontWeight: 800, marginTop: "0", marginBottom: "1.5rem", textTransform: "uppercase" }}>Featured Properties</h2>
-            <div style={{ display: "flex", flexDirection: "column", gap: "3rem", maxWidth: "1000px", margin: "0 auto" }}>
+            <div style={{ display: "flex", flexDirection: "column", gap: "3rem", width: "100%", maxWidth: "1200px", margin: "0 auto" }}>
               {videos.map((vid, idx) => (
-                <div key={idx} style={{ borderRadius: "24px", overflow: "hidden", background: "rgba(255,255,255,0.02)", border: "1px solid rgba(255,255,255,0.05)" }}>
+                <div key={idx} style={{ width: "100%", borderRadius: "24px", overflow: "hidden", background: "rgba(255,255,255,0.02)", border: "1px solid rgba(255,255,255,0.05)" }}>
                   <div style={{ position: "relative", width: "100%", aspectRatio: "16/9", overflow: "hidden" }}>
-                    <video
-                      src={vid.src}
-                      controls
-                      muted
-                      loop
-                      playsInline
-                      style={{ width: "100%", height: "100%", objectFit: "cover" }}
+                    <iframe
+                      src={`https://www.youtube.com/embed/${vid.embedId}?autoplay=1&mute=1&loop=1&playlist=${vid.embedId}&controls=1&rel=0`}
+                      title={vid.title}
+                      frameBorder="0"
+                      allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
+                      allowFullScreen
+                      style={{ position: "absolute", top: 0, left: 0, width: "100%", height: "100%", border: "none" }}
                     />
                   </div>
                   <div style={{ padding: "1.8rem" }}>

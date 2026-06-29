@@ -1,4 +1,5 @@
 import { motion } from "framer-motion";
+import { Link } from "react-router-dom";
 import PageTransition from "../../components/PageTransition";
 import showreel from "../../assets/videos/work1.webm";
 import v2 from "../../assets/videos/work2.webm";
@@ -28,9 +29,9 @@ const InstantContent = () => {
             animate={{ opacity: 1 }}
             style={{ marginBottom: "2rem" }}
           >
-            <a href="/services" style={{ color: "#39b54a", textDecoration: "none", fontWeight: 700, fontSize: "0.9rem", letterSpacing: "1px", textTransform: "uppercase" }}>
+            <Link to="/services" style={{ color: "#39b54a", textDecoration: "none", fontWeight: 700, fontSize: "0.9rem", letterSpacing: "1px", textTransform: "uppercase" }}>
               ← Back to Services
-            </a>
+            </Link>
           </motion.div>
 
           {/* Heading */}

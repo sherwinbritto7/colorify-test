@@ -1,8 +1,7 @@
 import { motion } from "framer-motion";
+import { Link } from "react-router-dom";
 import PageTransition from "../../components/PageTransition";
-import showreel from "../../assets/videos/work1.webm";
-import v2 from "../../assets/videos/work2.webm";
-import v3 from "../../assets/videos/work3.webm";
+
 import { Sparkles, Cpu, Image, CheckCircle } from "lucide-react";
 
 const HybridAIFilmmaking = () => {
@@ -13,9 +12,9 @@ const HybridAIFilmmaking = () => {
   ];
 
   const videos = [
-    { src: v3, title: "Virtual Production Reel", desc: "Showcasing live-tracked camera interaction with digital assets." },
-    { src: showreel, title: "AI Concept Art Showcase", desc: "Dynamic animation of conceptual set models." },
-    { src: v2, title: "CGI Blend Reel", desc: "Visual breakdown of layers combining physical sets and neural art." }
+    { embedId: "m7yt96oS1_0", title: "Cafe Ad", desc: "A cinematic cafe advertisement blending AI-enhanced pre-viz with live-action storytelling." },
+    { embedId: "Kn7PYvxhrXI", title: "Kellogg's", desc: "Bold brand film for Kellogg's merging smart CGI integration with high-energy live footage." },
+    { embedId: "xQKtQuDrj8k", title: "Development Wellness", desc: "A wellness brand narrative powered by neural post-production and immersive visual design." }
   ];
 
   return (
@@ -28,9 +27,9 @@ const HybridAIFilmmaking = () => {
             animate={{ opacity: 1 }}
             style={{ marginBottom: "2rem" }}
           >
-            <a href="/services" style={{ color: "#29abe2", textDecoration: "none", fontWeight: 700, fontSize: "0.9rem", letterSpacing: "1px", textTransform: "uppercase" }}>
+            <Link to="/services" style={{ color: "#29abe2", textDecoration: "none", fontWeight: 700, fontSize: "0.9rem", letterSpacing: "1px", textTransform: "uppercase" }}>
               ← Back to Services
-            </a>
+            </Link>
           </motion.div>
 
           {/* Heading */}
@@ -85,17 +84,17 @@ const HybridAIFilmmaking = () => {
           {/* Work Videos */}
           <section style={{ minHeight: "auto", padding: "0 0 10rem 0" }}>
             <h2 style={{ fontSize: "2rem", fontWeight: 800, marginTop: "0", marginBottom: "1.5rem", textTransform: "uppercase" }}>Featured Works</h2>
-            <div style={{ display: "flex", flexDirection: "column", gap: "3rem", maxWidth: "1000px", margin: "0 auto" }}>
+            <div style={{ display: "flex", flexDirection: "column", gap: "3rem", width: "100%", maxWidth: "1200px", margin: "0 auto" }}>
               {videos.map((vid, idx) => (
-                <div key={idx} style={{ borderRadius: "24px", overflow: "hidden", background: "rgba(255,255,255,0.02)", border: "1px solid rgba(255,255,255,0.05)" }}>
+                <div key={idx} style={{ width: "100%", borderRadius: "24px", overflow: "hidden", background: "rgba(255,255,255,0.02)", border: "1px solid rgba(255,255,255,0.05)" }}>
                   <div style={{ position: "relative", width: "100%", aspectRatio: "16/9", overflow: "hidden" }}>
-                    <video
-                      src={vid.src}
-                      controls
-                      muted
-                      loop
-                      playsInline
-                      style={{ width: "100%", height: "100%", objectFit: "cover" }}
+                    <iframe
+                      src={`https://www.youtube.com/embed/${vid.embedId}?autoplay=1&mute=1&loop=1&playlist=${vid.embedId}&controls=1&rel=0`}
+                      title={vid.title}
+                      frameBorder="0"
+                      allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
+                      allowFullScreen
+                      style={{ position: "absolute", top: 0, left: 0, width: "100%", height: "100%", border: "none" }}
                     />
                   </div>
                   <div style={{ padding: "1.8rem" }}>
