@@ -1,9 +1,9 @@
 import { motion } from "framer-motion";
 import { Link } from "react-router-dom";
 import PageTransition from "../../components/PageTransition";
-import showreel from "../../assets/videos/work1.webm";
-import v2 from "../../assets/videos/work2.webm";
-import v3 from "../../assets/videos/work3.webm";
+import instant1 from "../../assets/videos/instant/instant1.mp4";
+import instant2 from "../../assets/videos/instant/instant2.mp4";
+import instant3 from "../../assets/videos/instant/instant3.mp4";
 import { Zap, Clock, Send, CheckCircle } from "lucide-react";
 
 const InstantContent = () => {
@@ -14,9 +14,9 @@ const InstantContent = () => {
   ];
 
   const videos = [
-    { src: showreel, title: "Social Campaign Showcase", desc: "Shorts and reels designed for immediate viral impact." },
-    { src: v3, title: "Live Event Recap", desc: "Recap video rendered and posted within hours of event kick-off." },
-    { src: v2, title: "Micro-Narratives", desc: "Engaging 15-second narratives capturing brand essence." }
+    { src: instant1, title: "Social Campaign Showcase", desc: "Shorts and reels designed for immediate viral impact." },
+    { src: instant2, title: "Live Event Recap", desc: "Recap video rendered and posted within hours of event kick-off." },
+    { src: instant3, title: "Micro-Narratives", desc: "Engaging 15-second narratives capturing brand essence." }
   ];
 
   return (
@@ -86,22 +86,20 @@ const InstantContent = () => {
           {/* Work Videos */}
           <section style={{ minHeight: "auto", padding: "0 0 10rem 0" }}>
             <h2 style={{ fontSize: "2rem", fontWeight: 800, marginTop: "0", marginBottom: "1.5rem", textTransform: "uppercase" }}>Featured Works</h2>
-            <div style={{ display: "flex", flexDirection: "column", gap: "3rem", maxWidth: "1000px", margin: "0 auto" }}>
+            <div style={{ display: "flex", flexDirection: "row", gap: "1.5rem", width: "100%", alignItems: "flex-start" }}>
               {videos.map((vid, idx) => (
-                <div key={idx} style={{ borderRadius: "24px", overflow: "hidden", background: "rgba(255,255,255,0.02)", border: "1px solid rgba(255,255,255,0.05)" }}>
-                  <div style={{ position: "relative", width: "100%", aspectRatio: "16/9", overflow: "hidden" }}>
-                    <video
-                      src={vid.src}
-                      controls
-                      muted
-                      loop
-                      playsInline
-                      style={{ width: "100%", height: "100%", objectFit: "cover" }}
-                    />
-                  </div>
-                  <div style={{ padding: "1.8rem" }}>
-                    <h3 style={{ fontSize: "1.2rem", fontWeight: 700, marginBottom: "0.5rem", color: "#fff" }}>{vid.title}</h3>
-                    <p style={{ color: "var(--text-secondary)", fontSize: "0.9rem", lineHeight: 1.5 }}>{vid.desc}</p>
+                <div key={idx} style={{ flex: 1, minWidth: 0, borderRadius: "24px", overflow: "hidden", background: "rgba(255,255,255,0.02)", border: "1px solid rgba(255,255,255,0.05)" }}>
+                  <video
+                    src={vid.src}
+                    autoPlay
+                    muted
+                    loop
+                    playsInline
+                    style={{ width: "100%", display: "block" }}
+                  />
+                  <div style={{ padding: "1.2rem" }}>
+                    <h3 style={{ fontSize: "1rem", fontWeight: 700, marginBottom: "0.4rem", color: "#fff" }}>{vid.title}</h3>
+                    <p style={{ color: "var(--text-secondary)", fontSize: "0.85rem", lineHeight: 1.5 }}>{vid.desc}</p>
                   </div>
                 </div>
               ))}
