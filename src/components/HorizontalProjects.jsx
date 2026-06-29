@@ -251,7 +251,7 @@ const HorizontalProjects = () => {
                 whileHover={{ scale: 0.985 }}
                 transition={{ duration: 0.6, ease: [0.16, 1, 0.3, 1] }}
               >
-                <motion.img src={item.image} style={{ width: "100%", height: "100%", objectFit: "cover" }} alt={item.title} />
+                <motion.img src={item.image} style={{ position: "absolute", inset: 0, width: "100%", height: "100%", objectFit: "cover", objectPosition: "top" }} alt={item.title} />
                 <div style={{ position: "absolute", inset: 0, background: "linear-gradient(to top, rgba(0,0,0,0.8) 0%, rgba(0,0,0,0.2) 50%, transparent 100%)", zIndex: 1 }} />
                 <div className="card-content" style={{ position: "absolute", bottom: "4rem", left: "4rem", right: "4rem", color: "white", zIndex: 2, display: "flex", justifyContent: "space-between", alignItems: "flex-end" }}>
                   <div>
