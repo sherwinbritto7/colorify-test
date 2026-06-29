@@ -37,7 +37,7 @@ const items = [
   },
 ];
 
-/* ── Modal ───────────────────────────────────────────────── */
+/* ── Modal (edge-to-edge minimal player modal) ────────────── */
 const Modal = ({ item, onClose }) => {
   const modalContent = (
     <AnimatePresence>
@@ -69,31 +69,28 @@ const Modal = ({ item, onClose }) => {
             transition={{ duration: 0.45, ease: [0.16, 1, 0.3, 1] }}
             onClick={(e) => e.stopPropagation()}
             style={{
-              width: "min(840px, 92vw)",
-              borderRadius: "28px",
-              background: "rgba(10,10,10,0.96)",
-              border: "1px solid rgba(255,255,255,0.09)",
-              boxShadow: "0 40px 100px rgba(0,0,0,0.7)",
-              padding: "3rem 3rem 2.8rem",
-              display: "flex",
-              flexDirection: "column",
-              alignItems: "center",
-              gap: "1.6rem",
+              width: "min(1000px, 92vw)",
+              borderRadius: "16px",
+              background: "#000",
+              border: "1px solid rgba(255,255,255,0.15)",
+              boxShadow: "0 40px 100px rgba(0,0,0,0.8)",
               position: "relative",
+              overflow: "hidden",
             }}
           >
-            {/* Close button — top right */}
+            {/* Close button */}
             <motion.button
-              whileHover={{ scale: 1.1, background: "rgba(255,255,255,0.12)" }}
+              whileHover={{ scale: 1.1, background: "rgba(0,0,0,0.8)" }}
               onClick={onClose}
               style={{
-                position: "absolute", top: "1.2rem", right: "1.2rem",
-                width: "38px", height: "38px", borderRadius: "50%",
-                background: "rgba(255,255,255,0.06)",
-                border: "1px solid rgba(255,255,255,0.13)",
+                position: "absolute", top: "1rem", right: "1rem",
+                width: "36px", height: "36px", borderRadius: "50%",
+                background: "rgba(0,0,0,0.5)",
+                border: "1px solid rgba(255,255,255,0.3)",
                 color: "#fff", cursor: "pointer",
                 display: "flex", alignItems: "center", justifyContent: "center",
                 padding: 0,
+                zIndex: 10,
               }}
             >
               <svg width="14" height="14" viewBox="0 0 14 14" fill="none" xmlns="http://www.w3.org/2000/svg">
@@ -101,28 +98,10 @@ const Modal = ({ item, onClose }) => {
               </svg>
             </motion.button>
 
-            {/* TITLE — centered at top */}
-            <h2 style={{
-              fontSize: "clamp(2rem, 4vw, 3.4rem)",
-              fontWeight: 900,
-              letterSpacing: "-0.03em",
-              color: "#fff",
-              textAlign: "center",
-              lineHeight: 1.05,
-              margin: 0,
-              paddingRight: "2.5rem", /* don't overlap close btn */
-              paddingLeft: "2.5rem",
-              width: "100%",
-            }}>
-              {item.title}
-            </h2>
-
-            {/* VIDEO / IMAGE — centered with side margins */}
+            {/* VIDEO / IMAGE */}
             <div style={{
-              width: "90%",
-              borderRadius: "16px",
+              width: "100%",
               overflow: "hidden",
-              border: "1px solid rgba(255,255,255,0.08)",
               flexShrink: 0,
             }}>
               {item.youtubeUrl ? (
