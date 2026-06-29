@@ -1,45 +1,197 @@
-import { motion } from "framer-motion";
+import { useState } from "react";
+import { createPortal } from "react-dom";
+import { motion, AnimatePresence } from "framer-motion";
 import { ArrowUpRight } from "lucide-react";
 
-const projects = [
+import selected1 from "../assets/photos/selected/selected1.png";
+import selected2 from "../assets/photos/selected/selected2.jpeg";
+import selected3 from "../assets/photos/selected/selected3.jpeg";
+import selected4 from "../assets/photos/selected/selected4.jpeg";
+import selected5 from "../assets/photos/selected/selected5.jpeg";
+
+const projectsList = [
   {
-    title: "Vivid Gala 2024",
-    category: "Gala Dinners",
-    color: "#7b3f9e", // Purple
-    image:
-      "https://images.unsplash.com/photo-1519671482749-fd09be7ccebf?auto=format&fit=crop&q=80&w=1200",
-    size: "large",
+    title: "Alia Teaser",
+    category: "Teaser",
+    color: "#39b54a",
+    image: selected1,
+    videoUrl: "https://youtu.be/y0LYbOgVLMU?si=skXiXmwcXAS-zete",
+    type: "youtube"
   },
   {
-    title: "Prism Workshop",
-    category: "Creative Meetups",
-    color: "#00a99d", // Teal
-    image:
-      "https://images.unsplash.com/photo-1544928147-79a2dbc1f389?auto=format&fit=crop&q=80&w=800",
-    size: "small",
+    title: "Virat (HSBC)",
+    category: "Brand Campaign",
+    color: "#c5d429",
+    image: selected3,
+    videoUrl: "https://www.youtube.com/embed/dztEYDEQo_Y?autoplay=1&mute=0&controls=1",
+    type: "youtube-shorts"
   },
   {
-    title: "Urban Carnival",
-    category: "Themed Parties",
-    color: "#39b54a", // Green
-    image:
-      "https://images.unsplash.com/photo-1492684223066-81342ee5ff30?auto=format&fit=crop&q=80&w=800",
-    size: "small",
+    title: "Infinite Saree",
+    category: "Fashion Film",
+    color: "#7b3f9e",
+    image: selected2,
+    videoUrl: "https://drive.google.com/file/d/1UPsTdhzpBa8jwvPY1Ey2Y5KGOrT8JLrP/preview",
+    type: "gdrive"
+  },
+  {
+    title: "Fashion AI",
+    category: "AI Filmmaking",
+    color: "#29abe2",
+    image: selected4,
+    videoUrl: "https://www.youtube.com/embed/SUqTDeoURkQ?autoplay=1&mute=0&controls=1",
+    type: "youtube-shorts"
+  },
+  {
+    title: "RCB Sunpharma",
+    category: "Commercial",
+    color: "#f26522",
+    image: selected5,
+    videoUrl: "https://www.instagram.com/reel/DYbg8B7CS-x/embed/",
+    type: "instagram"
   },
 ];
 
-const ProjectCard = ({ project, index }) => {
+/* ── Modal (same as horizontal projects) ─────────────────── */
+const Modal = ({ item, onClose }) => {
+  const modalContent = (
+    <AnimatePresence>
+      {item && (
+        <motion.div
+          key="backdrop"
+          initial={{ opacity: 0 }}
+          animate={{ opacity: 1 }}
+          exit={{ opacity: 0 }}
+          onClick={onClose}
+          style={{
+            position: "fixed",
+            inset: 0,
+            zIndex: 99999,
+            background: "rgba(0,0,0,0.82)",
+            backdropFilter: "blur(16px)",
+            WebkitBackdropFilter: "blur(16px)",
+            display: "flex",
+            alignItems: "center",
+            justifyContent: "center",
+            padding: "2rem",
+          }}
+        >
+          <motion.div
+            key="panel"
+            initial={{ opacity: 0, scale: 0.88, y: 40 }}
+            animate={{ opacity: 1, scale: 1, y: 0 }}
+            exit={{ opacity: 0, scale: 0.88, y: 40 }}
+            transition={{ duration: 0.45, ease: [0.16, 1, 0.3, 1] }}
+            onClick={(e) => e.stopPropagation()}
+            style={{
+              width: item.type === "youtube-shorts" || item.type === "instagram" ? "340px" : "min(1000px, 92vw)",
+              borderRadius: "16px",
+              background: "#000",
+              border: "1px solid rgba(255,255,255,0.15)",
+              boxShadow: "0 40px 100px rgba(0,0,0,0.8)",
+              position: "relative",
+              overflow: "hidden",
+            }}
+          >
+            {/* Close button */}
+            <motion.button
+              whileHover={{ scale: 1.1, background: "rgba(0,0,0,0.8)" }}
+              onClick={onClose}
+              style={{
+                position: "absolute", top: "1rem", right: "1rem",
+                width: "36px", height: "36px", borderRadius: "50%",
+                background: "rgba(0,0,0,0.5)",
+                border: "1px solid rgba(255,255,255,0.3)",
+                color: "#fff", cursor: "pointer",
+                display: "flex", alignItems: "center", justifyContent: "center",
+                padding: 0,
+                zIndex: 10,
+              }}
+            >
+              <svg width="14" height="14" viewBox="0 0 14 14" fill="none" xmlns="http://www.w3.org/2000/svg">
+                <path d="M1 1L13 13M13 1L1 13" stroke="white" strokeWidth="2" strokeLinecap="round"/>
+              </svg>
+            </motion.button>
+
+            {/* VIDEO / IMAGE */}
+            <div style={{
+              width: "100%",
+              overflow: "hidden",
+              flexShrink: 0,
+            }}>
+              {item.videoUrl ? (
+                <div style={{ position: "relative", width: "100%", aspectRatio: item.type === "youtube-shorts" || item.type === "instagram" ? "9/16" : "16/9", maxHeight: "80vh", display: "flex", justifyContent: "center", background: "transparent", overflow: "hidden" }}>
+                  {item.type === "youtube" && (
+                    <iframe
+                      src={`https://www.youtube.com/embed/${item.videoUrl.split('/').pop().split('?')[0]}?autoplay=1&mute=0&controls=1&rel=0`}
+                      title={item.title}
+                      frameBorder="0"
+                      allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
+                      allowFullScreen
+                      style={{ width: "100%", height: "100%", aspectRatio: "16/9", border: "none" }}
+                    />
+                  )}
+                  {item.type === "youtube-shorts" && (
+                    <iframe
+                      src={item.videoUrl}
+                      title={item.title}
+                      frameBorder="0"
+                      allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
+                      allowFullScreen
+                      style={{ height: "80vh", width: "340px", aspectRatio: "9/16", border: "none" }}
+                    />
+                  )}
+                  {item.type === "gdrive" && (
+                    <iframe
+                      src={item.videoUrl}
+                      title={item.title}
+                      frameBorder="0"
+                      allow="autoplay"
+                      allowFullScreen
+                      style={{ width: "100%", height: "100%", aspectRatio: "16/9", border: "none" }}
+                    />
+                  )}
+                  {item.type === "instagram" && (
+                    <iframe
+                      src={item.videoUrl}
+                      title={item.title}
+                      frameBorder="0"
+                      allowTransparency
+                      scrolling="no"
+                      style={{ height: "80vh", width: "340px", aspectRatio: "9/16", border: "none", background: "transparent" }}
+                    />
+                  )}
+                </div>
+              ) : (
+                <img
+                  src={item.image}
+                  alt={item.title}
+                  style={{ width: "100%", display: "block", objectFit: "cover" }}
+                />
+              )}
+            </div>
+          </motion.div>
+        </motion.div>
+      )}
+    </AnimatePresence>
+  );
+
+  return createPortal(modalContent, document.body);
+};
+
+/* ── Project Card Component ──────────────────────────────── */
+const ProjectCard = ({ project, index, sizeStyle, onClick }) => {
   return (
     <motion.div
       initial={{ opacity: 0, y: 30 }}
       whileInView={{ opacity: 1, y: 0 }}
       viewport={{ once: true }}
+      onClick={onClick}
       transition={{
         delay: index * 0.1,
         duration: 0.8,
         ease: [0.16, 1, 0.3, 1],
       }}
-      className={`project-card ${project.size}`}
       style={{
         position: "relative",
         borderRadius: "28px",
@@ -47,129 +199,156 @@ const ProjectCard = ({ project, index }) => {
         cursor: "pointer",
         background: "rgba(255,255,255,0.03)",
         border: "1px solid rgba(255,255,255,0.06)",
-        height:
-          project.size === "large"
-            ? "640px"
-            : project.size === "medium"
-              ? "420px"
-              : "300px",
-        gridColumn: project.size === "large" ? "span 2" : "span 1",
-        gridRow: project.size === "large" ? "span 2" : "span 1",
+        height: sizeStyle.height || "auto",
+        aspectRatio: sizeStyle.aspectRatio || "auto",
+        gridColumn: sizeStyle.gridColumn,
       }}
     >
       <motion.img
         src={project.image}
         alt={project.title}
         style={{
+          position: "absolute",
+          inset: 0,
           width: "100%",
           height: "100%",
           objectFit: "cover",
+          objectPosition: "top",
           opacity: 0.7,
         }}
         whileHover={{ scale: 1.05, opacity: 0.9 }}
         transition={{ duration: 0.6 }}
       />
 
-      {/* Hover Overlay */}
-      <motion.div
-        initial={{ opacity: 0 }}
-        whileHover={{ opacity: 1 }}
-        style={{
-          position: "absolute",
-          inset: 0,
-          background: `linear-gradient(to top, ${project.color}dd, transparent)`,
-          display: "flex",
-          flexDirection: "column",
-          justifyContent: "flex-end",
-          padding: "2.5rem",
-          zIndex: 2,
-        }}
-      >
-        <div
-          style={{
-            display: "flex",
-            justifyContent: "space-between",
-            alignItems: "flex-end",
-          }}
-        >
-          <div>
-            <p
-              style={{
-                fontSize: "0.85rem",
-                fontWeight: 700,
-                textTransform: "uppercase",
-                letterSpacing: "2px",
-                color: "#000",
-                marginBottom: "0.5rem",
-              }}
-            >
-              {project.category}
-            </p>
-            <h3
-              className={project.size === "large" ? "project-title-large" : ""}
-              style={{
-                fontSize: project.size === "large" ? "3rem" : "1.8rem",
-                fontWeight: 800,
-                color: "#000",
-                lineHeight: 1,
-              }}
-            >
-              {project.title}
-            </h3>
-          </div>
-          <div
-            style={{
-              width: "50px",
-              height: "50px",
-              borderRadius: "50%",
-              backgroundColor: "#000",
-              display: "flex",
-              alignItems: "center",
-              justifyContent: "center",
-              color: "#fff",
-            }}
-          >
-            <ArrowUpRight size={24} />
-          </div>
-        </div>
-      </motion.div>
-
-      {/* Static Label (Lower visibility) */}
       <div
         style={{
           position: "absolute",
-          bottom: "1.5rem",
-          left: "1.5rem",
+          inset: 0,
+          background: "linear-gradient(to top, rgba(0,0,0,0.85) 0%, rgba(0,0,0,0.2) 50%, transparent 100%)",
           zIndex: 1,
-          pointerEvents: "none",
+        }}
+      />
+
+      {/* Static Label & Button Overlay */}
+      <div
+        style={{
+          position: "absolute",
+          bottom: sizeStyle.isLarge ? "4rem" : "2.5rem",
+          left: sizeStyle.isLarge ? "4rem" : "2.5rem",
+          right: sizeStyle.isLarge ? "4rem" : "2.5rem",
+          color: "white",
+          zIndex: 2,
+          display: "flex",
+          justifyContent: "space-between",
+          alignItems: "flex-end",
         }}
       >
-        <span
+        <div>
+          <div
+            style={{
+              display: "inline-flex",
+              alignItems: "center",
+              gap: "0.4rem",
+              padding: "0.3rem 0.75rem",
+              borderRadius: "100px",
+              background: "rgba(255,255,255,0.08)",
+              backdropFilter: "blur(10px)",
+              border: "1px solid rgba(255,255,255,0.08)",
+              marginBottom: "0.6rem",
+            }}
+          >
+            <div
+              style={{
+                width: "6px",
+                height: "6px",
+                borderRadius: "50%",
+                background: project.color,
+              }}
+            />
+            <span
+              style={{
+                fontSize: "0.6rem",
+                fontWeight: 700,
+                textTransform: "uppercase",
+                letterSpacing: "1px",
+              }}
+            >
+              {project.category}
+            </span>
+          </div>
+          <h3
+            style={{
+              fontSize: sizeStyle.isLarge ? "clamp(1.8rem, 4vw, 3rem)" : "1.4rem",
+              lineHeight: 1.1,
+              letterSpacing: "-0.02em",
+              fontWeight: 800,
+              color: "#fff",
+              margin: 0,
+            }}
+          >
+            {project.title}
+          </h3>
+        </div>
+
+        <motion.button
+          whileHover={{
+            scale: 1.1,
+            backgroundColor: project.color,
+            color: "#000",
+          }}
           style={{
-            fontSize: "0.75rem",
-            fontWeight: 600,
-            textTransform: "uppercase",
-            letterSpacing: "1px",
-            color: "rgba(255,255,255,0.5)",
+            width: sizeStyle.isLarge ? "50px" : "42px",
+            height: sizeStyle.isLarge ? "50px" : "42px",
+            borderRadius: "50%",
+            border: "1px solid rgba(255,255,255,0.3)",
+            background: "transparent",
+            color: "white",
+            fontSize: sizeStyle.isLarge ? "1.2rem" : "1.05rem",
+            cursor: "pointer",
+            display: "flex",
+            alignItems: "center",
+            justifyContent: "center",
+            transition: "all 0.3s ease",
+            flexShrink: 0,
           }}
         >
-          {project.category}
-        </span>
-        <h4 style={{ color: "#fff", fontSize: "1.2rem", fontWeight: 700 }}>
-          {project.title}
-        </h4>
+          →
+        </motion.button>
       </div>
     </motion.div>
   );
 };
 
+/* ── Main Projects Component ────────────────────────────── */
 const Projects = () => {
+  const [selected, setSelected] = useState(null);
+
+  // Alignments definition (3-column layout):
+  // Row 1: 1st card (span 2), 2nd card (span 1)
+  // Row 2: 3rd, 4th, 5th cards (span 1 each)
+  const getCardSizeStyle = (index) => {
+    if (index === 0) {
+      return {
+        gridColumn: "span 2",
+        height: "550px",
+        isLarge: true,
+      };
+    }
+    return {
+      gridColumn: "span 1",
+      height: "550px",
+      isLarge: false,
+    };
+  };
+
   return (
     <section
       id="projects"
       className="projects-section"
-      style={{ padding: "8rem 0", background: "rgba(0,0,0,0.2)" }}
+      style={{ padding: "10rem 0 8rem", background: "rgba(0,0,0,0.2)" }}
     >
+      <Modal item={selected} onClose={() => setSelected(null)} />
+
       <style>{`
         @media (max-width: 768px) {
           .projects-section {
@@ -182,19 +361,15 @@ const Projects = () => {
           }
           .projects-grid {
             grid-template-columns: 1fr !important;
-            gap: 1rem !important;
+            gap: 1.5rem !important;
           }
           .project-card {
             grid-column: span 1 !important;
-            grid-row: span 1 !important;
             height: 400px !important;
-          }
-          .project-title-large {
-            font-size: 2rem !important;
           }
         }
       `}</style>
-      <div className="container">
+      <div style={{ width: "100%", padding: "0 5vw" }}>
         <div
           className="projects-header"
           style={{
@@ -232,38 +407,24 @@ const Projects = () => {
               SELECTED <span className="gradient-text">PROJECTS</span>
             </motion.h2>
           </div>
-
-          <motion.button
-            whileHover={{ scale: 1.05 }}
-            whileTap={{ scale: 0.95 }}
-            style={{
-              padding: "1rem 2rem",
-              borderRadius: "50px",
-              border: "1px solid rgba(255,255,255,0.1)",
-              background: "rgba(255,255,255,0.05)",
-              color: "#fff",
-              fontWeight: 600,
-              cursor: "pointer",
-              display: "flex",
-              alignItems: "center",
-              gap: "0.5rem",
-            }}
-          >
-            View More <ArrowUpRight size={18} />
-          </motion.button>
         </div>
 
         <div
           className="projects-grid"
           style={{
             display: "grid",
-            gridTemplateColumns: "repeat(2, 1fr)",
-            gridAutoRows: "minmax(300px, auto)",
-            gap: "1.5rem",
+            gridTemplateColumns: "repeat(3, 1fr)",
+            gap: "2rem",
           }}
         >
-          {projects.map((p, i) => (
-            <ProjectCard key={p.title} project={p} index={i} />
+          {projectsList.map((p, i) => (
+            <ProjectCard
+              key={p.title}
+              project={p}
+              index={i}
+              sizeStyle={getCardSizeStyle(i)}
+              onClick={() => setSelected(p)}
+            />
           ))}
         </div>
       </div>

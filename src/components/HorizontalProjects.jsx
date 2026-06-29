@@ -15,7 +15,7 @@ const items = [
     youtubeUrl: null,
   },
   {
-    title: "Sunpharma",
+    title: "Sun Pharma",
     category: "Corporate Events",
     color: "#7b3f9e",
     image: experience2,
@@ -117,7 +117,7 @@ const Modal = ({ item, onClose }) => {
               {item.title}
             </h2>
 
-            {/* IMAGE — centered with side margins */}
+            {/* VIDEO / IMAGE — centered with side margins */}
             <div style={{
               width: "90%",
               borderRadius: "16px",
@@ -125,47 +125,25 @@ const Modal = ({ item, onClose }) => {
               border: "1px solid rgba(255,255,255,0.08)",
               flexShrink: 0,
             }}>
-              <img
-                src={item.image}
-                alt={item.title}
-                style={{ width: "100%", display: "block", objectFit: "cover" }}
-              />
+              {item.youtubeUrl ? (
+                <div style={{ position: "relative", width: "100%", aspectRatio: "16/9" }}>
+                  <iframe
+                    src={`https://www.youtube.com/embed/${item.youtubeUrl.split('/').pop().split('?')[0]}?autoplay=1&mute=0&controls=1&rel=0`}
+                    title={item.title}
+                    frameBorder="0"
+                    allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
+                    allowFullScreen
+                    style={{ position: "absolute", top: 0, left: 0, width: "100%", height: "100%", border: "none" }}
+                  />
+                </div>
+              ) : (
+                <img
+                  src={item.image}
+                  alt={item.title}
+                  style={{ width: "100%", display: "block", objectFit: "cover" }}
+                />
+              )}
             </div>
-
-            {/* WATCH NOW — centered below */}
-            {item.youtubeUrl ? (
-              <motion.a
-                href={item.youtubeUrl}
-                target="_blank"
-                rel="noopener noreferrer"
-                whileHover={{ borderColor: item.color, color: item.color }}
-                whileTap={{ scale: 0.97 }}
-                style={{
-                  display: "inline-flex", alignItems: "center", gap: "0.7rem",
-                  padding: "0.8rem 2.2rem", borderRadius: "100px",
-                  border: "1px solid rgba(255,255,255,0.25)",
-                  background: "transparent", color: "#fff",
-                  fontWeight: 700, fontSize: "0.95rem",
-                  textDecoration: "none", letterSpacing: "0.5px",
-                  transition: "border-color 0.25s ease, color 0.25s ease",
-                }}
-              >
-                <svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor">
-                  <path d="M8 5v14l11-7z" />
-                </svg>
-                Watch Now
-              </motion.a>
-            ) : (
-              <div style={{
-                display: "inline-flex", alignItems: "center", gap: "0.6rem",
-                padding: "0.8rem 2.2rem", borderRadius: "100px",
-                border: "1px solid rgba(255,255,255,0.1)",
-                color: "rgba(255,255,255,0.4)", fontWeight: 700, fontSize: "0.95rem",
-              }}>
-                <span style={{ width: "7px", height: "7px", borderRadius: "50%", background: item.color, display: "inline-block" }} />
-                Coming Soon
-              </div>
-            )}
           </motion.div>
         </motion.div>
       )}
