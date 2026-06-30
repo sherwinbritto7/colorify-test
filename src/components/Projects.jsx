@@ -31,8 +31,8 @@ const projectsList = [
     category: "Fashion Film",
     color: "#7b3f9e",
     image: selected2,
-    videoUrl: "https://drive.google.com/file/d/1UPsTdhzpBa8jwvPY1Ey2Y5KGOrT8JLrP/preview",
-    type: "gdrive"
+    videoUrl: "https://www.youtube.com/embed/Jxy4f8JVM34?autoplay=1&mute=0&controls=1",
+    type: "youtube-shorts"
   },
   {
     title: "Fashion AI",
