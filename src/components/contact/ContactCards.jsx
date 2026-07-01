@@ -2,10 +2,12 @@ import { motion } from "framer-motion";
 import Magnetic from "../Magnetic";
 import { Send, Instagram, Linkedin } from "lucide-react";
 
-const ContactCard = ({ label, value, icon: Icon, color }) => (
+const ContactCard = ({ label, value, icon: Icon, color, href }) => (
   <Magnetic>
     <motion.a
-      href="#"
+      href={href}
+      target="_blank"
+      rel="noopener noreferrer"
       className="contact-card"
       style={{
         display: "flex",
@@ -105,19 +107,22 @@ const ContactCards = () => {
     >
       <ContactCard
         label="Direct Mail"
-        value="hello@colorify.agency"
+        value="colorifyproductions@gmail.com"
+        href="mailto:colorifyproductions@gmail.com"
         icon={Send}
         color="#29abe2"
       />
       <ContactCard
         label="Instagram"
-        value="@colorify.global"
+        value="@colorify.media"
+        href="https://www.instagram.com/colorify.media?igsh=MTFxcXBwYW5renJ3OA%3D%3D&utm_source=qr"
         icon={Instagram}
         color="#7b3f9e"
       />
       <ContactCard
         label="LinkedIn"
-        value="Colorify Agency"
+        value="Colorify Media LLP"
+        href="https://www.linkedin.com/company/colorify-media-llp/"
         icon={Linkedin}
         color="#00a99d"
       />
