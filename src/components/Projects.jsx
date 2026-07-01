@@ -7,7 +7,7 @@ import selected1 from "../assets/photos/selected/selected1.png";
 import selected2 from "../assets/photos/selected/selected2.jpeg";
 import selected3 from "../assets/photos/selected/selected3.jpeg";
 import selected4 from "../assets/photos/selected/selected4.jpeg";
-import selected5 from "../assets/photos/selected/selected5.jpeg";
+import selected5 from "../assets/photos/selected/selected5.png";
 
 const projectsList = [
   {
