@@ -1,9 +1,6 @@
 import { motion } from "framer-motion";
 import { Link } from "react-router-dom";
 import PageTransition from "../../components/PageTransition";
-import instant1 from "../../assets/videos/instant/instant1.mp4";
-import instant2 from "../../assets/videos/instant/instant2.mp4";
-import instant3 from "../../assets/videos/instant/instant3.mp4";
 import { Zap, Clock, Send, CheckCircle } from "lucide-react";
 
 const InstantContent = () => {
@@ -14,9 +11,9 @@ const InstantContent = () => {
   ];
 
   const videos = [
-    { src: instant1, title: "Social Campaign Showcase", desc: "Shorts and reels designed for immediate viral impact." },
-    { src: instant2, title: "Live Event Recap", desc: "Recap video rendered and posted within hours of event kick-off." },
-    { src: instant3, title: "Micro-Narratives", desc: "Engaging 15-second narratives capturing brand essence." }
+    { embedUrl: "https://www.youtube.com/embed/2Kvos0uqSWQ?autoplay=1&mute=1&controls=1&loop=1&playlist=2Kvos0uqSWQ", title: "HSBC Sitar for Mental Health", desc: "Immersive musical moments optimized for vertical screens." },
+    { embedUrl: "https://www.youtube.com/embed/-ggFSzR6r98?autoplay=1&mute=1&controls=1&loop=1&playlist=-ggFSzR6r98", title: "Food Stories", desc: "Capturing culinary art with rapid turnaround and rich colors." },
+    { embedUrl: "https://www.youtube.com/embed/foNTzAfpSs4?autoplay=1&mute=1&controls=1&loop=1&playlist=foNTzAfpSs4", title: "HSBC", desc: "Dynamic commercial campaign content delivered instantly." }
   ];
 
   return (
@@ -89,13 +86,13 @@ const InstantContent = () => {
             <div style={{ display: "flex", flexDirection: "row", gap: "1.5rem", width: "100%", alignItems: "flex-start" }}>
               {videos.map((vid, idx) => (
                 <div key={idx} style={{ flex: 1, minWidth: 0, borderRadius: "24px", overflow: "hidden", background: "rgba(255,255,255,0.02)", border: "1px solid rgba(255,255,255,0.05)" }}>
-                  <video
-                    src={vid.src}
-                    autoPlay
-                    muted
-                    loop
-                    playsInline
-                    style={{ width: "100%", display: "block" }}
+                  <iframe
+                    src={vid.embedUrl}
+                    title={vid.title}
+                    frameBorder="0"
+                    allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
+                    allowFullScreen
+                    style={{ width: "100%", aspectRatio: "9/16", display: "block", border: "none" }}
                   />
                   <div style={{ padding: "1.2rem" }}>
                     <h3 style={{ fontSize: "1rem", fontWeight: 700, marginBottom: "0.4rem", color: "#fff" }}>{vid.title}</h3>

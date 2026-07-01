@@ -13,7 +13,9 @@ const IPCreation = () => {
 
   const videos = [
     { embedId: "JwbK6MR9lhE", title: "Who Is The Boss", desc: "Original IP production showcasing bold storytelling and cinematic world-building." },
-    { embedId: "l8I7B139P48", title: "Classic Men", desc: "A proprietary branded series blending style, culture, and high-production value." }
+    { embedId: "l8I7B139P48", title: "Classic Men", desc: "A proprietary branded series blending style, culture, and high-production value." },
+    { embedId: "f077hcY-lK0", title: "BRETT LEE TV", desc: "Original digital show concept featuring cricket legend Brett Lee." },
+    { embedId: "DJt0G0_AVMk", title: "BRETT LEE TV", desc: "Original digital show concept featuring cricket legend Brett Lee." }
   ];
 
   return (

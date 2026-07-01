@@ -23,7 +23,7 @@ const projectsList = [
     category: "Brand Campaign",
     color: "#c5d429",
     image: selected3,
-    videoUrl: "https://www.youtube.com/embed/dztEYDEQo_Y?autoplay=1&mute=0&controls=1",
+    videoUrl: "https://www.youtube.com/embed/dztEYDEQo_Y?autoplay=1&mute=1&controls=1",
     type: "youtube-shorts"
   },
   {
@@ -31,7 +31,7 @@ const projectsList = [
     category: "Fashion Film",
     color: "#7b3f9e",
     image: selected2,
-    videoUrl: "https://www.youtube.com/embed/Jxy4f8JVM34?autoplay=1&mute=0&controls=1",
+    videoUrl: "https://www.youtube.com/embed/Jxy4f8JVM34?autoplay=1&mute=1&controls=1",
     type: "youtube-shorts"
   },
   {
@@ -39,7 +39,7 @@ const projectsList = [
     category: "AI Filmmaking",
     color: "#29abe2",
     image: selected4,
-    videoUrl: "https://www.youtube.com/embed/SUqTDeoURkQ?autoplay=1&mute=0&controls=1",
+    videoUrl: "https://www.youtube.com/embed/SUqTDeoURkQ?autoplay=1&mute=1&controls=1",
     type: "youtube-shorts"
   },
   {
@@ -47,8 +47,8 @@ const projectsList = [
     category: "Commercial",
     color: "#f26522",
     image: selected5,
-    videoUrl: "https://www.instagram.com/reel/DYbg8B7CS-x/embed/",
-    type: "instagram"
+    videoUrl: "https://www.youtube.com/embed/aIvUKy1sCms?autoplay=1&mute=1&controls=1",
+    type: "youtube-shorts"
   },
 ];
 
@@ -123,7 +123,7 @@ const Modal = ({ item, onClose }) => {
                 <div style={{ position: "relative", width: "100%", aspectRatio: item.type === "youtube-shorts" || item.type === "instagram" ? "9/16" : "16/9", maxHeight: "80vh", display: "flex", justifyContent: "center", background: "transparent", overflow: "hidden" }}>
                   {item.type === "youtube" && (
                     <iframe
-                      src={`https://www.youtube.com/embed/${item.videoUrl.split('/').pop().split('?')[0]}?autoplay=1&mute=0&controls=1&rel=0`}
+                      src={`https://www.youtube.com/embed/${item.videoUrl.split('/').pop().split('?')[0]}?autoplay=1&mute=1&controls=1&rel=0`}
                       title={item.title}
                       frameBorder="0"
                       allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"

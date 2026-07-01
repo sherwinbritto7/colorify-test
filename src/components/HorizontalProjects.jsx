@@ -107,7 +107,7 @@ const Modal = ({ item, onClose }) => {
               {item.youtubeUrl ? (
                 <div style={{ position: "relative", width: "100%", aspectRatio: "16/9" }}>
                   <iframe
-                    src={`https://www.youtube.com/embed/${item.youtubeUrl.split('/').pop().split('?')[0]}?autoplay=1&mute=0&controls=1&rel=0`}
+                    src={`https://www.youtube.com/embed/${item.youtubeUrl.split('/').pop().split('?')[0]}?autoplay=1&mute=1&controls=1&rel=0`}
                     title={item.title}
                     frameBorder="0"
                     allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
