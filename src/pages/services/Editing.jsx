@@ -22,12 +22,12 @@ const Editing = () => {
       desc: "Dynamic cuts and color grading for a bold personal brand showcase."
     },
     {
-      embedId: "FjFNcoBxV4s",
+      embedId: "3yaQYxJCKXU",
       title: "Plum Perfumes",
       desc: "Social-first reel edited for instant engagement and platform optimization."
     },
     {
-      embedId: "CmvwK_O4XII",
+      embedId: "-FpUxsyHEwQ",
       title: "Yamaha RayZ",
       desc: "High-energy product reel with precision audio sync and motion graphics."
     },
