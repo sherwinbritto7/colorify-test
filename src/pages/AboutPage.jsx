@@ -2,6 +2,7 @@ import { useRef } from "react";
 import { motion, useAnimationFrame } from "framer-motion";
 import PageTransition from "../components/PageTransition";
 import { Pencil, Image, Camera, Laptop, Settings, Film, Award, Sparkles } from "lucide-react";
+import CTA from "../components/CTA";
 
 // Import Founder Photos
 import adityaPhoto from "../assets/photos/Aditya-Joshi.jpg";
@@ -1109,6 +1110,8 @@ const AboutPage = () => {
 
           <MosaicGallery />
         </section>
+
+        <CTA />
 
         <div style={{ height: "5vh" }} />
       </div>

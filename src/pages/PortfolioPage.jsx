@@ -2,6 +2,7 @@ import { motion } from "framer-motion";
 import HorizontalProjects from "../components/HorizontalProjects";
 import Projects from "../components/Projects";
 import PageTransition from "../components/PageTransition";
+import CTA from "../components/CTA";
 
 const PortfolioPage = () => {
   return (
@@ -82,6 +83,7 @@ const PortfolioPage = () => {
         <div style={{ marginTop: "0" }}>
           <Projects />
         </div>
+        <CTA />
       </div>
     </PageTransition>
   );

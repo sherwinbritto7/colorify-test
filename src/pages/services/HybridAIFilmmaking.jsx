@@ -1,8 +1,8 @@
 import { motion } from "framer-motion";
 import { Link } from "react-router-dom";
 import PageTransition from "../../components/PageTransition";
-
 import { Sparkles, Cpu, Image, CheckCircle } from "lucide-react";
+import CTA from "../../components/CTA";
 
 const HybridAIFilmmaking = () => {
   const features = [
@@ -105,6 +105,7 @@ const HybridAIFilmmaking = () => {
               ))}
             </div>
           </section>
+          <CTA />
         </div>
       </div>
     </PageTransition>

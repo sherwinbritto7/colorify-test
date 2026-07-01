@@ -2,6 +2,7 @@ import { motion } from "framer-motion";
 import { Link } from "react-router-dom";
 import PageTransition from "../../components/PageTransition";
 import { CheckCircle } from "lucide-react";
+import CTA from "../../components/CTA";
 
 const Editing = () => {
   const features = [
@@ -121,6 +122,7 @@ const Editing = () => {
               ))}
             </div>
           </section>
+          <CTA />
         </div>
       </div>
     </PageTransition>

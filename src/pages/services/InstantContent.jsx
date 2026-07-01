@@ -2,6 +2,7 @@ import { motion } from "framer-motion";
 import { Link } from "react-router-dom";
 import PageTransition from "../../components/PageTransition";
 import { Zap, Clock, Send, CheckCircle } from "lucide-react";
+import CTA from "../../components/CTA";
 
 const InstantContent = () => {
   const features = [
@@ -102,6 +103,7 @@ const InstantContent = () => {
               ))}
             </div>
           </section>
+          <CTA />
         </div>
       </div>
     </PageTransition>

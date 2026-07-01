@@ -3,6 +3,7 @@ import { Link } from "react-router-dom";
 import PageTransition from "../../components/PageTransition";
 
 import { Users, Shield, Layers, Award, CheckCircle } from "lucide-react";
+import CTA from "../../components/CTA";
 
 const IPCreation = () => {
   const features = [
@@ -104,6 +105,7 @@ const IPCreation = () => {
               ))}
             </div>
           </section>
+          <CTA />
         </div>
       </div>
     </PageTransition>
