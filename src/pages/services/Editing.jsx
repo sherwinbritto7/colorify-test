@@ -2,9 +2,6 @@ import { motion } from "framer-motion";
 import { Link } from "react-router-dom";
 import PageTransition from "../../components/PageTransition";
 import { CheckCircle } from "lucide-react";
-import editing1 from "../../assets/videos/editing/editing1.mp4";
-import editing2 from "../../assets/videos/editing/editing2.mp4";
-import editing3 from "../../assets/videos/editing/editing3.mp4";
 
 const Editing = () => {
   const features = [
@@ -15,41 +12,29 @@ const Editing = () => {
 
   const videos = [
     {
-      type: "youtube",
       embedId: "WJYVJMzsGqQ",
       title: "Hindustan Zinc",
       desc: "High-impact brand film with precision color grading and editorial pacing."
     },
     {
-      type: "local",
-      src: editing1,
-      title: "Plum",
-      desc: "Social-first reel edited for instant engagement and platform optimization."
-    },
-    {
-      type: "local",
-      src: editing2,
-      title: "Kareena Mircus",
+      embedId: "UGLeKnZOjZc",
+      title: "Kareena Miarcus DVC",
       desc: "Dynamic cuts and color grading for a bold personal brand showcase."
     },
     {
-      type: "local",
-      src: editing3,
-      title: "Yamaha",
+      embedId: "FjFNcoBxV4s",
+      title: "Plum Perfumes",
+      desc: "Social-first reel edited for instant engagement and platform optimization."
+    },
+    {
+      embedId: "CmvwK_O4XII",
+      title: "Yamaha RayZ",
       desc: "High-energy product reel with precision audio sync and motion graphics."
     },
   ];
 
   return (
     <PageTransition>
-      <style>{`
-        .editing-videos-grid {
-          display: flex;
-          flex-direction: column;
-          gap: 3rem;
-          width: 100%;
-        }
-      `}</style>
       <div style={{ position: "relative", minHeight: "100vh", paddingTop: "14rem" }}>
         <div className="container">
           {/* Back button */}
@@ -114,13 +99,11 @@ const Editing = () => {
 
           {/* Work Videos */}
           <section style={{ minHeight: "auto", padding: "0 0 10rem 0" }}>
-            <h2 style={{ fontSize: "2rem", fontWeight: 800, marginTop: "0", marginBottom: "2rem", textTransform: "uppercase" }}>Featured Works</h2>
-
-            <div className="editing-videos-grid">
-              {/* YouTube — Full Width */}
-              {videos.filter(v => v.type === "youtube").map((vid, idx) => (
-                <div key={idx} className="editing-video-wide" style={{ borderRadius: "24px", overflow: "hidden", background: "rgba(255,255,255,0.02)", border: "1px solid rgba(255,255,255,0.05)" }}>
-                  <div style={{ position: "relative", width: "100%", aspectRatio: "16/9" }}>
+            <h2 style={{ fontSize: "2rem", fontWeight: 800, marginTop: "0", marginBottom: "1.5rem", textTransform: "uppercase" }}>Featured Works</h2>
+            <div style={{ display: "flex", flexDirection: "column", gap: "3rem", width: "100%", maxWidth: "1200px", margin: "0 auto" }}>
+              {videos.map((vid, idx) => (
+                <div key={idx} style={{ width: "100%", borderRadius: "24px", overflow: "hidden", background: "rgba(255,255,255,0.02)", border: "1px solid rgba(255,255,255,0.05)" }}>
+                  <div style={{ position: "relative", width: "100%", aspectRatio: "16/9", overflow: "hidden" }}>
                     <iframe
                       src={`https://www.youtube.com/embed/${vid.embedId}?autoplay=1&mute=1&loop=1&playlist=${vid.embedId}&controls=1&rel=0`}
                       title={vid.title}
@@ -128,26 +111,6 @@ const Editing = () => {
                       allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
                       allowFullScreen
                       style={{ position: "absolute", top: 0, left: 0, width: "100%", height: "100%", border: "none" }}
-                    />
-                  </div>
-                  <div style={{ padding: "1.8rem" }}>
-                    <h3 style={{ fontSize: "1.2rem", fontWeight: 700, marginBottom: "0.5rem", color: "#fff" }}>{vid.title}</h3>
-                    <p style={{ color: "var(--text-secondary)", fontSize: "0.9rem", lineHeight: 1.5 }}>{vid.desc}</p>
-                  </div>
-                </div>
-              ))}
-
-              {/* Local Videos — Full Width, 16:9 */}
-              {videos.filter(v => v.type === "local").map((vid, idx) => (
-                <div key={idx} style={{ width: "100%", borderRadius: "24px", overflow: "hidden", background: "rgba(255,255,255,0.02)", border: "1px solid rgba(255,255,255,0.05)" }}>
-                  <div style={{ position: "relative", width: "100%", aspectRatio: "16/9" }}>
-                    <video
-                      src={vid.src}
-                      autoPlay
-                      muted
-                      loop
-                      playsInline
-                      style={{ position: "absolute", top: 0, left: 0, width: "100%", height: "100%", objectFit: "cover" }}
                     />
                   </div>
                   <div style={{ padding: "1.8rem" }}>
