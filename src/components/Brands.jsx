@@ -154,7 +154,7 @@ const Brands = () => {
               letterSpacing: "-0.03em",
             }}
           >
-            BRANDS WE <span className="gradient-text">WORK</span> FOR
+            BRANDS WE <span className="gradient-text">WORKED</span> FOR
           </motion.h2>
         </div>
 
