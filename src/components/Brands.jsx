@@ -31,6 +31,7 @@ import pg from "../assets/photos/logos/p&g.png";
 import sheth from "../assets/photos/logos/sheth.png";
 import sportbet from "../assets/photos/logos/sportbet.png";
 import sun from "../assets/photos/logos/sun.png";
+import futurense from "../assets/photos/logos/futurense.png";
 
 const logosList = [
   adityabirla,
@@ -63,7 +64,65 @@ const logosList = [
   sheth,
   sportbet,
   sun,
+  futurense,
 ];
+
+// Split logos into 3 rows
+const chunkSize = Math.ceil(logosList.length / 3);
+const row1 = logosList.slice(0, chunkSize);
+const row2 = logosList.slice(chunkSize, chunkSize * 2);
+const row3 = logosList.slice(chunkSize * 2);
+
+const MarqueeRow = ({ logos, direction = "left", speed = 35 }) => {
+  // Duplicate logos to create seamless loop
+  const doubled = [...logos, ...logos];
+  const animateX = direction === "left" ? ["0%", "-50%"] : ["-50%", "0%"];
+
+  return (
+    <div
+      style={{
+        overflow: "hidden",
+        width: "100%",
+        maskImage: "linear-gradient(to right, transparent 0%, black 8%, black 92%, transparent 100%)",
+        WebkitMaskImage: "linear-gradient(to right, transparent 0%, black 8%, black 92%, transparent 100%)",
+      }}
+    >
+      <motion.div
+        animate={{ x: animateX }}
+        transition={{
+          duration: speed,
+          ease: "linear",
+          repeat: Infinity,
+          repeatType: "loop",
+        }}
+        style={{
+          display: "flex",
+          alignItems: "center",
+          gap: "4rem",
+          width: "max-content",
+        }}
+      >
+        {doubled.map((logo, index) => (
+          <div
+            key={index}
+            style={{
+              display: "flex",
+              alignItems: "center",
+              justifyContent: "center",
+              flexShrink: 0,
+            }}
+          >
+            <img
+              src={logo}
+              alt="Brand Logo"
+              className="logo-item"
+            />
+          </div>
+        ))}
+      </motion.div>
+    </div>
+  );
+};
 
 const Brands = () => {
   return (
@@ -76,56 +135,30 @@ const Brands = () => {
       }}
     >
       <style>{`
-        .brands-grid {
-          display: flex;
-          flex-wrap: wrap;
-          gap: 4rem 3rem;
-          align-items: center;
-          justify-content: center;
-        }
-        .brand-logo-wrapper {
-          display: flex;
-          align-items: center;
-          justify-content: center;
-          flex: 0 0 calc(16.666% - 2.5rem);
-          max-width: calc(16.666% - 2.5rem);
-          height: 110px;
-        }
         .logo-item {
-          max-height: 75px;
-          max-width: 100%;
+          height: 55px;
+          width: auto;
+          max-width: 160px;
           object-fit: contain;
-          opacity: 0.9;
-          transition: all 0.3s ease;
+          opacity: 0.75;
+          transition: opacity 0.3s ease, transform 0.3s ease;
+          filter: grayscale(20%);
         }
         .logo-item:hover {
           opacity: 1;
-          transform: scale(1.08);
+          transform: scale(1.1);
+          filter: grayscale(0%);
         }
-        @media (max-width: 1024px) {
-          .brand-logo-wrapper {
-            flex: 0 0 calc(33.333% - 2rem);
-            max-width: calc(33.333% - 2rem);
-            height: 90px;
-          }
+        @media (max-width: 768px) {
           .logo-item {
-            max-height: 60px;
-          }
-        }
-        @media (max-width: 600px) {
-          .brand-logo-wrapper {
-            flex: 0 0 calc(50% - 1.5rem);
-            max-width: calc(50% - 1.5rem);
-            height: 75px;
-          }
-          .logo-item {
-            max-height: 48px;
+            height: 40px;
+            max-width: 110px;
           }
         }
       `}</style>
 
-      <div className="container">
-        <div style={{ marginBottom: "4rem", textAlign: "center" }}>
+      <div className="container" style={{ marginBottom: "4rem" }}>
+        <div style={{ textAlign: "center" }}>
           <motion.span
             initial={{ opacity: 0, y: 10 }}
             whileInView={{ opacity: 1, y: 0 }}
@@ -157,25 +190,13 @@ const Brands = () => {
             BRANDS WE <span className="gradient-text">WORKED</span> FOR
           </motion.h2>
         </div>
+      </div>
 
-        <div className="brands-grid">
-          {logosList.map((logo, index) => (
-            <motion.div
-              key={index}
-              className="brand-logo-wrapper"
-              initial={{ opacity: 0, y: 15 }}
-              whileInView={{ opacity: 1, y: 0 }}
-              viewport={{ once: true }}
-              transition={{ duration: 0.4, delay: index * 0.05 }}
-            >
-              <img
-                src={logo}
-                alt="Brand Logo"
-                className="logo-item"
-              />
-            </motion.div>
-          ))}
-        </div>
+      {/* Three infinite scrolling rows */}
+      <div style={{ display: "flex", flexDirection: "column", gap: "3rem" }}>
+        <MarqueeRow logos={row1} direction="left" speed={38} />
+        <MarqueeRow logos={row2} direction="right" speed={32} />
+        <MarqueeRow logos={row3} direction="left" speed={42} />
       </div>
     </section>
   );
