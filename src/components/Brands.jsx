@@ -153,16 +153,18 @@ const Brands = () => {
           width: auto;
           max-width: 160px;
           object-fit: contain;
-          opacity: 0.75;
-          transition: opacity 0.3s ease, transform 0.3s ease;
-          filter: grayscale(20%);
+          opacity: 0.6;
+          transition: opacity 0.35s ease, transform 0.35s ease, filter 0.35s ease;
+          filter: grayscale(100%) brightness(0.85);
           pointer-events: none;
+        }
+        .marquee-logo-slot {
+          pointer-events: auto;
         }
         .marquee-logo-slot:hover .logo-item {
           opacity: 1;
           transform: scale(1.1);
-          filter: grayscale(0%);
-          pointer-events: auto;
+          filter: grayscale(0%) brightness(1);
         }
 
         @media (max-width: 768px) {
