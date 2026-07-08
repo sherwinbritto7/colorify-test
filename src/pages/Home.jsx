@@ -13,10 +13,10 @@ const Home = () => {
     <PageTransition>
       <Hero />
       <WorksVideo />
+      <ScrollingText />
       <Vision />
       <AgencyPartners />
       <Brands />
-      <ScrollingText />
       <Testimonials />
       <CTA />
     </PageTransition>
