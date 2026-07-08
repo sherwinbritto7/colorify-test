@@ -73,53 +73,33 @@ const row1 = logosList.slice(0, chunkSize);
 const row2 = logosList.slice(chunkSize, chunkSize * 2);
 const row3 = logosList.slice(chunkSize * 2);
 
-const MarqueeRow = ({ logos, direction = "left", speed = 35 }) => {
-  // Duplicate logos to create seamless loop
-  const doubled = [...logos, ...logos];
-  const animateX = direction === "left" ? ["0%", "-50%"] : ["-50%", "0%"];
+// Pure CSS marquee row — no framer-motion, no sticking
+const MarqueeRow = ({ logos, direction = "left", duration = "35s" }) => {
+  // Triplicate for extra safety on wide screens
+  const tripled = [...logos, ...logos, ...logos];
+  const animationName = direction === "left" ? "marquee-left" : "marquee-right";
 
   return (
     <div
       style={{
         overflow: "hidden",
         width: "100%",
-        maskImage: "linear-gradient(to right, transparent 0%, black 8%, black 92%, transparent 100%)",
-        WebkitMaskImage: "linear-gradient(to right, transparent 0%, black 8%, black 92%, transparent 100%)",
+        maskImage:
+          "linear-gradient(to right, transparent 0%, black 8%, black 92%, transparent 100%)",
+        WebkitMaskImage:
+          "linear-gradient(to right, transparent 0%, black 8%, black 92%, transparent 100%)",
       }}
     >
-      <motion.div
-        animate={{ x: animateX }}
-        transition={{
-          duration: speed,
-          ease: "linear",
-          repeat: Infinity,
-          repeatType: "loop",
-        }}
-        style={{
-          display: "flex",
-          alignItems: "center",
-          gap: "4rem",
-          width: "max-content",
-        }}
+      <div
+        className={`marquee-track marquee-${direction}`}
+        style={{ animationDuration: duration }}
       >
-        {doubled.map((logo, index) => (
-          <div
-            key={index}
-            style={{
-              display: "flex",
-              alignItems: "center",
-              justifyContent: "center",
-              flexShrink: 0,
-            }}
-          >
-            <img
-              src={logo}
-              alt="Brand Logo"
-              className="logo-item"
-            />
+        {tripled.map((logo, index) => (
+          <div key={index} className="marquee-logo-slot">
+            <img src={logo} alt="Brand Logo" className="logo-item" />
           </div>
         ))}
-      </motion.div>
+      </div>
     </div>
   );
 };
@@ -135,6 +115,39 @@ const Brands = () => {
       }}
     >
       <style>{`
+        @keyframes marquee-scroll-left {
+          0%   { transform: translateX(0); }
+          100% { transform: translateX(-33.333%); }
+        }
+        @keyframes marquee-scroll-right {
+          0%   { transform: translateX(-33.333%); }
+          100% { transform: translateX(0); }
+        }
+
+        .marquee-track {
+          display: flex;
+          align-items: center;
+          gap: 4rem;
+          width: max-content;
+          will-change: transform;
+        }
+        .marquee-left {
+          animation: marquee-scroll-left linear infinite;
+        }
+        .marquee-right {
+          animation: marquee-scroll-right linear infinite;
+        }
+        .marquee-track:hover {
+          animation-play-state: running;
+        }
+
+        .marquee-logo-slot {
+          display: flex;
+          align-items: center;
+          justify-content: center;
+          flex-shrink: 0;
+        }
+
         .logo-item {
           height: 55px;
           width: auto;
@@ -143,16 +156,22 @@ const Brands = () => {
           opacity: 0.75;
           transition: opacity 0.3s ease, transform 0.3s ease;
           filter: grayscale(20%);
+          pointer-events: none;
         }
-        .logo-item:hover {
+        .marquee-logo-slot:hover .logo-item {
           opacity: 1;
           transform: scale(1.1);
           filter: grayscale(0%);
+          pointer-events: auto;
         }
+
         @media (max-width: 768px) {
           .logo-item {
             height: 40px;
             max-width: 110px;
+          }
+          .marquee-track {
+            gap: 2.5rem;
           }
         }
       `}</style>
@@ -192,11 +211,11 @@ const Brands = () => {
         </div>
       </div>
 
-      {/* Three infinite scrolling rows */}
+      {/* Three infinite scrolling rows — pure CSS, no sticking */}
       <div style={{ display: "flex", flexDirection: "column", gap: "3rem" }}>
-        <MarqueeRow logos={row1} direction="left" speed={38} />
-        <MarqueeRow logos={row2} direction="right" speed={32} />
-        <MarqueeRow logos={row3} direction="left" speed={42} />
+        <MarqueeRow logos={row1} direction="left" duration="40s" />
+        <MarqueeRow logos={row2} direction="right" duration="34s" />
+        <MarqueeRow logos={row3} direction="left" duration="46s" />
       </div>
     </section>
   );
