@@ -1,7 +1,7 @@
 import { useRef, useState } from "react";
 import { createPortal } from "react-dom";
 import { motion, useScroll, useTransform, AnimatePresence } from "framer-motion";
-import experience1 from "../assets/photos/experience/experience1.png";
+import experience1 from "../assets/photos/experience/experience1.jpeg";
 import experience2 from "../assets/photos/experience/experience2.png";
 import experience3 from "../assets/photos/experience/experience3.png";
 import experience4 from "../assets/photos/experience/experience4.png";
