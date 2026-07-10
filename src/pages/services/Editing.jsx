@@ -38,16 +38,7 @@ const Editing = () => {
     <PageTransition>
       <div style={{ position: "relative", minHeight: "100vh", paddingTop: "14rem" }}>
         <div className="container">
-          {/* Back button */}
-          <motion.div
-            initial={{ opacity: 0 }}
-            animate={{ opacity: 1 }}
-            style={{ marginBottom: "2rem" }}
-          >
-            <Link to="/services" style={{ color: "#7b3f9e", textDecoration: "none", fontWeight: 700, fontSize: "0.9rem", letterSpacing: "1px", textTransform: "uppercase" }}>
-              ← Back to Services
-            </Link>
-          </motion.div>
+
 
           {/* Heading */}
           <motion.h1

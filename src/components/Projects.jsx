@@ -43,7 +43,7 @@ const projectsList = [
     type: "youtube-shorts"
   },
   {
-    title: "RCB Sunpharma",
+    title: "RCB Sun Pharma",
     category: "Commercial",
     color: "#f26522",
     image: selected5,
