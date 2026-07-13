@@ -1,21 +1,44 @@
 import { motion } from "framer-motion";
 import { Link } from "react-router-dom";
 import PageTransition from "../../components/PageTransition";
-import { Zap, Clock, Send, CheckCircle } from "lucide-react";
+import { Zap, Clock, Send, CheckCircle, Heart, Eye } from "lucide-react";
 import CTA from "../../components/CTA";
+import CaseStudy from "../../components/CaseStudy";
 
 const InstantContent = () => {
-  const features = [
-    { title: "Real-Time Event Delivery", desc: "Capturing, editing, and delivering highly engaging content live during events for immediate audience distribution." },
-    { title: "Optimized Social Shorts", desc: "Creating high-impact short-form videos tailored perfectly to current viral formats and platform algorithms." },
-    { title: "Rapid Turnaround Pipeline", desc: "Proprietary agile assembly pipeline enabling fast deliverables without losing color quality or storytelling integrity." }
-  ];
-
   const videos = [
     { embedUrl: "https://www.youtube.com/embed/2Kvos0uqSWQ?autoplay=1&mute=1&controls=1&loop=1&playlist=2Kvos0uqSWQ", title: "HSBC Sitar for Mental Health", desc: "Immersive musical moments optimized for vertical screens." },
     { embedUrl: "https://www.youtube.com/embed/-ggFSzR6r98?autoplay=1&mute=1&controls=1&loop=1&playlist=-ggFSzR6r98", title: "Food Stories", desc: "Capturing culinary art with rapid turnaround and rich colors." },
     { embedUrl: "https://www.youtube.com/embed/foNTzAfpSs4?autoplay=1&mute=1&controls=1&loop=1&playlist=foNTzAfpSs4", title: "HSBC", desc: "Dynamic commercial campaign content delivered instantly." }
   ];
+
+  const processSteps = [
+    { title: "Empathize", subtitle: "Spot Opportunities", desc: "Identifying key brand moments and real-time viral trends.", icon: Heart },
+    { title: "Define", subtitle: "Set Up Templates", desc: "Preparing instant LUTs, aspect ratios, and export presets before the event.", icon: Clock },
+    { title: "Ideate", subtitle: "Live Capture", desc: "Ingesting live footage directly from the camera operators to mobile workstations.", icon: Zap },
+    { title: "Design", subtitle: "Agile Assembly", desc: "Rapid editing, trend sound syncing, and immediate color grading.", icon: Send },
+    { title: "Test", subtitle: "Instant Publish", desc: "Fast-rendering validation, client approval, and real-time upload.", icon: Eye }
+  ];
+
+  const solutionFeatures = [
+    {
+      title: "Real-Time Event Delivery",
+      points: [
+        "Capturing, editing, and delivering highly engaging content live during events.",
+        "On-site ingestion and instant timeline compilation.",
+        "Rapid event delivery to capture active viewer attention windows."
+      ]
+    },
+    {
+      title: "Optimized Social Shorts",
+      points: [
+        "Creating high-impact short-form videos tailored perfectly to current viral formats.",
+        "TikTok and Reels audio synchronization.",
+        "Visual style hook structures designed for loops."
+      ]
+    }
+  ];
+
 
   return (
     <PageTransition>
@@ -58,26 +81,30 @@ const InstantContent = () => {
             and delivering high-quality, platform-optimized videos within hours.
           </motion.p>
 
-          {/* Features */}
-          <section style={{ minHeight: "auto", padding: "2rem 0", marginBottom: "1rem" }}>
-            <h2 style={{ fontSize: "2rem", fontWeight: 800, marginBottom: "1.5rem", textTransform: "uppercase" }}>Core Features</h2>
-            <div style={{ display: "grid", gridTemplateColumns: "repeat(auto-fit, minmax(280px, 1fr))", gap: "2rem" }}>
-              {features.map((feat, idx) => (
-                <div key={idx} style={{ padding: "2.5rem", borderRadius: "24px", background: "rgba(255,255,255,0.02)", border: "1px solid rgba(255,255,255,0.05)" }}>
-                  <CheckCircle size={28} color="#39b54a" style={{ marginBottom: "1.5rem" }} />
-                  <h3 style={{ fontSize: "1.3rem", fontWeight: 700, marginBottom: "0.8rem", color: "#fff" }}>{feat.title}</h3>
-                  <p style={{ color: "var(--text-secondary)", lineHeight: 1.6, fontSize: "0.95rem" }}>{feat.desc}</p>
-                </div>
-              ))}
-            </div>
-          </section>
+          {/* Case Study Section */}
+          <CaseStudy
+            accentColor="#39b54a"
+            problemTitle="Missed Viral Windows & Slow Event Output"
+            problemDesc="In social marketing, trend windows last less than 24 hours. Standard post-production pipelines take days, resulting in:"
+            problemPoints={[
+              "Missed opportunities for brands to capitalize on live events.",
+              "High production latency for short-form social content.",
+              "Loss of viewer engagement and platform algorithm penalties."
+            ]}
+            problemConclusion="Relevance drops by 80% every day a trending moment or live event output is delayed."
+            solutionTitle="On-Site Real-Time Agile Assembly"
+            solutionDesc="We deploy on-site editing bays and direct-to-cloud workflows to deliver fully polished short-form content in under 4 hours:"
+            solutionFeatures={solutionFeatures}
+            processTitle="REAL-TIME DELIVERY PROCESS"
+            processSteps={processSteps}
+          />
 
           {/* Work Videos */}
-          <section style={{ minHeight: "auto", padding: "0 0 10rem 0" }}>
+          <section style={{ minHeight: "auto", padding: "0 0 4rem 0" }}>
             <h2 style={{ fontSize: "2rem", fontWeight: 800, marginTop: "0", marginBottom: "1.5rem", textTransform: "uppercase" }}>Featured Works</h2>
-            <div style={{ display: "flex", flexDirection: "row", gap: "1.5rem", width: "100%", alignItems: "flex-start" }}>
+            <div style={{ display: "flex", flexDirection: "row", gap: "1.5rem", width: "100%", alignItems: "flex-start", flexWrap: "wrap" }}>
               {videos.map((vid, idx) => (
-                <div key={idx} style={{ flex: 1, minWidth: 0, borderRadius: "24px", overflow: "hidden", background: "rgba(255,255,255,0.02)", border: "1px solid rgba(255,255,255,0.05)" }}>
+                <div key={idx} style={{ flex: 1, minWidth: "260px", borderRadius: "24px", overflow: "hidden", background: "rgba(255,255,255,0.02)", border: "1px solid rgba(255,255,255,0.05)" }}>
                   <iframe
                     src={vid.embedUrl}
                     title={vid.title}
@@ -94,6 +121,8 @@ const InstantContent = () => {
               ))}
             </div>
           </section>
+
+
           <CTA />
         </div>
       </div>

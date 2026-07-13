@@ -1,23 +1,45 @@
 import { motion } from "framer-motion";
 import { Link } from "react-router-dom";
 import PageTransition from "../../components/PageTransition";
-
-import { Users, Shield, Layers, Award, CheckCircle } from "lucide-react";
+import { Users, Shield, Layers, Award, CheckCircle, Heart, Search, BookOpen, Film, Radio } from "lucide-react";
 import CTA from "../../components/CTA";
+import CaseStudy from "../../components/CaseStudy";
 
 const IPCreation = () => {
-  const features = [
-    { title: "Original IP Incubation", desc: "Developing unique story concepts, characters, and show formats from initial drafts to pitch-ready pilots." },
-    { title: "Strategic Co-Production", desc: "Collaborating with leading studios and distributors to maximize content reach and production scale." },
-    { title: "Asset Ownership & Licensing", desc: "Securing intellectual property rights, trademarks, and syndication deals to create long-term brand equity." }
-  ];
-
   const videos = [
     { embedId: "JwbK6MR9lhE", title: "Who Is The Boss", desc: "Original IP production showcasing bold storytelling and cinematic world-building." },
     { embedId: "f077hcY-lK0", title: "BRETT LEE TV", desc: "Original digital show concept featuring cricket legend Brett Lee." },
     { embedId: "l8I7B139P48", title: "Classic Men", desc: "A proprietary branded series blending style, culture, and high-production value." },
     { embedId: "DJt0G0_AVMk", title: "BRETT LEE TV", desc: "Original digital show concept featuring cricket legend Brett Lee." }
   ];
+
+  const processSteps = [
+    { title: "Empathize", subtitle: "Audience Subcultures", desc: "Analyzing consumer behaviors, content habits, and cultural gaps.", icon: Heart },
+    { title: "Define", subtitle: "Franchise Bible", desc: "Defining show premise, visual identity, character dynamics, and brand alignment.", icon: Search },
+    { title: "Ideate", subtitle: "Writers' Room", desc: "Drafting script treatments, story boards, and pilot concept drafts.", icon: BookOpen },
+    { title: "Design", subtitle: "Pilot Production", desc: "Directing pilot episodes, designing key art assets, and setting distribution structures.", icon: Film },
+    { title: "Test", subtitle: "Launch & Metric", desc: "Running test releases, examining viewer engagement metrics, and securing co-production deals.", icon: Radio }
+  ];
+
+  const solutionFeatures = [
+    {
+      title: "Original IP Incubation",
+      points: [
+        "Developing unique story concepts, characters, and show formats from initial drafts to pitch-ready pilots.",
+        "Episodic show formats tailored to web audiences.",
+        "Talent mapping and script blueprint development."
+      ]
+    },
+    {
+      title: "Strategic Co-Production",
+      points: [
+        "Collaborating with leading studios and distributors to maximize content reach and production scale.",
+        "Cross-network community amplification.",
+        "Co-development deal structuring and funding alignment."
+      ]
+    }
+  ];
+
 
   return (
     <PageTransition>
@@ -58,22 +80,26 @@ const IPCreation = () => {
             Ownership is the future of media. We conceptualize, build, and produce proprietary entertainment properties and web franchises, transforming standard media content into high-value intellectual assets.
           </motion.p>
 
-          {/* Features */}
-          <section style={{ minHeight: "auto", padding: "2rem 0", marginBottom: "1rem" }}>
-            <h2 style={{ fontSize: "2rem", fontWeight: 800, marginBottom: "1.5rem", textTransform: "uppercase" }}>Core Focus Areas</h2>
-            <div style={{ display: "grid", gridTemplateColumns: "repeat(auto-fit, minmax(280px, 1fr))", gap: "2rem" }}>
-              {features.map((feat, idx) => (
-                <div key={idx} style={{ padding: "2.5rem", borderRadius: "24px", background: "rgba(255,255,255,0.02)", border: "1px solid rgba(255,255,255,0.05)" }}>
-                  <CheckCircle size={28} color="#f26522" style={{ marginBottom: "1.5rem" }} />
-                  <h3 style={{ fontSize: "1.3rem", fontWeight: 700, marginBottom: "0.8rem", color: "#fff" }}>{feat.title}</h3>
-                  <p style={{ color: "var(--text-secondary)", lineHeight: 1.6, fontSize: "0.95rem" }}>{feat.desc}</p>
-                </div>
-              ))}
-            </div>
-          </section>
+          {/* Case Study Section */}
+          <CaseStudy
+            accentColor="#f26522"
+            problemTitle="Transactional Content Fatigue & Ad-Spend Inflation"
+            problemDesc="In a saturated landscape, standard transactional campaigns struggle to build organic audience loyalty. Brands face:"
+            problemPoints={[
+              "Spiraling ad-acquisition costs with diminishing returns.",
+              "Lack of community ownership and audience engagement.",
+              "Short content shelf-lives that fail to yield long-term media equity."
+            ]}
+            problemConclusion="Building long-term asset value through proprietary show IP yields 5x the organic reach of traditional media buy cycles."
+            solutionTitle="Original IP Incubation & Franchise Architecture"
+            solutionDesc="We develop and license proprietary show formats and digital web franchises that embed brands directly into audience subcultures:"
+            solutionFeatures={solutionFeatures}
+            processTitle="FRANCHISE INCUBATION PROCESS"
+            processSteps={processSteps}
+          />
 
           {/* Work Videos */}
-          <section style={{ minHeight: "auto", padding: "0 0 10rem 0" }}>
+          <section style={{ minHeight: "auto", padding: "0 0 4rem 0" }}>
             <h2 style={{ fontSize: "2rem", fontWeight: 800, marginTop: "0", marginBottom: "1.5rem", textTransform: "uppercase" }}>Featured Properties</h2>
             <div style={{ display: "flex", flexDirection: "column", gap: "3rem", width: "100%", maxWidth: "1200px", margin: "0 auto" }}>
               {videos.map((vid, idx) => (
@@ -96,6 +122,8 @@ const IPCreation = () => {
               ))}
             </div>
           </section>
+
+
           <CTA />
         </div>
       </div>

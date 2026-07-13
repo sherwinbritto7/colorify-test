@@ -1,16 +1,11 @@
 import { motion } from "framer-motion";
 import { Link } from "react-router-dom";
 import PageTransition from "../../components/PageTransition";
-import { CheckCircle } from "lucide-react";
+import { CheckCircle, Brain, Heart, Paintbrush, Play, CheckSquare } from "lucide-react";
 import CTA from "../../components/CTA";
+import CaseStudy from "../../components/CaseStudy";
 
 const Editing = () => {
-  const features = [
-    { title: "Advanced Color Grading", desc: "Crafting customized color palettes to establish the exact mood and visual signature." },
-    { title: "Precision Video Editing", desc: "Rhythmic and logical pacing that keeps the audience hooked and builds narrative momentum." },
-    { title: "Immersive Sound Design", desc: "Studio-grade audio mixing, sound effect design, and custom score placement." }
-  ];
-
   const videos = [
     {
       embedId: "WJYVJMzsGqQ",
@@ -33,6 +28,34 @@ const Editing = () => {
       desc: "High-energy product reel with precision audio sync and motion graphics."
     },
   ];
+
+  const processSteps = [
+    { title: "Empathize", subtitle: "Define Mood", desc: "Understanding the client's brand identity, message, and audience emotional drivers.", icon: Heart },
+    { title: "Define", subtitle: "Visual Script", desc: "Locking pacing patterns, references, and the overall color grade direction.", icon: Brain },
+    { title: "Ideate", subtitle: "Timeline assembly", desc: "Constructing the rough cut, syncing audio stems, and establishing general timing.", icon: Play },
+    { title: "Design", subtitle: "Polishing", desc: "Applying advanced color grading, sound design, and custom visual effects.", icon: Paintbrush },
+    { title: "Test", subtitle: "Retention Check", desc: "Validating viewer attention metrics, executing final renders, and client review.", icon: CheckSquare }
+  ];
+
+  const solutionFeatures = [
+    {
+      title: "Advanced Color Grading",
+      points: [
+        "Crafting customized color palettes to establish the exact mood and visual signature.",
+        "Custom look-up tables (LUTs) to establish brand identity.",
+        "HDR and SDR grading optimizations."
+      ]
+    },
+    {
+      title: "Precision Video Editing",
+      points: [
+        "Rhythmic and logical pacing that keeps the audience hooked.",
+        "Retention-optimized hooks in the first 3 seconds.",
+        "Dynamic sequencing and structural narrative pacing."
+      ]
+    }
+  ];
+
 
   return (
     <PageTransition>
@@ -75,22 +98,26 @@ const Editing = () => {
             to transform raw footage into a cohesive, emotionally resonant story.
           </motion.p>
 
-          {/* Features */}
-          <section style={{ minHeight: "auto", padding: "2rem 0", marginBottom: "1rem" }}>
-            <h2 style={{ fontSize: "2rem", fontWeight: 800, marginBottom: "1.5rem", textTransform: "uppercase" }}>Core Features</h2>
-            <div style={{ display: "grid", gridTemplateColumns: "repeat(auto-fit, minmax(280px, 1fr))", gap: "2rem" }}>
-              {features.map((feat, idx) => (
-                <div key={idx} style={{ padding: "2.5rem", borderRadius: "24px", background: "rgba(255,255,255,0.02)", border: "1px solid rgba(255,255,255,0.05)" }}>
-                  <CheckCircle size={28} color="#7b3f9e" style={{ marginBottom: "1.5rem" }} />
-                  <h3 style={{ fontSize: "1.3rem", fontWeight: 700, marginBottom: "0.8rem", color: "#fff" }}>{feat.title}</h3>
-                  <p style={{ color: "var(--text-secondary)", lineHeight: 1.6, fontSize: "0.95rem" }}>{feat.desc}</p>
-                </div>
-              ))}
-            </div>
-          </section>
+          {/* Case Study Section */}
+          <CaseStudy
+            accentColor="#7b3f9e"
+            problemTitle="Ineffective Rhythms & Visual Disconnections"
+            problemDesc="Raw footage often suffers from inconsistent lighting, disjointed narrative pacing, and audio synchronization issues. This fragmentation leads to:"
+            problemPoints={[
+              "Confusing viewer journeys and quick drop-offs.",
+              "Inconsistent grading failing to convey the brand's intended emotion.",
+              "Lags or jarring cuts that break immersion during high-stakes messaging."
+            ]}
+            problemConclusion="Average retention rate drops by over 45% when editorial pacing is off by even a few frames."
+            solutionTitle="Precision Color Tuning & Rhythmic Cuts"
+            solutionDesc="We implement a multi-phase post-production pipeline to harmonize story, color, and sound into one seamless flow:"
+            solutionFeatures={solutionFeatures}
+            processTitle="EDITORIAL PROCESS"
+            processSteps={processSteps}
+          />
 
           {/* Work Videos */}
-          <section style={{ minHeight: "auto", padding: "0 0 10rem 0" }}>
+          <section style={{ minHeight: "auto", padding: "0 0 4rem 0" }}>
             <h2 style={{ fontSize: "2rem", fontWeight: 800, marginTop: "0", marginBottom: "1.5rem", textTransform: "uppercase" }}>Featured Works</h2>
             <div style={{ display: "flex", flexDirection: "column", gap: "3rem", width: "100%", maxWidth: "1200px", margin: "0 auto" }}>
               {videos.map((vid, idx) => (
@@ -113,6 +140,8 @@ const Editing = () => {
               ))}
             </div>
           </section>
+
+
           <CTA />
         </div>
       </div>
