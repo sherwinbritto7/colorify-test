@@ -5,88 +5,236 @@ import { Check } from "lucide-react";
 // Inline Custom SVGs for Case Study Illustrations that match the requested format
 
 const ClipboardIllustration = ({ accentColor }) => (
-  <svg viewBox="0 0 400 400" width="100%" height="100%" style={{ maxWidth: "340px", display: "block", margin: "0 auto" }}>
+  <svg viewBox="0 0 400 400" width="100%" height="100%" style={{ maxWidth: "340px", display: "block", margin: "0 auto", overflow: "visible" }}>
     <defs>
       <linearGradient id="clipGrad" x1="0%" y1="0%" x2="100%" y2="100%">
         <stop offset="0%" stopColor={accentColor} stopOpacity="0.8" />
         <stop offset="100%" stopColor="#111" />
       </linearGradient>
-      <filter id="glow">
-        <feGaussianBlur stdDeviation="6" result="coloredBlur"/>
-        <feMerge>
-          <feMergeNode in="coloredBlur"/>
-          <feMergeNode in="SourceGraphic"/>
-        </feMerge>
-      </filter>
-    </defs>
-    {/* Clipboard Background Board */}
-    <rect x="80" y="80" width="240" height="280" rx="16" fill="rgba(255,255,255,0.02)" stroke="rgba(255,255,255,0.1)" strokeWidth="2" />
-    <rect x="100" y="110" width="200" height="220" rx="8" fill="url(#clipGrad)" opacity="0.15" />
-    
-    {/* Clipboard Top Clip */}
-    <path d="M160 80 L160 60 C160 54 165 50 170 50 L230 50 C235 50 240 54 240 60 L240 80 Z" fill="#222" stroke="rgba(255,255,255,0.2)" strokeWidth="2" />
-    <circle cx="200" cy="65" r="5" fill={accentColor} />
-
-    {/* Big Red/Accent Question Mark */}
-    <text x="200" y="240" fontSize="100" fontWeight="900" fill={accentColor} textAnchor="middle" filter="url(#glow)">?</text>
-
-    {/* Lines on Clipboard */}
-    <line x1="120" y1="270" x2="280" y2="270" stroke="rgba(255,255,255,0.3)" strokeWidth="4" strokeLinecap="round" />
-    <line x1="120" y1="295" x2="240" y2="295" stroke="rgba(255,255,255,0.3)" strokeWidth="4" strokeLinecap="round" />
-    <line x1="120" y1="320" x2="200" y2="320" stroke="rgba(255,255,255,0.2)" strokeWidth="4" strokeLinecap="round" />
-
-    {/* Left Figure */}
-    <g transform="translate(40, 200)">
-      <circle cx="30" cy="50" r="12" fill={accentColor} />
-      <path d="M15 75 C15 65 20 65 30 65 C40 65 45 65 45 75 L45 130 L35 130 L35 100 L25 100 L25 130 L15 130 Z" fill="rgba(255,255,255,0.8)" />
-      <line x1="30" y1="75" x2="50" y2="85" stroke={accentColor} strokeWidth="4" strokeLinecap="round" />
-    </g>
-
-    {/* Right Figure */}
-    <g transform="translate(300, 200)">
-      <circle cx="30" cy="50" r="12" fill={accentColor} />
-      <path d="M15 75 C15 65 20 65 30 65 C40 65 45 65 45 75 L45 130 L35 130 L35 100 L25 100 L25 130 L15 130 Z" fill="rgba(255,255,255,0.8)" />
-      <line x1="30" y1="75" x2="10" y2="85" stroke={accentColor} strokeWidth="4" strokeLinecap="round" />
-    </g>
-
-    {/* Connective dots/dashed lines */}
-    <path d="M220 50 Q280 20 340 80" fill="none" stroke="rgba(255,255,255,0.15)" strokeWidth="2" strokeDasharray="6,6" />
-  </svg>
-);
-
-const LightbulbIllustration = ({ accentColor }) => (
-  <svg viewBox="0 0 400 400" width="100%" height="100%" style={{ maxWidth: "340px", display: "block", margin: "0 auto" }}>
-    <defs>
-      <filter id="bulbGlow">
-        <feGaussianBlur stdDeviation="10" result="blur" />
+      <linearGradient id="clipMetal" x1="0%" y1="0%" x2="100%" y2="0%">
+        <stop offset="0%" stopColor="#222" />
+        <stop offset="50%" stopColor="#666" />
+        <stop offset="100%" stopColor="#222" />
+      </linearGradient>
+      <radialGradient id="innerGlowGradClip" cx="50%" cy="45%" r="50%">
+        <stop offset="0%" stopColor={accentColor} stopOpacity="0.5" />
+        <stop offset="60%" stopColor={accentColor} stopOpacity="0.15" />
+        <stop offset="100%" stopColor={accentColor} stopOpacity="0" />
+      </radialGradient>
+      <filter id="clipGlow">
+        <feGaussianBlur stdDeviation="8" result="blur" />
         <feMerge>
           <feMergeNode in="blur" />
           <feMergeNode in="SourceGraphic" />
         </feMerge>
       </filter>
     </defs>
-    {/* Lightbulb outline */}
-    <path d="M200 80 C130 80 110 140 110 190 C110 240 140 260 160 280 L160 310 L240 310 L240 280 C260 260 290 240 290 190 C290 140 270 80 200 80 Z" 
-      fill="rgba(255, 255, 255, 0.01)" stroke="rgba(255, 255, 255, 0.08)" strokeWidth="2" />
-    
-    {/* Glowing Lightbulb inner */}
-    <path d="M200 100 C150 100 135 145 135 190 C135 225 155 245 175 265 L175 295 L225 295 L225 265 C245 245 265 225 265 190 C265 145 250 100 200 100 Z" 
-      fill={accentColor} opacity="0.1" filter="url(#bulbGlow)" />
 
-    {/* Lightbulb Base */}
-    <rect x="170" y="310" width="60" height="10" rx="3" fill="#333" />
-    <rect x="175" y="325" width="50" height="10" rx="3" fill="#222" />
-    <path d="M185 338 C185 345 215 345 215 338 Z" fill="#111" />
+    {/* Subtle Background Glow behind the Board */}
+    <motion.circle
+      cx="200"
+      cy="220"
+      r="120"
+      fill="url(#innerGlowGradClip)"
+      opacity="0.25"
+      animate={{
+        scale: [0.95, 1.05, 0.95],
+        opacity: [0.2, 0.3, 0.2]
+      }}
+      transition={{
+        duration: 4,
+        repeat: Infinity,
+        ease: "easeInOut"
+      }}
+    />
 
-    {/* Puzzle/Lightbulb filaments */}
-    <path d="M180 190 L195 230 L205 230 L220 190" fill="none" stroke={accentColor} strokeWidth="3" strokeLinecap="round" />
+    {/* Clipboard Background Board */}
+    <rect x="80" y="80" width="240" height="280" rx="16" fill="rgba(255,255,255,0.02)" stroke="rgba(255,255,255,0.1)" strokeWidth="2" />
+    <rect x="100" y="110" width="200" height="220" rx="8" fill="url(#clipGrad)" opacity="0.15" />
     
-    {/* Puzzle Pieces around / inside */}
-    <g transform="translate(140, 130)" filter="url(#bulbGlow)" opacity="0.9">
-      <path d="M0 0 L30 0 L30 10 C30 15 35 15 35 10 L35 0 L65 0 L65 30 L55 30 C50 30 50 35 55 35 L65 35 L65 65 L0 65 Z" fill={accentColor} />
+    {/* Clipboard Top Clip */}
+    <path d="M160 80 L160 60 C160 54 165 50 170 50 L230 50 C235 50 240 54 240 60 L240 80 Z" fill="url(#clipMetal)" stroke="rgba(255,255,255,0.15)" strokeWidth="1.5" />
+    <circle cx="200" cy="65" r="5" fill={accentColor} />
+
+    {/* Big Pulsing/Glowing Accent Question Mark */}
+    <motion.g
+      style={{ originX: "200px", originY: "210px" }}
+      animate={{
+        scale: [1, 1.08, 1],
+        filter: ["drop-shadow(0 0 5px rgba(255,255,255,0))", `drop-shadow(0 0 15px ${accentColor}dd)`, "drop-shadow(0 0 5px rgba(255,255,255,0))"]
+      }}
+      transition={{
+        duration: 2.5,
+        repeat: Infinity,
+        ease: "easeInOut"
+      }}
+    >
+      <text x="200" y="235" fontSize="100" fontWeight="900" fill={accentColor} textAnchor="middle" filter="url(#clipGlow)">?</text>
+    </motion.g>
+
+    {/* Lines on Clipboard (Drawn style) */}
+    <motion.line x1="120" y1="270" x2="280" y2="270" stroke="rgba(255,255,255,0.35)" strokeWidth="4" strokeLinecap="round"
+      animate={{ opacity: [0.4, 0.8, 0.4] }} transition={{ duration: 3, repeat: Infinity, ease: "easeInOut" }} />
+    <motion.line x1="120" y1="295" x2="240" y2="295" stroke="rgba(255,255,255,0.35)" strokeWidth="4" strokeLinecap="round"
+      animate={{ opacity: [0.4, 0.8, 0.4] }} transition={{ duration: 3, repeat: Infinity, ease: "easeInOut", delay: 0.5 }} />
+    <motion.line x1="120" y1="320" x2="200" y2="320" stroke="rgba(255,255,255,0.2)" strokeWidth="4" strokeLinecap="round"
+      animate={{ opacity: [0.3, 0.6, 0.3] }} transition={{ duration: 3, repeat: Infinity, ease: "easeInOut", delay: 1 }} />
+
+    {/* Left Figure shrugging / floating */}
+    <g transform="translate(40, 200)">
+      <motion.g 
+        animate={{ y: [0, -6, 0] }}
+        transition={{ duration: 3, repeat: Infinity, ease: "easeInOut" }}
+      >
+        <circle cx="30" cy="50" r="12" fill={accentColor} />
+        <path d="M15 75 C15 65 20 65 30 65 C40 65 45 65 45 75 L45 130 L35 130 L35 100 L25 100 L25 130 L15 130 Z" fill="rgba(255,255,255,0.8)" />
+        <line x1="30" y1="75" x2="50" y2="85" stroke={accentColor} strokeWidth="4" strokeLinecap="round" />
+      </motion.g>
     </g>
 
-    {/* Interactive Figures */}
+    {/* Right Figure shrugging / floating */}
+    <g transform="translate(300, 200)">
+      <motion.g 
+        animate={{ y: [0, -6, 0] }}
+        transition={{ duration: 3, repeat: Infinity, ease: "easeInOut", delay: 0.5 }}
+      >
+        <circle cx="30" cy="50" r="12" fill={accentColor} />
+        <path d="M15 75 C15 65 20 65 30 65 C40 65 45 65 45 75 L45 130 L35 130 L35 100 L25 100 L25 130 L15 130 Z" fill="rgba(255,255,255,0.8)" />
+        <line x1="30" y1="75" x2="10" y2="85" stroke={accentColor} strokeWidth="4" strokeLinecap="round" />
+      </motion.g>
+    </g>
+
+    {/* Connective dots/dashed lines - Animated to flow */}
+    <motion.path 
+      d="M220 50 Q280 20 340 80" 
+      fill="none" 
+      stroke="rgba(255,255,255,0.15)" 
+      strokeWidth="2.5" 
+      strokeDasharray="6,6"
+      animate={{ strokeDashoffset: [0, -24] }}
+      transition={{ duration: 4, repeat: Infinity, ease: "linear" }}
+    />
+  </svg>
+);
+
+const LightbulbIllustration = ({ accentColor }) => (
+  <svg viewBox="0 0 400 400" width="100%" height="100%" style={{ maxWidth: "340px", display: "block", margin: "0 auto", overflow: "visible" }}>
+    <defs>
+      <filter id="bulbGlow" x="-50%" y="-50%" width="200%" height="200%">
+        <feGaussianBlur stdDeviation="8" result="blur1" />
+        <feGaussianBlur stdDeviation="20" result="blur2" />
+        <feMerge>
+          <feMergeNode in="blur2" />
+          <feMergeNode in="blur1" />
+          <feMergeNode in="SourceGraphic" />
+        </feMerge>
+      </filter>
+      <radialGradient id="innerGlowGradBulb" cx="50%" cy="45%" r="50%">
+        <stop offset="0%" stopColor={accentColor} stopOpacity="0.5" />
+        <stop offset="60%" stopColor={accentColor} stopOpacity="0.15" />
+        <stop offset="100%" stopColor={accentColor} stopOpacity="0" />
+      </radialGradient>
+      <linearGradient id="metalGrad" x1="0%" y1="0%" x2="100%" y2="0%">
+        <stop offset="0%" stopColor="#1e1e1e" />
+        <stop offset="50%" stopColor="#555" />
+        <stop offset="100%" stopColor="#1e1e1e" />
+      </linearGradient>
+    </defs>
+
+    {/* Glowing Background Glow (Breathes/Pulses) */}
+    <motion.circle
+      cx="200"
+      cy="190"
+      r="100"
+      fill="url(#innerGlowGradBulb)"
+      animate={{
+        scale: [1, 1.08, 1],
+        opacity: [0.8, 1, 0.8]
+      }}
+      transition={{
+        duration: 3,
+        repeat: Infinity,
+        ease: "easeInOut"
+      }}
+    />
+
+    {/* Outer glass glow rays */}
+    <g>
+      {/* Top ray */}
+      <motion.line x1="200" y1="50" x2="200" y2="30" stroke={accentColor} strokeWidth="3" strokeLinecap="round"
+        animate={{ opacity: [0.3, 1, 0.3], y: [0, -5, 0] }} transition={{ duration: 2, repeat: Infinity, ease: "easeInOut" }} />
+      {/* Top-Right ray */}
+      <motion.line x1="290" y1="100" x2="305" y2="85" stroke={accentColor} strokeWidth="3" strokeLinecap="round"
+        animate={{ opacity: [0.3, 1, 0.3], x: [0, 4, 0], y: [0, -4, 0] }} transition={{ duration: 2, repeat: Infinity, ease: "easeInOut", delay: 0.3 }} />
+      {/* Right ray */}
+      <motion.line x1="330" y1="190" x2="350" y2="190" stroke={accentColor} strokeWidth="3" strokeLinecap="round"
+        animate={{ opacity: [0.3, 1, 0.3], x: [0, 5, 0] }} transition={{ duration: 2, repeat: Infinity, ease: "easeInOut", delay: 0.6 }} />
+      {/* Top-Left ray */}
+      <motion.line x1="110" y1="100" x2="95" y2="85" stroke={accentColor} strokeWidth="3" strokeLinecap="round"
+        animate={{ opacity: [0.3, 1, 0.3], x: [0, -4, 0], y: [0, -4, 0] }} transition={{ duration: 2, repeat: Infinity, ease: "easeInOut", delay: 0.3 }} />
+      {/* Left ray */}
+      <motion.line x1="70" y1="190" x2="50" y2="190" stroke={accentColor} strokeWidth="3" strokeLinecap="round"
+        animate={{ opacity: [0.3, 1, 0.3], x: [0, -5, 0] }} transition={{ duration: 2, repeat: Infinity, ease: "easeInOut", delay: 0.6 }} />
+    </g>
+
+    {/* Sparkles/Particles */}
+    <motion.circle cx="120" cy="110" r="3" fill={accentColor} animate={{ y: [0, -12, 0], opacity: [0.2, 0.8, 0.2] }} transition={{ duration: 3, repeat: Infinity, ease: "easeInOut" }} />
+    <motion.circle cx="280" cy="120" r="4" fill={accentColor} animate={{ y: [0, -18, 0], opacity: [0.1, 0.7, 0.1] }} transition={{ duration: 4, repeat: Infinity, ease: "easeInOut", delay: 0.8 }} />
+    <motion.circle cx="150" cy="70" r="2" fill={accentColor} animate={{ y: [0, -8, 0], opacity: [0.3, 0.9, 0.3] }} transition={{ duration: 2.5, repeat: Infinity, ease: "easeInOut", delay: 1.5 }} />
+    <motion.circle cx="250" cy="75" r="2.5" fill={accentColor} animate={{ y: [0, -10, 0], opacity: [0.2, 0.8, 0.2] }} transition={{ duration: 3.5, repeat: Infinity, ease: "easeInOut", delay: 0.4 }} />
+
+    {/* Bulb Glass Outline */}
+    <path 
+      d="M200 70 C125 70 105 135 105 190 C105 235 130 255 155 275 L155 310 L245 310 L245 275 C270 255 295 235 295 190 C295 135 275 70 200 70 Z" 
+      fill="rgba(255, 255, 255, 0.02)" 
+      stroke="rgba(255, 255, 255, 0.15)" 
+      strokeWidth="2" 
+    />
+    
+    {/* Inner Glass Highlight (Reflection) */}
+    <path 
+      d="M125 150 C120 180 125 210 135 230" 
+      fill="none" 
+      stroke="rgba(255, 255, 255, 0.25)" 
+      strokeWidth="2" 
+      strokeLinecap="round" 
+    />
+
+    {/* Lightbulb Screw Base */}
+    <g>
+      <rect x="155" y="310" width="90" height="8" rx="4" fill="url(#metalGrad)" stroke="rgba(255,255,255,0.1)" />
+      <rect x="160" y="318" width="80" height="8" rx="4" fill="url(#metalGrad)" stroke="rgba(255,255,255,0.1)" />
+      <rect x="165" y="326" width="70" height="8" rx="4" fill="url(#metalGrad)" stroke="rgba(255,255,255,0.1)" />
+      <path d="M175 334 C175 344 225 344 225 334 Z" fill="#151515" stroke="rgba(255,255,255,0.1)" />
+    </g>
+
+    {/* Glowing Filament (Double loop with intense glow) */}
+    <g>
+      {/* Support Wires */}
+      <line x1="175" y1="310" x2="175" y2="220" stroke="rgba(255, 255, 255, 0.3)" strokeWidth="1.5" />
+      <line x1="225" y1="310" x2="225" y2="220" stroke="rgba(255, 255, 255, 0.3)" strokeWidth="1.5" />
+      
+      {/* Filament Loop */}
+      <motion.path 
+        d="M175 220 L190 190 C180 160 190 140 200 140 C210 140 220 160 210 190 L225 220" 
+        fill="none" 
+        stroke={accentColor} 
+        strokeWidth="3.5" 
+        strokeLinecap="round"
+        strokeLinejoin="round"
+        filter="url(#bulbGlow)"
+        animate={{
+          strokeWidth: [3.5, 4.5, 3.5]
+        }}
+        transition={{
+          duration: 1.5,
+          repeat: Infinity,
+          ease: "easeInOut"
+        }}
+      />
+    </g>
+
+    {/* Interactive Figures looking at the giant bulb */}
     <g transform="translate(80, 260)">
       <circle cx="15" cy="15" r="7" fill={accentColor} />
       <path d="M5 30 C5 24 10 24 15 24 C20 24 25 24 25 30 L25 60 L5 60 Z" fill="rgba(255,255,255,0.8)" />
