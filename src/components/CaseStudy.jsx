@@ -418,48 +418,9 @@ const CaseStudy = ({
               </React.Fragment>
             );
           })}
-
-          {/* Glowing "SEE MORE" Badge overlaying the flow to match the image */}
-          <div style={{
-            position: "absolute",
-            bottom: "-3.5rem",
-            right: "5%",
-            zIndex: 10,
-            display: "flex",
-            justifyContent: "center",
-            width: "100%",
-            pointerEvents: "none"
-          }}>
-            <motion.div 
-              initial={{ scale: 0.9, opacity: 0 }}
-              whileInView={{ scale: 1, opacity: 1 }}
-              transition={{ delay: 0.8 }}
-              style={{
-                pointerEvents: "auto",
-                background: "linear-gradient(135deg, #ff0055 0%, #7b3f9e 100%)",
-                padding: "0.6rem 1.5rem",
-                borderRadius: "30px",
-                display: "flex",
-                alignItems: "center",
-                gap: "0.6rem",
-                boxShadow: "0 10px 25px rgba(255, 0, 85, 0.3)",
-                cursor: "pointer",
-                border: "1px solid rgba(255,255,255,0.1)"
-              }}
-              whileHover={{ scale: 1.05, translateY: -2 }}
-              onClick={() => {
-                const ctaElem = document.getElementById("cta-section");
-                if (ctaElem) {
-                  ctaElem.scrollIntoView({ behavior: "smooth" });
-                }
-              }}
-            >
-              <span style={{ fontSize: "0.8rem", fontWeight: 800, color: "#fff", letterSpacing: "0.05em" }}>SEE MORE</span>
-              <span style={{ color: "#fff", fontWeight: "bold" }}>→</span>
-            </motion.div>
-          </div>
         </div>
       </section>
+
       
     </div>
   );
